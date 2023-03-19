@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment'
 @Injectable({
   providedIn: 'root'
 })
-export class UrlServiceService {
+export class UrlService {
 
   urlBaseBusiness: string;
   urlBaseDatos: string;

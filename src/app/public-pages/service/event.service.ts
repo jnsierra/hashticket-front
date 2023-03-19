@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UrlServiceService } from 'src/app/service/url-service.service';
+import { UrlService } from 'src/app/service/url.service';
 import { Event } from 'src/app/entities/event';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventServiceService {
+export class EventService {
 
-  constructor(private _urlService: UrlServiceService,private http: HttpClient) { }
+  constructor(private _urlService: UrlService,private http: HttpClient) { }
 
   getActiveEvents(){
     const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}/active`;

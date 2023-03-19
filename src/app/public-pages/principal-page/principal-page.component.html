@@ -20,3 +20,21 @@
     </mat-carousel-slide>
   </mat-carousel>
 </p>
+<mat-card class="example-card" *ngFor="let evento of eventos">
+  <mat-card-header>
+    <mat-card-title>Nicolas Mora</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="/assets/images/Mora.jpeg" alt="Foto de Nicolas" />
+  <mat-card-content>
+    <p>
+      <mat-grid-list cols="2" rowHeight="3:1"
+        ><mat-grid-tile>{{ evento.date | date : "longDate" }}</mat-grid-tile
+        ><mat-grid-tile>{{ evento.place }} </mat-grid-tile></mat-grid-list
+      >
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Comprar entrada</button>
+    <button mat-button>Ver más</button>
+  </mat-card-actions>
+</mat-card>
