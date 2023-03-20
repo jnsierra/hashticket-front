@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { registerLocaleData } from '@angular/common';
-import localEs from '@angular/common/locales/es-CO'
+import localEs from '@angular/common/locales/es-CO';
 
 registerLocaleData(localEs);
 
@@ -20,7 +20,7 @@ registerLocaleData(localEs);
     BrowserAnimationsModule,
     MatToolbarModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es-CO'}],
+  providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

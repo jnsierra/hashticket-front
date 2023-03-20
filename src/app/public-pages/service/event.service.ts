@@ -12,6 +12,6 @@ export class EventService {
 
   getActiveEvents(){
     const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}/active`;
-    return this.http.get<Event>(URL_SERVICE);
+    return this.http.get<Event[]>(URL_SERVICE);
   }
 }

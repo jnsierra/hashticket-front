@@ -1,0 +1,18 @@
+<mat-card fxLayoutAlign="center center" fxFlex="0 1 calc(20% - 20px)" fxLayoutGap="20px">
+    <mat-card-header>
+      <mat-card-title>{{'Nicolas Mora' | uppercase}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="eventImage.base64" alt="Foto de Nicolas" />
+    <mat-card-content>
+        <mat-grid-list cols="2" rowHeight="4:1"
+          ><mat-grid-tile>{{
+            event.date | date : "E\nd\nMMM" | uppercase
+          }}</mat-grid-tile
+          ><mat-grid-tile>{{ event.place }} </mat-grid-tile></mat-grid-list
+        >
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-raised-button>TICKETS</button>
+      <button mat-raised-button>MÁS INFO</button>
+    </mat-card-actions>
+  </mat-card>
