@@ -1,4 +1,4 @@
-<mat-card style="text-align: center">
+<!--mat-card style="text-align: center">
   <mat-card-title>{{ "Nicolas Mora" | uppercase }}</mat-card-title>
   <img
     mat-card-image
@@ -24,4 +24,9 @@
     <div class="px-12"><button mat-raised-button>MÁS INFO</button></div>
     <div class="px-12"><button mat-raised-button>TICKETS</button></div>
   </mat-card-actions>
-</mat-card>
+</mat-card-->
+Esto es una tarjeta
+<div *ngFor="let eventImage of eventImages">
+  aaa
+  <img mat-card-image [src]="eventImage.base64" [alt]="eventImage.description"/>
+</div>

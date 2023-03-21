@@ -11,6 +11,6 @@ export class EventImageService {
 
   getEventImages(eventId: number) {
     const URL_SERVICE = `${this._urlService.getEndPointPubImageById()}/${eventId}?typeImages=PRINCIPAL`;
-    return this.http.get<EventImages>(URL_SERVICE);
+    return this.http.get<EventImages[]>(URL_SERVICE);
   }
 }
