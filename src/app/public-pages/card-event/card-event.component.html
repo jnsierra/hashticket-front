@@ -1,10 +1,8 @@
-<!--mat-card style="text-align: center">
-  <mat-card-title>{{ "Nicolas Mora" | uppercase }}</mat-card-title>
-  <img
-    mat-card-image
-    [src]="eventImage.base64"
-    [alt]="eventImage.description"
-  />
+<mat-card style="text-align: center">
+  <mat-card-title>{{ "Jessi Uribe & Alejandro Fernandez" | uppercase }}</mat-card-title>
+  <div *ngFor="let eventImage of eventImages">
+    <img mat-card-image [src]="eventImage.base64" [alt]="eventImage.description"/>
+  </div>
   <mat-card-content>
     <mat-grid-list cols="2"
       ><mat-grid-tile
@@ -24,9 +22,4 @@
     <div class="px-12"><button mat-raised-button>MÁS INFO</button></div>
     <div class="px-12"><button mat-raised-button>TICKETS</button></div>
   </mat-card-actions>
-</mat-card-->
-Esto es una tarjeta
-<div *ngFor="let eventImage of eventImages">
-  aaa
-  <img mat-card-image [src]="eventImage.base64" [alt]="eventImage.description"/>
-</div>
+</mat-card>
