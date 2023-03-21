@@ -1,18 +1,26 @@
-<mat-card fxLayoutAlign="center center" fxFlex="0 1 calc(20% - 20px)" fxLayoutGap="20px">
-    <mat-card-header>
-      <mat-card-title>{{'Nicolas Mora' | uppercase}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [src]="eventImage.base64" alt="Foto de Nicolas" />
-    <mat-card-content>
-        <mat-grid-list cols="2" rowHeight="4:1"
-          ><mat-grid-tile>{{
-            event.date | date : "E\nd\nMMM" | uppercase
-          }}</mat-grid-tile
-          ><mat-grid-tile>{{ event.place }} </mat-grid-tile></mat-grid-list
-        >
-    </mat-card-content>
-    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
-      <button mat-raised-button>TICKETS</button>
-      <button mat-raised-button>MÁS INFO</button>
-    </mat-card-actions>
-  </mat-card>
+<mat-card style="text-align: center">
+  <mat-card-title>{{ "Nicolas Mora" | uppercase }}</mat-card-title>
+  <img
+    mat-card-image
+    [src]="eventImage.base64"
+    [alt]="eventImage.description"
+  />
+  <mat-card-content>
+    <mat-grid-list cols="2"
+      ><mat-grid-tile
+        ><div style="text-align: center">
+          {{ event.date | date : "E" | uppercase }}<br />
+          <div style="font-size: 60px; font-weight: bold">
+            {{ event.date | date : "d" }}
+          </div>
+          {{ event.date | date : "MMM" | uppercase }}
+        </div>
+        </mat-grid-tile
+      ><mat-grid-tile>{{ event.place }} {{ event.time | date : "h:m a" : '-0000' }} </mat-grid-tile></mat-grid-list
+    >
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="px-9"><button mat-raised-button>MÁS INFO</button></div>
+    <div class="px-9"><button mat-raised-button>TICKETS</button></div>
+  </mat-card-actions>
+</mat-card>
