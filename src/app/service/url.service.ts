@@ -23,4 +23,8 @@ export class UrlService {
   getEndPointPubImageById(){
     return `${this.urlBasePublic}v.1/event_images/event`;
   }
+
+  getEndPointPubLogin(){
+    return `${this.urlBasePublic}login/`;
+  }
 }

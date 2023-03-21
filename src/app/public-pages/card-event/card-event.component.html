@@ -14,13 +14,14 @@
             {{ event.date | date : "d" }}
           </div>
           {{ event.date | date : "MMM" | uppercase }}
-        </div>
-        </mat-grid-tile
-      ><mat-grid-tile>{{ event.place }} {{ event.time | date : "h:m a" : '-0000' }} </mat-grid-tile></mat-grid-list
+        </div> </mat-grid-tile
+      ><mat-grid-tile
+        >{{ event.place }} <br />{{ event.time | date : "h:m a" : "-0000" }}
+      </mat-grid-tile></mat-grid-list
     >
   </mat-card-content>
   <mat-card-actions>
-    <div class="px-9"><button mat-raised-button>MÁS INFO</button></div>
-    <div class="px-9"><button mat-raised-button>TICKETS</button></div>
+    <div class="px-12"><button mat-raised-button>MÁS INFO</button></div>
+    <div class="px-12"><button mat-raised-button>TICKETS</button></div>
   </mat-card-actions>
 </mat-card>

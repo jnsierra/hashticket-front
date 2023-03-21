@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SigninComponent } from './signin/signin.component';
+import { MatSnackBarModule, MatSnackBarRef } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [SigninComponent],
@@ -19,8 +20,9 @@ import { SigninComponent } from './signin/signin.component';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule,
   ],
-  exports: [SigninComponent]
+  exports: [SigninComponent],
 })
 export class AuthModule {}
