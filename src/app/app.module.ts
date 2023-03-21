@@ -10,11 +10,12 @@ import { registerLocaleData } from '@angular/common';
 import { AuthModule } from './auth/auth.module';
 
 import localEs from '@angular/common/locales/es-CO';
+import { PublicComponent } from './components/public/public.component';
 
 registerLocaleData(localEs);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PublicComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
