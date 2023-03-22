@@ -12,11 +12,13 @@ import { FormsModule } from '@angular/forms';
 
 import localEs from '@angular/common/locales/es-CO';
 import { PublicComponent } from './components/public/public.component';
+import { AdminModuleModule} from './admin-module/admin-module.module';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(localEs);
 
 @NgModule({
-  declarations: [AppComponent, PublicComponent],
+  declarations: [AppComponent, PublicComponent ],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -24,8 +26,10 @@ registerLocaleData(localEs);
     MatIconModule,
     MatToolbarModule,
     PublicPagesModule,
+    AdminModuleModule,
     AuthModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent],

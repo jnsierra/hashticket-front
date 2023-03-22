@@ -2,12 +2,12 @@ export class LoginResponse {
     token: string;
     time: number;
     mensaje: string;
-    loginAction: number;
+    loginAction: string;
 
     constructor() {
       this.token = '';
       this.time = 0;
       this.mensaje = '';
-      this.loginAction = 0;
+      this.loginAction = '';
     }
   }
