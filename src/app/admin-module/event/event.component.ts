@@ -9,7 +9,8 @@ import { Event } from '../../entities/event';
 })
 export class EventComponent implements OnInit {
 
-  events: Event[]
+  events: Event[];
+  displayedColumns: string[] = ['id', 'place', 'date', 'minimumAge', 'responsible', 'openingDoors', 'cityCode'];
   
   constructor(private _eventService:EventService){
     this.events = [];
