@@ -8,6 +8,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { PublicPagesModule } from './public-pages/public-pages.module';
 import { registerLocaleData } from '@angular/common';
 import { AuthModule } from './auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
 import localEs from '@angular/common/locales/es-CO';
 import { PublicComponent } from './components/public/public.component';
@@ -24,6 +25,7 @@ registerLocaleData(localEs);
     MatToolbarModule,
     PublicPagesModule,
     AuthModule,
+    FormsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent],
