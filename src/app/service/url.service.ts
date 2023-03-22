@@ -25,6 +25,9 @@ export class UrlService {
   }
 
   getEndPointPubLogin(){
-    return `${this.urlBasePublic}/login/`;
+    return `${this.urlBasePublic}login/`;
+  }
+  getEndPointEvent(){
+    return `${this.urlBaseDatos}v.1/event/`;
   }
 }

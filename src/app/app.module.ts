@@ -14,6 +14,8 @@ import localEs from '@angular/common/locales/es-CO';
 import { PublicComponent } from './components/public/public.component';
 import { AdminModuleModule} from './admin-module/admin-module.module';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './service/auth-interceptor.service';
 
 registerLocaleData(localEs);
 
@@ -29,9 +31,19 @@ registerLocaleData(localEs);
     AdminModuleModule,
     AuthModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
+  providers: [
+    { provide: LOCALE_ID, 
+      useValue: 'es-CO',
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

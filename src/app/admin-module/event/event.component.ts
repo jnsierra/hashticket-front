@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EventService } from 'src/app/service/event.service';
+import { Event } from '../../entities/event';
 
 @Component({
   selector: 'app-event',
@@ -7,11 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventComponent implements OnInit {
 
+  events: Event[]
   
-  constructor(){}
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  constructor(private _eventService:EventService){
+    this.events = [];
   }
 
+  ngOnInit(): void {
+    this.getAllEvents();
+    
+  }
+
+  getAllEvents(){
+    this._eventService.getAll().subscribe(resp => {
+      this.events = resp;
+    });
+  }
 }
