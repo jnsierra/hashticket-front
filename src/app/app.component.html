@@ -1,20 +1,27 @@
-<div>
-  <p>
+<mat-drawer-container class="example-container" hasBackdrop="true">
+  <mat-drawer #drawer mode="side"><br>
+    <a routerLink="" class="px-4">Eventos</a><br><br>
+    <a routerLink="/signin" class="px-4">Iniciar sesión</a>
+  </mat-drawer>
+  <mat-drawer-content>
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <div style="width: auto; margin-left: 120px">
-        <img src="/assets/images/Logo.png" width="130" height="130" /></div><span
-          class="spacer"
-        ></span>
-        <button mat-icon-button aria-label="Icono menu">
+          <img src="/assets/images/Logo.png" width="130" height="130" />
+        </div>
+        <span class="spacer"></span>
+        <div>
+        <button mat-icon-button aria-label="Icono menu" (click)="drawer.toggle()">
           <mat-icon>menu</mat-icon>
-        </button>
+        </button></div>
       </mat-toolbar-row>
       <mat-toolbar-row class="hidden-mobile">
         <a routerLink="" class="px-4">Eventos</a>
         <a routerLink="/signin" class="px-4">Iniciar sesión</a>
       </mat-toolbar-row>
     </mat-toolbar>
-  </p>
-  <router-outlet></router-outlet>
-</div>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+

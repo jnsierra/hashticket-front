@@ -2,7 +2,7 @@
   flex: 1 1 auto;
 }
 
-.mat-toolbar-row {
+mat-toolbar-row {
   justify-content: center;
 }
 
@@ -10,4 +10,10 @@
   .hidden-mobile {
     display: none;
   }
+}
+
+mat-drawer{
+  background: #3F51B5;
+  color: white;
+  font-size: 16px;
 }
