@@ -21,16 +21,16 @@ export class AuthService {
     const URL_SERVICE = `${this._urlService.getEndPointPubLogin()}`;
     return this.http.post<LoginResponse>(  URL_SERVICE, loginEntity).pipe(
       map( resp => {
-        this.guardarToken(resp.token);
+        this.saveToken(resp.token);
         return resp;
       })
     );
   }
-  private guardarToken(token: string) {
+  private saveToken(token: string) {
     this.userToken = token;
     localStorage.setItem('token', token);
   }
-  leerToken(): string {
+  readToken(): string {
     if (localStorage.getItem('token')) {
       this.userToken = localStorage.getItem('token') as string;
     } else {
@@ -38,7 +38,7 @@ export class AuthService {
     }
     return this.userToken;
   }
-  estaAutenticado(): boolean {
+  isAuthenticated(): boolean {
     if (this.userToken.length > 2) {
       return true;
     }

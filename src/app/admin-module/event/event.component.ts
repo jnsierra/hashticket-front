@@ -7,25 +7,35 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss']
+  styleUrls: ['./event.component.scss'],
 })
 export class EventComponent {
-
-  displayedColumns: string[] = ['select', 'id', 'place', 'date', 'minimumAge', 'responsible', 'openingDoors', 'cityCode'];
+  displayedColumns: string[] = [
+    'select',
+    'id',
+    'place',
+    'date',
+    'minimumAge',
+    'responsible',
+    'openingDoors',
+    'cityCode',
+  ];
   dataSource = new MatTableDataSource<Event>();
   selection = new SelectionModel<Event>(true, []);
 
-  constructor(private _eventService: EventService, public dialog: MatDialog, private router: Router){
+  constructor(
+    private _eventService: EventService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {
     this.getAllEvents();
   }
   getAllEvents() {
-    this._eventService.getAll().subscribe(resp => {
-      this.dataSource.data =resp;
+    this._eventService.getAll().subscribe((resp) => {
+      this.dataSource.data = resp;
     });
   }
 
@@ -51,26 +61,26 @@ export class EventComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
+      row.id + 1
+    }`;
   }
   openLocation(event: Event) {
-    const dialogRef = this.dialog.open(
-      ViewLocationComponent, {
+    const dialogRef = this.dialog.open(ViewLocationComponent, {
       width: '500px',
       enterAnimationDuration: '10',
       exitAnimationDuration: '10',
-      data : { 
+      data: {
         cityCode: event.cityCode,
-        departmentCode: event.departmentCode
-      } 
+        departmentCode: event.departmentCode,
+      },
     });
   }
-  insertar(){
-    if(this.selection.selected.length > 0 ){
+  insertar() {
+    if (this.selection.selected.length > 0) {
       alert('Al insertar no debe estar seleccionado ningún item');
-      return ;
+      return;
     }
     this.router.navigateByUrl('/eventEdit');
-    console.log(this.selection);
   }
 }

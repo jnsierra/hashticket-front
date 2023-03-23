@@ -5,3 +5,9 @@
 .mat-toolbar-row {
   justify-content: center;
 }
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none;
+  }
+}

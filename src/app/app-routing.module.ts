@@ -5,14 +5,19 @@ import { HomeAdminComponent } from './admin-module/home-admin/home-admin.compone
 import { SigninComponent } from './auth/signin/signin.component';
 import { PublicComponent } from './components/public/public.component';
 import { EventEditComponent } from './admin-module/event-edit/event-edit.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: PublicComponent  },
-  { path: 'homeAdmin', component: HomeAdminComponent},
-  { path: 'event', component: EventComponent},
-  { path: 'signin', component: SigninComponent},
-  { path: 'eventEdit', component: EventEditComponent},
-  { path: '**', pathMatch: 'full', redirectTo: '' }
+  { path: '', component: PublicComponent },
+  { path: 'homeAdmin', component: HomeAdminComponent },
+  { path: 'event', component: EventComponent },
+  { path: 'signin', component: SigninComponent },
+  {
+    path: 'eventEdit',
+    component: EventEditComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
 @NgModule({
