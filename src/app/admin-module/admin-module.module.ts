@@ -13,7 +13,7 @@ import { EventComponent } from './event/event.component';
 import { RouterModule } from '@angular/router';
 import { ViewLocationComponent } from './view-location/view-location.component'
 import { EventEditComponent } from './event-edit/event-edit.component';
-
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import { EventEditComponent } from './event-edit/event-edit.component';
     MatInputModule,
     MatDatepickerModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule
   ]
 })
 export class AdminModuleModule { }

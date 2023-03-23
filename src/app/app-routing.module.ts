@@ -10,13 +10,9 @@ import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [
   { path: '', component: PublicComponent },
   { path: 'homeAdmin', component: HomeAdminComponent },
-  { path: 'event', component: EventComponent },
+  { path: 'event', component: EventComponent, canActivate: [AuthGuard]},
   { path: 'signin', component: SigninComponent },
-  {
-    path: 'eventEdit',
-    component: EventEditComponent,
-    canActivate: [AuthGuard],
-  },
+  { path: 'eventEdit', component: EventEditComponent, canActivate: [AuthGuard] },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 

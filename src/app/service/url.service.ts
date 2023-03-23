@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UrlService {
-
   urlBaseBusiness: string;
   urlBaseDatos: string;
   urlBasePublic: string;
@@ -16,24 +15,25 @@ export class UrlService {
     this.urlBasePublic = environment.urlBasePublic;
   }
 
-  getEndPointPubEvent(){
+  getEndPointPubEvent() {
     return `${this.urlBasePublic}v.1/event`;
   }
-
-  getEndPointPubImageById(){
+  getEndPointPubImageById() {
     return `${this.urlBasePublic}v.1/event_images/event`;
   }
-
-  getEndPointPubLogin(){
+  getEndPointPubLogin() {
     return `${this.urlBasePublic}login/`;
   }
-  getEndPointEvent(){
+  getEndPointPubConfigEvent() {
+    return `${this.urlBasePublic}v.1/config_event/event`;
+  }
+  getEndPointEvent() {
     return `${this.urlBaseDatos}v.1/event/`;
   }
-  getEndPointCity(){
+  getEndPointCity() {
     return `${this.urlBaseDatos}v.1/city/`;
   }
-  getEndPointDepartment(){
+  getEndPointDepartment() {
     return `${this.urlBaseDatos}v.1/department/`;
   }
 }

@@ -19,9 +19,8 @@
           </div>
           {{ event.date | date : "MMM" | uppercase }}
         </div> </mat-grid-tile
-      ><mat-grid-tile
-        >{{ event.place }} <br />{{ event.openingDoors }}
-        <!-- {{ event.time | date : "h:m a" : "-0000" }} -->
+      ><mat-grid-tile>
+        {{ event.place }} <br />{{ configEvent.doorOpening }}
       </mat-grid-tile></mat-grid-list
     >
   </mat-card-content>
