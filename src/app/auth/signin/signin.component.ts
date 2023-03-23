@@ -25,9 +25,6 @@ export class SigninComponent {
   }
 
   generarLogin( f:NgForm ){
-    console.log('Llego');
-    console.log(this.loginEntity);
-    console.log(f);
     this.sendLogin();
   }
 }

@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewLocationComponent } from '../view-location/view-location.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -20,7 +20,7 @@ export class EventComponent {
   dataSource = new MatTableDataSource<Event>();
   selection = new SelectionModel<Event>(true, []);
 
-  constructor(private _eventService: EventService, public dialog: MatDialog){
+  constructor(private _eventService: EventService, public dialog: MatDialog, private router: Router){
     this.getAllEvents();
   }
   getAllEvents() {
@@ -64,5 +64,13 @@ export class EventComponent {
         departmentCode: event.departmentCode
       } 
     });
+  }
+  insertar(){
+    if(this.selection.selected.length > 0 ){
+      alert('Al insertar no debe estar seleccionado ningún item');
+      return ;
+    }
+    this.router.navigateByUrl('/eventEdit');
+    console.log(this.selection);
   }
 }

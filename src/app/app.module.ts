@@ -16,6 +16,7 @@ import { AdminModuleModule} from './admin-module/admin-module.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
+import { MatNativeDateModule } from '@angular/material/core'; 
 
 registerLocaleData(localEs);
 
@@ -32,7 +33,8 @@ registerLocaleData(localEs);
     AuthModule,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatNativeDateModule
   ],
   providers: [
     { provide: LOCALE_ID, 
