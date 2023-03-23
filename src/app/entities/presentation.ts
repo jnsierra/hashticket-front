@@ -1,4 +1,11 @@
-export interface Presentation {
-name: string,
-eventId: number
+export class Presentation {
+  id: number;
+  name: string;
+  eventId: number;
+
+  constructor() {
+    this.id = 0;
+    this.name = '';
+    this.eventId = 0;
+  }
 }

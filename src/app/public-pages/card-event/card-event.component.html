@@ -1,7 +1,9 @@
 <mat-card style="text-align: center">
-  <mat-card-title>{{
-    "Jessi Uribe & Alejandro Fernandez" | uppercase
-  }}</mat-card-title>
+  <mat-card-title>
+    <div *ngFor="let present of presentation">
+      {{ present.name | uppercase }}
+    </div>
+  </mat-card-title>
   <div *ngFor="let eventImage of eventImages">
     <img
       mat-card-image
@@ -20,7 +22,11 @@
           {{ event.date | date : "MMM" | uppercase }}
         </div> </mat-grid-tile
       ><mat-grid-tile>
-        {{ event.place }} <br />{{ configEvent.doorOpening }}
+        {{ event.place }} <br />{{
+          configEvent.doorOpening.split(":")[0] +
+            ":" +
+            configEvent.doorOpening.split(".")[0].split(":")[1]
+        }}
       </mat-grid-tile></mat-grid-list
     >
   </mat-card-content>

@@ -4,6 +4,8 @@ import { EventImages } from 'src/app/entities/event-images';
 import { EventImageService } from '../../service/event-image.service';
 import { ConfigEvent } from 'src/app/entities/config-event';
 import { ConfigEventService } from 'src/app/service/config-event.service';
+import { Presentation } from 'src/app/entities/presentation';
+import { PresentationService } from 'src/app/service/presentation.service';
 
 @Component({
   selector: 'app-card-event',
@@ -15,14 +17,17 @@ export class CardEventComponent implements OnInit {
   event: Event;
   eventImages: EventImages[];
   configEvent: ConfigEvent;
+  presentation: Presentation[];
 
   constructor(
     private _events: EventImageService,
-    private _configEvent: ConfigEventService
+    private _configEvent: ConfigEventService,
+    private _presentation: PresentationService
   ) {
     this.event = new Event();
     this.eventImages = [];
     this.configEvent = new ConfigEvent();
+    this.presentation = [];
   }
 
   ngOnInit(): void {
@@ -33,6 +38,10 @@ export class CardEventComponent implements OnInit {
 
     this._configEvent.getConfigEvent(this.event.id).subscribe((resp) => {
       this.configEvent = resp;
+    });
+
+    this._presentation.getPresentation(this.event.id).subscribe((resp) => {
+      this.presentation = resp;
     });
   }
 }

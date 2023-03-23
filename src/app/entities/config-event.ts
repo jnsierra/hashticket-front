@@ -9,8 +9,7 @@ export class ConfigEvent {
     numberOfTicketSold: number;
     // eventDate: Date
     eventDate: string;
-    //presentationId: number;
-    presentationId: string;
+    presentationId: number;
 
 constructor() {
     this.id = 0;
@@ -19,7 +18,7 @@ constructor() {
     this.numberOfTickets = 0;
     this.numberOfTicketSold = 0;
     this.eventDate = '01/01/1999';
-    this.presentationId = '0';
+    this.presentationId = 0;
 }
 
 }

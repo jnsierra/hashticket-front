@@ -27,6 +27,9 @@ export class UrlService {
   getEndPointPubConfigEvent() {
     return `${this.urlBasePublic}v.1/config_event/event`;
   }
+  getEndPointPubPresentation(){
+    return `${this.urlBasePublic}v.1/presentation/event`;
+  }
   getEndPointEvent() {
     return `${this.urlBaseDatos}v.1/event/`;
   }
