@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Event } from 'src/app/entities/event';
 import { EventImages } from 'src/app/entities/event-images';
-import { EventImageService } from '../service/event-image.service';
+import { EventImageService } from '../../service/event-image.service';
 
 @Component({
   selector: 'app-card-event',

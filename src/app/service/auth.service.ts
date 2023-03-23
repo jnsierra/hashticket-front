@@ -27,7 +27,6 @@ export class AuthService {
     );
   }
   private guardarToken(token: string) {
-    console.log('Tenemos token');
     this.userToken = token;
     localStorage.setItem('token', token);
   }

@@ -14,7 +14,6 @@ export class AuthInterceptorService implements HttpInterceptor{
     let request = req;
     console.log(token);
     if (token) {
-      //console.log('Si existe token ' +  token );
       request = req.clone({
         setHeaders: {
           authorization: `Bearer ${ token }`
