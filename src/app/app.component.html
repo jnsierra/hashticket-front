@@ -1,21 +1,20 @@
 <div>
   <p>
-      <mat-toolbar color="primary">
-          <div style="width: auto; margin-left: 12px">
-              <span><img src="/assets/images/Logo.png" width="138"
-                      height="138" /></span>
-          </div>
-          <mat-toolbar-row>
-              <a routerLink="" class="px-4">Eventos</a>
-              <a routerLink="/signin" class="px-4">Iniciar sesión</a>
-              <span class="example-spacer"></span>
-              <button
-                  mat-icon-button
-                  aria-label="Icono menu">
-                  <mat-icon>menu</mat-icon>
-              </button>
-          </mat-toolbar-row>
-      </mat-toolbar>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <div style="width: auto; margin-left: 105px">
+        <img src="/assets/images/Logo.png" width="138" height="138" /></div><span
+          class="example-spacer"
+        ></span>
+        <button mat-icon-button aria-label="Icono menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <a routerLink="" class="px-4">Eventos</a>
+        <a routerLink="/signin" class="px-4">Iniciar sesión</a>
+      </mat-toolbar-row>
+    </mat-toolbar>
   </p>
   <router-outlet></router-outlet>
 </div>

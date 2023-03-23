@@ -22,6 +22,7 @@ export class PrincipalPageComponent implements OnInit {
   ngOnInit(): void {
     this._events.getActiveEvents().subscribe((resp) => {
       this.eventos = resp;
+      console.log(resp)
     });
   }
 }

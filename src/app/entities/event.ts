@@ -7,6 +7,7 @@ export class Event {
   minimumAge: number;
   cityCode: number;
   departmentCode: number;
+  openingDoors: string;
 
   constructor() {
     this.id = 0;
@@ -17,5 +18,6 @@ export class Event {
     this.minimumAge = 0;
     this.cityCode = 0;
     this.departmentCode = 0;
+    this.openingDoors = '';
   }
 }
