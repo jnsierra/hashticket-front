@@ -30,4 +30,10 @@ export class UrlService {
   getEndPointEvent(){
     return `${this.urlBaseDatos}v.1/event/`;
   }
+  getEndPointCity(){
+    return `${this.urlBaseDatos}v.1/city/`;
+  }
+  getEndPointDepartment(){
+    return `${this.urlBaseDatos}v.1/department/`;
+  }
 }

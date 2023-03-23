@@ -1,29 +1,68 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/service/event.service';
 import { Event } from '../../entities/event';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewLocationComponent } from '../view-location/view-location.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
+import { NgForm } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss']
 })
-export class EventComponent implements OnInit {
+export class EventComponent {
 
-  events: Event[];
-  displayedColumns: string[] = ['id', 'place', 'date', 'minimumAge', 'responsible', 'openingDoors', 'cityCode'];
-  
-  constructor(private _eventService:EventService){
-    this.events = [];
-  }
+  displayedColumns: string[] = ['select', 'id', 'place', 'date', 'minimumAge', 'responsible', 'openingDoors', 'cityCode'];
+  dataSource = new MatTableDataSource<Event>();
+  selection = new SelectionModel<Event>(true, []);
 
-  ngOnInit(): void {
+  constructor(private _eventService: EventService, public dialog: MatDialog){
     this.getAllEvents();
-    
+  }
+  getAllEvents() {
+    this._eventService.getAll().subscribe(resp => {
+      this.dataSource.data =resp;
+    });
   }
 
-  getAllEvents(){
-    this._eventService.getAll().subscribe(resp => {
-      this.events = resp;
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Event): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
+  openLocation(event: Event) {
+    const dialogRef = this.dialog.open(
+      ViewLocationComponent, {
+      width: '500px',
+      enterAnimationDuration: '10',
+      exitAnimationDuration: '10',
+      data : { 
+        cityCode: event.cityCode,
+        departmentCode: event.departmentCode
+      } 
     });
   }
 }

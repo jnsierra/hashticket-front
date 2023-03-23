@@ -5,6 +5,8 @@ export class Event {
   time: Date;
   category: string;
   minimumAge: number;
+  cityCode: number;
+  departmentCode: number;
 
   constructor() {
     this.id = 0;
@@ -13,5 +15,7 @@ export class Event {
     this.time = new Date();
     this.category = '';
     this.minimumAge = 0;
+    this.cityCode = 0;
+    this.departmentCode = 0;
   }
 }
