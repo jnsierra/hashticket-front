@@ -10,9 +10,11 @@ import { Event } from 'src/app/entities/event';
 export class PrincipalPageComponent implements OnInit {
   eventos: Event[];
   slides = [
-    { image: '/assets/images/Misty1.jpg' },
-    { image: '/assets/images/MistyNayla1.JPG' },
-    { image: '/assets/images/MistyNayla2.jpg' },
+    { image: '/assets/images/AndresCepeda.jpg'},
+    { image: '/assets/images/NataliaJimenez.jpg'},
+    { image: '/assets/images/GloriaTrevi.jpg'},
+    { image: '/assets/images/Reik.jpeg'},
+    { image: '/assets/images/Gusi.jpg'}
   ];
 
   constructor(private _events: EventService) {

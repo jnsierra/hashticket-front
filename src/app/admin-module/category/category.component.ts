@@ -26,6 +26,7 @@ export class CategoryComponent {
   getAllCategories() {
     this._categoryService.getAll().subscribe((resp) => {
       this.dataSource.data = resp;
+      console.log(resp)
     });
   }
 
@@ -54,15 +55,12 @@ export class CategoryComponent {
       row.id + 1
     }`;
   }
-  // openLocation(category: Category) {
-  //   const dialogRef = this.dialog.open(ViewLocationComponent, {
-  //     width: '500px',
-  //     enterAnimationDuration: '10',
-  //     exitAnimationDuration: '10',
-  //     data: {
-  //       name: category.name,
-  //       description: category.description,
-  //     },
-  //   });
-  // }
+
+  insert() {
+    if (this.selection.selected.length > 0) {
+      alert('Al insertar no debe estar seleccionado ningún item');
+      return;
+    }
+    this.router.navigateByUrl('/categoryEdit');
+  }
 }

@@ -17,6 +17,7 @@ import { ViewLocationComponent } from './view-location/view-location.component'
 import { EventEditComponent } from './event-edit/event-edit.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoryComponent } from './category/category.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CategoryComponent } from './category/category.component';
     EventComponent,
     ViewLocationComponent,
     EventEditComponent,
-    CategoryComponent
+    CategoryComponent,
+    CategoryEditComponent
   ],
   imports: [
     CommonModule,

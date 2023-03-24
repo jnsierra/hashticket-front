@@ -32,7 +32,7 @@ export class UrlService {
   }
   getEndPointCategory(){
     // Falta el get all
-    return `${this.urlBaseDatos}v.1/category/1`;
+    return `${this.urlBaseDatos}v.1/category/`;
   }
   getEndPointEvent() {
     return `${this.urlBaseDatos}v.1/event/`;

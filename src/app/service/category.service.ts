@@ -14,4 +14,8 @@ export class CategoryService {
     return this.http.get<Category[]>(this._urlService.getEndPointCategory());
   }
 
+  insert(category: Category){
+    return this.http.post<Category>(this._urlService.getEndPointCategory(), category);
+  }
+
 }
