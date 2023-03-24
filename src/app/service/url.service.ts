@@ -42,4 +42,7 @@ export class UrlService {
   getEndPointCountry(){
     return `${this.urlBaseDatos}v.1/country/`;
   }
+  getEndPointCategoryEvent(){
+    return `${this.urlBaseDatos}v.1/category_event/`;
+  }
 }

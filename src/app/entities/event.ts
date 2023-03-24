@@ -1,7 +1,7 @@
 export class Event {
   id: number;
   place: string;
-  date: Date;
+  date: string;
   time: Date;
   minimumAge: number;
   responsible: string;
@@ -15,7 +15,7 @@ export class Event {
   constructor() {
     this.id = 0;
     this.place = '';
-    this.date = new Date();
+    this.date = '';
     this.time = new Date();
     this.minimumAge = 0;
     this.responsible = '';

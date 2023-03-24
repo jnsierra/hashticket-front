@@ -71,6 +71,14 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field><br />
+            <mat-form-field appearance="fill">
+                <mat-label>Categorias</mat-label>
+                <mat-select [(ngModel)]="event.categoryEventId" name="categoryId">
+                    <mat-option *ngFor="let cate of categoriesEvent" [value]="cate.id">
+                        {{cate.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field><br />
             <mat-form-field class="full-width">
                 <mat-label>Estado</mat-label>
                 <input class="inputs-form" type="text" name="status" matInput disabled [(ngModel)]="event.eventStatus"

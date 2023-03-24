@@ -17,6 +17,7 @@ import { PublicComponent } from './components/public/public.component';
 import { PublicPagesModule } from './public-pages/public-pages.module';
 import { registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
 import localEs from '@angular/common/locales/es-CO';
 import 'hammerjs';
 
@@ -47,6 +48,7 @@ registerLocaleData(localEs);
       useClass: AuthInterceptorService,
       multi: true,
     },
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })
