@@ -39,4 +39,7 @@ export class UrlService {
   getEndPointDepartment() {
     return `${this.urlBaseDatos}v.1/department/`;
   }
+  getEndPointCountry(){
+    return `${this.urlBaseDatos}v.1/country/`;
+  }
 }

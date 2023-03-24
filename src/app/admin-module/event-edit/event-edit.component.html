@@ -1,23 +1,84 @@
-<div class="container">
-    <form #f="ngForm" (ngSubmit)="ejecutarAccion( f )">
-        <div class="form-group">
-            <span class="text-danger" *ngIf="f.submitted && f.controls['place'].invalid">El lugar es obligatorio</span>
+<br />
+<mat-card width="100%" style="margin-left: 20%;margin-right: 20%;">
+    <mat-card-header>
+        <mat-card-title>Eventos</mat-card-title>
+        <mat-card-subtitle>Creación</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form #f="ngForm" (ngSubmit)="ejecutarAccion( f )">
             <mat-form-field class="full-width">
                 <mat-label>Lugar</mat-label>
-                <input class="inputs-form" type="text" name="place" matInput placeholder="Nombre del lugar a realizar el evento"
-                    [(ngModel)]="event.place" required >
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <span class="text-danger" *ngIf="f.submitted && f.controls['dateEvent'].invalid">Fecha de Inicio de venta de boleteria es obligatoria</span>
+                <input class="inputs-form" type="text" name="place" matInput
+                    placeholder="Nombre del lugar a realizar el evento" [(ngModel)]="event.place" required>
+            </mat-form-field><br />
             <mat-form-field appearance="fill">
                 <mat-label>Fecha de apertura de boleteria</mat-label>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="event.date" name="dateEvent">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field><br />
+            <mat-form-field class="full-width">
+                <mat-label>Apertura de venta de boletas</mat-label>
+                <input matInput placeholder="HH:mm" [(ngModel)]="event.time" name="initsell">
+            </mat-form-field><br />
+            <mat-form-field class="example-full-width">
+                <mat-label>Edad Minima</mat-label>
+                <input type="number" matInput placeholder="Edad Minima" [(ngModel)]="event.minimumAge"
+                    name="minimumAge">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field><br />
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre del responsable</mat-label>
+                <input type="text" matInput placeholder="Responsable" [(ngModel)]="event.responsible"
+                    name="responsible">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field><br />
+            <mat-form-field class="example-full-width">
+                <mat-label>Nit</mat-label>
+                <input type="text" matInput placeholder="Nit Responsable" [(ngModel)]="event.nit" name="nit">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field><br />
+            <mat-form-field class="example-full-width">
+                <mat-label>Dirección del responsable:</mat-label>
+                <input type="text" matInput placeholder="Dirección Responsable" [(ngModel)]="event.address"
+                    name="address">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field><br />
+            <mat-form-field appearance="fill">
+                <mat-label>País</mat-label>
+                <mat-select [(ngModel)]="countryCode" (selectionChange)="changeCountry($event)" name="pais" >
+                    <mat-option *ngFor="let country of countries" [value]="country.code">
+                        {{country.name}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
-        </div>
-        
-    </form>
-</div>
+            <mat-form-field appearance="fill">
+                <mat-label>Departamentos</mat-label>
+                <mat-select [(ngModel)]="event.departmentCode" (selectionChange)="changeDepartment($event)" name="department" >
+                    <mat-option *ngFor="let dep of departments" [value]="dep.code">
+                        {{dep.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Ciudad</mat-label>
+                <mat-select [(ngModel)]="event.cityCode" name="city" >
+                    <mat-option *ngFor="let city of cities" [value]="city.code">
+                        {{city.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field><br />
+            <mat-form-field class="full-width">
+                <mat-label>Estado</mat-label>
+                <input class="inputs-form" type="text" name="status" matInput disabled [(ngModel)]="event.eventStatus" required>
+            </mat-form-field><br />
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary">CREAR</button> &nbsp;
+        <button mat-raised-button color="primary">CANCELAR</button>
+    </mat-card-actions>
+</mat-card>
+<br>

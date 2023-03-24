@@ -14,5 +14,9 @@ export class CityService {
     const URL_SERVICE = `${this._urlService.getEndPointCity()}${cityCode}/${departmentCode}`;
     return this.http.get<City>(URL_SERVICE);
   }
+  getCitiesByDepartamentCode(departmentCode: number){
+    const URL_SERVICE = `${this._urlService.getEndPointCity()}department/${departmentCode}`;
+    return this.http.get<City[]>(URL_SERVICE);
+  }
 }
  

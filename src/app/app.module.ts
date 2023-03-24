@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { PublicComponent } from './components/public/public.component';
 import { PublicPagesModule } from './public-pages/public-pages.module';
@@ -37,6 +38,7 @@ registerLocaleData(localEs);
     HttpClientModule,
     MatNativeDateModule,
     MatSidenavModule,
+    MatInputModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-CO' },

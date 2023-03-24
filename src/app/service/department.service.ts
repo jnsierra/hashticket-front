@@ -14,4 +14,8 @@ export class DepartmentService {
     const URL_SERVICE = `${this._urlService.getEndPointDepartment() + code}`;
     return this.http.get<Department>(URL_SERVICE);
   }
+  getDepartmentByCountryCode(countryCode: number){
+    const URL_SERVICE = `${this._urlService.getEndPointDepartment()}/country/${countryCode}`;
+    return this.http.get<Department[]>(URL_SERVICE);
+  }
 }

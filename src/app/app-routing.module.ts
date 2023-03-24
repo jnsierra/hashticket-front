@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'homeAdmin', component: HomeAdminComponent },
   { path: 'event', component: EventComponent, canActivate: [AuthGuard]},
   { path: 'signin', component: SigninComponent },
-  { path: 'eventEdit', component: EventEditComponent, canActivate: [AuthGuard] },
+  { path: 'eventEdit', component: EventEditComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
