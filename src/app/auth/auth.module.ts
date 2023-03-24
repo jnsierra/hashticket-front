@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SigninComponent } from './signin/signin.component';
 import { MatSnackBarModule, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [SigninComponent],
@@ -22,6 +23,7 @@ import { MatSnackBarModule, MatSnackBarRef } from '@angular/material/snack-bar';
     MatButtonModule,
     MatCardModule,
     MatSnackBarModule,
+    MatGridListModule
   ],
   exports: [SigninComponent],
 })

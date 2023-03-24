@@ -1,22 +1,39 @@
-<form #f="ngForm" (ngSubmit)="generarLogin( f )">
+<form #f="ngForm" (ngSubmit)="generarLogin(f)">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <mat-form-field appearance="outline">
-        <mat-label>Correo electrónico</mat-label>
-        <input matInput [(ngModel)]="loginEntity.email" placeholder="Digite su
-          email" name="email">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Contraseña</mat-label>
-        <input matInput [(ngModel)]="loginEntity.password" placeholder="Escriba su
-          contraseña" type="password" name="password">
-      </mat-form-field>
-    </mat-card-content>
+      <mat-card-content>
+        <mat-grid-list cols="1" rowHeight="100px">
+          <mat-grid-tile>
+            <mat-form-field appearance="fill">
+              <mat-label>Correo electrónico</mat-label>
+              <input
+                matInput
+                [(ngModel)]="loginEntity.email"
+                placeholder="Digite su email"
+                name="email"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="fill">
+              <mat-label>Contraseña</mat-label>
+              <input
+                matInput
+                [(ngModel)]="loginEntity.password"
+                placeholder="Escriba su contraseña"
+                type="password"
+                name="password"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
     <mat-card-actions>
-      <button type="submit" mat-raised-button color="primary">Login</button>
+      <button type="submit" mat-raised-button color="primary">
+        Iniciar sesión
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>
