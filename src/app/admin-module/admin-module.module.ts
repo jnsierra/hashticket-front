@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { ViewLocationComponent } from './view-location/view-location.component'
 import { EventEditComponent } from './event-edit/event-edit.component';
 import { MatButtonModule } from '@angular/material/button';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
     HomeAdminComponent,
     EventComponent,
     ViewLocationComponent,
-    EventEditComponent
+    EventEditComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,
