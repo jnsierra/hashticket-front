@@ -5,7 +5,7 @@ import { EventImageService } from '../../service/event-image.service';
 import { ConfigEvent } from 'src/app/entities/config-event';
 import { ConfigEventService } from 'src/app/service/config-event.service';
 import { Presentation } from 'src/app/entities/presentation';
-import { PresentationService } from 'src/app/service/presentation.service';
+import { PresentationService } from 'src/app/service/public-presentation.service';
 
 @Component({
   selector: 'app-card-event',
@@ -36,12 +36,13 @@ export class CardEventComponent implements OnInit {
       this.eventImages = resp;
     });
 
-    this._configEvent.getConfigEvent(this.event.id).subscribe((resp) => {
-      this.configEvent = resp;
-    });
-
     this._presentation.getPresentation(this.event.id).subscribe((resp) => {
       this.presentation = resp;
+      this._configEvent
+        .getConfigEvent(this.event.id, this.presentation[0].id)
+        .subscribe((resp) => {
+          this.configEvent = resp;
+        });
     });
   }
 }

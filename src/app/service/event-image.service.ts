@@ -10,7 +10,7 @@ export class EventImageService {
   constructor(private _urlService: UrlService, private http: HttpClient) {}
 
   getEventImages(eventId: number) {
-    const URL_SERVICE = `${this._urlService.getEndPointPubImageById()}/${eventId}?typeImages=PRINCIPAL`;
+    const URL_SERVICE = `${this._urlService.getEndPointPubImageById()}${eventId}?typeImages=PRINCIPAL`;
     return this.http.get<EventImages[]>(URL_SERVICE);
   }
 }

@@ -1,30 +1,30 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/entities/category';
-import { MatTableDataSource } from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
-import { CategoryService } from 'src/app/service/category.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { Presentation } from 'src/app/entities/presentation';
+import { PresentationService } from 'src/app/service/presentation.service';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss'],
+  selector: 'app-presentation',
+  templateUrl: './presentation.component.html',
+  styleUrls: ['./presentation.component.scss'],
 })
-export class CategoryComponent {
-  displayedColumns: string[] = ['id', 'name', 'description'];
-  dataSource = new MatTableDataSource<Category>();
-  selection = new SelectionModel<Category>(true, []);
+export class PresentationComponent {
+  displayedColumns: string[] = ['id', 'name', 'eventId'];
+  dataSource = new MatTableDataSource<Presentation>();
+  selection = new SelectionModel<Presentation>(true, []);
 
   constructor(
-    private _categoryService: CategoryService,
+    private _presentationService: PresentationService,
     public dialog: MatDialog,
     private router: Router
   ) {
-    this.getAllCategories();
+    this.getAllPresentations();
   }
-  getAllCategories() {
-    this._categoryService.getAll().subscribe((resp) => {
+  getAllPresentations() {
+    this._presentationService.getAll().subscribe((resp) => {
       this.dataSource.data = resp;
     });
   }
@@ -46,7 +46,7 @@ export class CategoryComponent {
     this.selection.select(...this.dataSource.data);
   }
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Category): string {
+  checkboxLabel(row?: Presentation): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
@@ -60,6 +60,6 @@ export class CategoryComponent {
       alert('Al insertar no debe estar seleccionado ningún item');
       return;
     }
-    this.router.navigateByUrl('/categoryEdit');
+    this.router.navigateByUrl('/presentationEdit');
   }
 }
