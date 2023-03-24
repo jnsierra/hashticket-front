@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
 import { MatSelectChange } from '@angular/material/select';
 import { City } from 'src/app/entities/city';
 import { Country } from 'src/app/entities/country';
@@ -13,6 +12,8 @@ import { EventService } from 'src/app/service/event.service';
 import { DatePipe } from '@angular/common'
 import { CategoryEvent } from 'src/app/entities/category-event';
 import { CategoryEventService } from 'src/app/service/category-event.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -29,9 +30,19 @@ export class EventEditComponent implements OnInit{
   categoriesEvent: CategoryEvent[];
   countryCode: number;
   departmentCode: number;
+  id:string;
+  insert:boolean;
+  butonEnabled:boolean;
 
-  constructor(private _countryService: CountryService, private _departmentService: DepartmentService, private _cityService: CityService
-    , private _eventService: EventService, private datepipe: DatePipe, private _categoryEventService: CategoryEventService){
+  constructor(private _countryService: CountryService
+    , private _departmentService: DepartmentService
+    , private _cityService: CityService
+    , private _eventService: EventService
+    , private datepipe: DatePipe
+    , private _categoryEventService: CategoryEventService
+    , private activatedRoute: ActivatedRoute
+    , private router: Router
+    , private _snackBar: MatSnackBar){
     this.event = new Event();
     this.countries = [];
     this.departments = [];
@@ -39,6 +50,23 @@ export class EventEditComponent implements OnInit{
     this.categoriesEvent = [];
     this.countryCode = 0;
     this.departmentCode = 0;
+    this.id = '';
+    this.insert = true;
+    this.butonEnabled = false;
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'] as string;
+      if (this.id === undefined) {
+        this.insert = true;
+      }else{
+        this.insert = false;
+        this._eventService.getById(this.id).subscribe(resp => {
+          this.event = resp;
+          this.countryCode = 57;
+          this.findDepartments();
+          this.findCities();
+        });
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -70,22 +98,27 @@ export class EventEditComponent implements OnInit{
     this.findCities();
   }
   findCities(){
-    // console.log(this.event);
     this._cityService.getCitiesByDepartamentCode(this.event.departmentCode).subscribe(resp => {
       this.cities = resp;
     });
   }
   ejecutarAccion(f: NgForm){
     if( f.invalid){
-      alert('No funciona');
+      this._snackBar.open('Formulario Invalido', 'cerrar');
       return 
     }
     let fecha = this.datepipe.transform(this.event.date, 'yyyy-MM-dd');
     this.event.date = fecha as string;
     this._eventService.insert(this.event).subscribe(resp => {
-      // console.log(resp);
+      if(resp.id === undefined || resp.id === null){
+        this._snackBar.open('Error al crear evento', 'cerrar');
+      }else{
+        this.butonEnabled = true;
+        this._snackBar.open('Operación exitosa', 'cerrar').onAction().subscribe(resp =>{
+          this.router.navigateByUrl('event');
+        });
+      }
     });
-    alert('Envia el formulario');
   }
 
 }

@@ -2,7 +2,7 @@ export class Event {
   id: number;
   place: string;
   date: string;
-  time: Date;
+  time: string;
   minimumAge: number;
   responsible: string;
   nit: number;
@@ -16,7 +16,7 @@ export class Event {
     this.id = 0;
     this.place = '';
     this.date = '';
-    this.time = new Date();
+    this.time = '';
     this.minimumAge = 0;
     this.responsible = '';
     this.nit = 0;

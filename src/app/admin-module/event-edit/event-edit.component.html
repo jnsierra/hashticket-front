@@ -5,67 +5,76 @@
             <mat-card-title>Eventos</mat-card-title>
             <mat-card-subtitle>Creación</mat-card-subtitle>
         </mat-card-header>
+        <br/>
         <mat-card-content>
             <mat-form-field class="full-width">
                 <mat-label>Lugar</mat-label>
+                <mat-error *ngIf="f.submitted && f.controls['place'].invalid ">
+                    Lugar obligatorio
+                </mat-error>
                 <input class="inputs-form" type="text" name="place" matInput
-                    placeholder="Nombre del lugar a realizar el evento" [(ngModel)]="event.place" required>
+                    placeholder="Nombre del lugar a realizar el evento" [(ngModel)]="event.place" required size="100">
             </mat-form-field><br />
             <mat-form-field appearance="fill">
                 <mat-label>Fecha de apertura de boleteria</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="event.date" name="dateEvent">
+                <mat-error *ngIf="f.submitted && f.controls['dateEvent'].invalid ">
+                    Fecha de apertura obligatoria
+                </mat-error>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="event.date" name="dateEvent" required>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field><br />
             <mat-form-field class="full-width">
                 <mat-label>Apertura de venta de boletas</mat-label>
-                <input matInput placeholder="HH:mm" [(ngModel)]="event.time" name="initsell">
+                <mat-error *ngIf="f.submitted && f.controls['dateEvent'].invalid ">
+                    Apertura de venta de boletas obligatoria
+                </mat-error>
+                <input matInput placeholder="HH:mm" [(ngModel)]="event.time" name="initsell" required>
             </mat-form-field><br />
             <mat-form-field class="example-full-width">
                 <mat-label>Edad Minima</mat-label>
-                <input type="number" matInput placeholder="Edad Minima" [(ngModel)]="event.minimumAge"
-                    name="minimumAge">
+                <input type="number" matInput placeholder="Edad Minima" [(ngModel)]="event.minimumAge" required name="minimumAge">
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field><br />
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre del responsable</mat-label>
-                <input type="text" matInput placeholder="Responsable" [(ngModel)]="event.responsible"
+                <input type="text" matInput placeholder="Responsable" [(ngModel)]="event.responsible" required
                     name="responsible">
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field><br />
             <mat-form-field class="example-full-width">
                 <mat-label>Nit</mat-label>
-                <input type="text" matInput placeholder="Nit Responsable" [(ngModel)]="event.nit" name="nit">
+                <input type="text" matInput placeholder="Nit Responsable" [(ngModel)]="event.nit" name="nit" required>
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field><br />
             <mat-form-field class="example-full-width">
                 <mat-label>Dirección del responsable:</mat-label>
-                <input type="text" matInput placeholder="Dirección Responsable" [(ngModel)]="event.address"
+                <input type="text" matInput placeholder="Dirección Responsable" [(ngModel)]="event.address" required
                     name="address">
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field><br />
             <mat-form-field appearance="fill">
                 <mat-label>País</mat-label>
-                <mat-select [(ngModel)]="countryCode" (selectionChange)="changeCountry($event)" name="pais">
+                <mat-select [(ngModel)]="countryCode" (selectionChange)="changeCountry($event)" name="pais" required>
                     <mat-option *ngFor="let country of countries" [value]="country.code">
                         {{country.name}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field><br/>
             <mat-form-field appearance="fill">
                 <mat-label>Departamentos</mat-label>
-                <mat-select [(ngModel)]="event.departmentCode" (selectionChange)="changeDepartment($event)"
+                <mat-select [(ngModel)]="event.departmentCode" (selectionChange)="changeDepartment($event)" required
                     name="department">
                     <mat-option *ngFor="let dep of departments" [value]="dep.code">
                         {{dep.name}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field><br/>
 
             <mat-form-field appearance="fill">
                 <mat-label>Ciudad</mat-label>
-                <mat-select [(ngModel)]="event.cityCode" name="city">
+                <mat-select [(ngModel)]="event.cityCode" name="city" required>
                     <mat-option *ngFor="let city of cities" [value]="city.code">
                         {{city.name}}
                     </mat-option>
@@ -73,7 +82,7 @@
             </mat-form-field><br />
             <mat-form-field appearance="fill">
                 <mat-label>Categorias</mat-label>
-                <mat-select [(ngModel)]="event.categoryEventId" name="categoryId">
+                <mat-select [(ngModel)]="event.categoryEventId" name="categoryId" required>
                     <mat-option *ngFor="let cate of categoriesEvent" [value]="cate.id">
                         {{cate.name}}
                     </mat-option>
@@ -86,9 +95,10 @@
             </mat-form-field><br />
 
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button color="primary" type="submit">CREAR</button> &nbsp;
-            <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn">CANCELAR</button>
+        <br/>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary" type="submit" [disabled]="butonEnabled">{{insert ? 'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
+            <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn" [disabled]="butonEnabled">CANCELAR</button>
         </mat-card-actions>
     </mat-card>
 </form>

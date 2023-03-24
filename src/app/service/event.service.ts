@@ -16,5 +16,8 @@ export class EventService {
   getAll(){
     return this.http.get<Event[]>(this._urlService.getEndPointEvent());
   }
-
+  getById(id:string){
+    const URL_SERVICE = `${this._urlService.getEndPointEvent() + id}`;
+    return this.http.get<Event>(URL_SERVICE);
+  }
 }

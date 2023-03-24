@@ -52,12 +52,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FormsModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatCardModule,
+    MatCardModule,  
     MatSelectModule,
-    MatGridListModule,
     MatSnackBarModule,
     NgApexchartsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatGridListModule
   ],
 })
-export class AdminModuleModule {}
+export class AdminModuleModule { }
