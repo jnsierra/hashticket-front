@@ -1,11 +1,11 @@
 <br />
-<mat-card width="100%" style="margin-left: 20%;margin-right: 20%;">
-    <mat-card-header>
-        <mat-card-title>Eventos</mat-card-title>
-        <mat-card-subtitle>Creación</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <form #f="ngForm" (ngSubmit)="ejecutarAccion( f )">
+<form #f="ngForm" (ngSubmit)="ejecutarAccion( f )">
+    <mat-card width="100%" style="margin-left: 20%;margin-right: 20%;">
+        <mat-card-header>
+            <mat-card-title>Eventos</mat-card-title>
+            <mat-card-subtitle>Creación</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
             <mat-form-field class="full-width">
                 <mat-label>Lugar</mat-label>
                 <input class="inputs-form" type="text" name="place" matInput
@@ -47,7 +47,7 @@
             </mat-form-field><br />
             <mat-form-field appearance="fill">
                 <mat-label>País</mat-label>
-                <mat-select [(ngModel)]="countryCode" (selectionChange)="changeCountry($event)" name="pais" >
+                <mat-select [(ngModel)]="countryCode" (selectionChange)="changeCountry($event)" name="pais">
                     <mat-option *ngFor="let country of countries" [value]="country.code">
                         {{country.name}}
                     </mat-option>
@@ -55,7 +55,8 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Departamentos</mat-label>
-                <mat-select [(ngModel)]="event.departmentCode" (selectionChange)="changeDepartment($event)" name="department" >
+                <mat-select [(ngModel)]="event.departmentCode" (selectionChange)="changeDepartment($event)"
+                    name="department">
                     <mat-option *ngFor="let dep of departments" [value]="dep.code">
                         {{dep.name}}
                     </mat-option>
@@ -64,7 +65,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Ciudad</mat-label>
-                <mat-select [(ngModel)]="event.cityCode" name="city" >
+                <mat-select [(ngModel)]="event.cityCode" name="city">
                     <mat-option *ngFor="let city of cities" [value]="city.code">
                         {{city.name}}
                     </mat-option>
@@ -72,13 +73,15 @@
             </mat-form-field><br />
             <mat-form-field class="full-width">
                 <mat-label>Estado</mat-label>
-                <input class="inputs-form" type="text" name="status" matInput disabled [(ngModel)]="event.eventStatus" required>
+                <input class="inputs-form" type="text" name="status" matInput disabled [(ngModel)]="event.eventStatus"
+                    required>
             </mat-form-field><br />
-        </form>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button color="primary">CREAR</button> &nbsp;
-        <button mat-raised-button color="primary">CANCELAR</button>
-    </mat-card-actions>
-</mat-card>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">CREAR</button> &nbsp;
+            <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn">CANCELAR</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
 <br>
