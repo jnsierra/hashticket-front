@@ -9,7 +9,7 @@ import { Category } from '../entities/category';
 export class CategoryService {
 
   constructor(private _urlService: UrlService, private http: HttpClient) { }
-  // Falta API GET ALL
+
   getAll(){
     return this.http.get<Category[]>(this._urlService.getEndPointCategory());
   }

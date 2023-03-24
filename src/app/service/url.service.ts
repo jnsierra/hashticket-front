@@ -31,7 +31,6 @@ export class UrlService {
     return `${this.urlBasePublic}v.1/presentation/event`;
   }
   getEndPointCategory(){
-    // Falta el get all
     return `${this.urlBaseDatos}v.1/category/`;
   }
   getEndPointEvent() {
