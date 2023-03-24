@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
@@ -42,7 +43,8 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,  
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ]
 })
 export class AdminModuleModule { }

@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewLocationComponent } from '../view-location/view-location.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-event',
@@ -81,6 +81,17 @@ export class EventComponent {
       alert('Al insertar no debe estar seleccionado ningún item');
       return;
     }
-    this.router.navigateByUrl('/eventEdit');
+    this.router.navigateByUrl('/eventInsert');
+  }
+  update() {
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/eventEdit/${this.selection.selected[0].id}`;
+      this.router.navigateByUrl(URL_SERVICE);
+    }else if(this.selection.selected.length == 0){
+      alert('Debes seleccionar un item');
+    }else if(this.selection.selected.length > 1 ){
+      alert('Acción no permitida para mas de un item');
+    }
+    return;
   }
 }

@@ -18,6 +18,7 @@ import { PublicPagesModule } from './public-pages/public-pages.module';
 import { registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { ResponseRequestInterceptorService } from './service/response-request-interceptor.service'
 import localEs from '@angular/common/locales/es-CO';
 import 'hammerjs';
 
@@ -46,6 +47,11 @@ registerLocaleData(localEs);
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseRequestInterceptorService,
       multi: true,
     },
     DatePipe

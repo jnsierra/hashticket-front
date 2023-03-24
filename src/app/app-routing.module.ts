@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'category', component: CategoryComponent, canActivate: [AuthGuard]},
   { path: 'categoryEdit', component: CategoryEditComponent, canActivate: [AuthGuard]},
   { path: 'event', component: EventComponent, canActivate: [AuthGuard]},
-  { path: 'eventEdit', component: EventEditComponent, canActivate: [AuthGuard] },
+  { path: 'eventInsert', component: EventEditComponent, canActivate: [AuthGuard] },
+  { path: 'eventEdit/:id', component: EventEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
