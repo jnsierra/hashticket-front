@@ -4,6 +4,7 @@
     <a routerLink="/signin" class="px-4">Iniciar sesión</a>
   </mat-drawer>
   <mat-drawer-content>
+    <!-- Header -->
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <div style="width: auto; margin-left: 120px">
@@ -19,7 +20,13 @@
         <a routerLink="/signin" class="px-4">Iniciar sesión</a>
       </mat-toolbar-row>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <router-outlet></router-outlet><br>
+    <!-- Footer -->
+    <mat-toolbar color="gray">
+      <mat-toolbar-row class="text-sm">
+        COMPRABOLETAS
+      </mat-toolbar-row>
+    </mat-toolbar>
   </mat-drawer-content>
 </mat-drawer-container>
 
