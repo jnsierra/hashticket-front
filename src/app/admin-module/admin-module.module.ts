@@ -24,6 +24,8 @@ import { MusicBandComponent } from './music-band/music-band.component';
 import { MusicBandEditComponent } from './music-band-edit/music-band-edit.component';
 import { PresentationComponent } from './presentation/presentation.component';
 import { PresentationEditComponent } from './presentation-edit/presentation-edit.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { PresentationEditComponent } from './presentation-edit/presentation-edit
     MatSelectModule,
     MatGridListModule,
     MatSnackBarModule,
+    NgApexchartsModule,
+    MatSidenavModule
   ],
 })
 export class AdminModuleModule {}
