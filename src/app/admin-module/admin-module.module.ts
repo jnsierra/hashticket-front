@@ -20,6 +20,10 @@ import { EventEditComponent } from './event-edit/event-edit.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoryComponent } from './category/category.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { MusicBandComponent } from './music-band/music-band.component';
+import { MusicBandEditComponent } from './music-band-edit/music-band-edit.component';
+import { PresentationComponent } from './presentation/presentation.component';
+import { PresentationEditComponent } from './presentation-edit/presentation-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
     EventEditComponent,
     CategoryComponent,
     CategoryEditComponent,
+    MusicBandComponent,
+    MusicBandEditComponent,
+    PresentationComponent,
+    PresentationEditComponent,
   ],
   imports: [
     CommonModule,

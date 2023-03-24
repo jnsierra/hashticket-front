@@ -65,12 +65,12 @@ export class EventEditComponent implements OnInit{
     });
   }
   changeDepartment(event:MatSelectChange){
-    console.log(event);
-    console.log(this.departmentCode);
+    // console.log(event);
+    // console.log(this.departmentCode);
     this.findCities();
   }
   findCities(){
-    console.log(this.event);
+    // console.log(this.event);
     this._cityService.getCitiesByDepartamentCode(this.event.departmentCode).subscribe(resp => {
       this.cities = resp;
     });
@@ -83,7 +83,7 @@ export class EventEditComponent implements OnInit{
     let fecha = this.datepipe.transform(this.event.date, 'yyyy-MM-dd');
     this.event.date = fecha as string;
     this._eventService.insert(this.event).subscribe(resp => {
-      console.log(resp);
+      // console.log(resp);
     });
     alert('Envia el formulario');
   }

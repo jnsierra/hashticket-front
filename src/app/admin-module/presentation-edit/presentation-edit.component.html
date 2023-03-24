@@ -1,8 +1,8 @@
 <br />
-<form #f="ngForm" (ngSubmit)="ejecutarAccion(f)">
+<form #f="ngForm" (ngSubmit)="executeAction(f)">
   <mat-card width="100%" style="margin-left: 20%; margin-right: 20%">
     <mat-card-header>
-      <mat-card-title>Categorias</mat-card-title>
+      <mat-card-title>Presentaciones</mat-card-title>
       <mat-card-subtitle>Creación</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -15,22 +15,22 @@
               type="text"
               name="name"
               matInput
-              placeholder="Nombre de la categoria"
-              [(ngModel)]="category.name"
+              placeholder="Nombre de la presentación"
+              [(ngModel)]="presentation.name"
               required
             />
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field class="full-width">
-            <mat-label>Descripción</mat-label>
+            <mat-label>Id evento</mat-label>
             <input
               class="inputs-form"
               type="text"
               name="description"
               matInput
-              placeholder="Descripción de la categoria"
-              [(ngModel)]="category.description"
+              placeholder="Id evento"
+              [(ngModel)]="presentation.eventId"
               required
             />
           </mat-form-field>

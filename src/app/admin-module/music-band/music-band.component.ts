@@ -1,36 +1,37 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Category } from 'src/app/entities/category';
-import { MatTableDataSource } from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
-import { CategoryService } from 'src/app/service/category.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { MusicBand } from 'src/app/entities/music-band';
+import { MusicBandService } from 'src/app/service/music-band.service';
+import { Router } from '@angular/router';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss'],
+  selector: 'app-music-band',
+  templateUrl: './music-band.component.html',
+  styleUrls: ['./music-band.component.scss'],
 })
-export class CategoryComponent {
-  displayedColumns: string[] = ['id', 'name', 'description'];
-  dataSource = new MatTableDataSource<Category>();
-  selection = new SelectionModel<Category>(true, []);
+export class MusicBandComponent {
+  displayedColumns: string[] = ['id', 'name', 'presentationId'];
+  dataSource = new MatTableDataSource<MusicBand>();
+  selection = new SelectionModel<MusicBand>(true, []);
 
   constructor(
-    private _categoryService: CategoryService,
+    private _musicBandService: MusicBandService,
     public dialog: MatDialog,
     private router: Router
   ) {
-    this.getAllCategories();
+    this.getAllMusicBands();
   }
-  getAllCategories() {
-    this._categoryService.getAll().subscribe((resp) => {
+  getAllMusicBands() {
+    this._musicBandService.getAll().subscribe((resp) => {
       this.dataSource.data = resp;
+      console.log(resp);
     });
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
+   /** Whether the number of selected elements matches the total number of rows. */
+   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
@@ -46,7 +47,7 @@ export class CategoryComponent {
     this.selection.select(...this.dataSource.data);
   }
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Category): string {
+  checkboxLabel(row?: MusicBand): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
@@ -60,6 +61,6 @@ export class CategoryComponent {
       alert('Al insertar no debe estar seleccionado ningún item');
       return;
     }
-    this.router.navigateByUrl('/categoryEdit');
+    this.router.navigateByUrl('/musicBandEdit');
   }
 }

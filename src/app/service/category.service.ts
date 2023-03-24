@@ -4,18 +4,19 @@ import { UrlService } from './url.service';
 import { Category } from '../entities/category';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
+  constructor(private _urlService: UrlService, private http: HttpClient) {}
 
-  constructor(private _urlService: UrlService, private http: HttpClient) { }
-
-  getAll(){
+  getAll() {
     return this.http.get<Category[]>(this._urlService.getEndPointCategory());
   }
 
-  insert(category: Category){
-    return this.http.post<Category>(this._urlService.getEndPointCategory(), category);
+  insert(category: Category) {
+    return this.http.post<Category>(
+      this._urlService.getEndPointCategory(),
+      category
+    );
   }
-
 }

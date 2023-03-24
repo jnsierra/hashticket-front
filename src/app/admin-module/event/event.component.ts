@@ -20,7 +20,6 @@ export class EventComponent {
     'date',
     'minimumAge',
     'responsible',
-    'openingDoors',
     'cityCode',
   ];
   dataSource = new MatTableDataSource<Event>();

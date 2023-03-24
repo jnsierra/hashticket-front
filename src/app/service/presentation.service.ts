@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UrlService } from 'src/app/service/url.service';
-import { Presentation } from 'src/app/entities/presentation';
+import { Injectable } from '@angular/core';
+import { Presentation } from '../entities/presentation';
+import { UrlService } from './url.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +9,16 @@ import { Presentation } from 'src/app/entities/presentation';
 export class PresentationService {
   constructor(private _urlService: UrlService, private http: HttpClient) {}
 
-  getPresentation(eventId: number) {
-    const URL_SERVICE = `${this._urlService.getEndPointPubPresentation()}/${eventId}`;
-    return this.http.get<Presentation[]>(URL_SERVICE);
+  getAll() {
+    return this.http.get<Presentation[]>(
+      this._urlService.getEndPointPresentation()
+    );
+  }
+
+  insert(presentation: Presentation) {
+    return this.http.post<Presentation>(
+      this._urlService.getEndPointPresentation(),
+      presentation
+    );
   }
 }

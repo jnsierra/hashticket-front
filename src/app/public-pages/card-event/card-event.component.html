@@ -22,10 +22,13 @@
           {{ event.date | date : "MMM" | uppercase }}
         </div> </mat-grid-tile
       ><mat-grid-tile>
-        {{ event.place }} <br />{{
+        <!-- {{ event.place }} <br />{{
           configEvent.doorOpening.split(":")[0] +
             ":" +
             configEvent.doorOpening.split(".")[0].split(":")[1]
+        }} -->
+        {{ event.place }} <br />{{
+          configEvent.doorOpening
         }}
       </mat-grid-tile></mat-grid-list
     >
