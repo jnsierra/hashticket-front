@@ -10,8 +10,8 @@ export class ConfigEventService {
 
   constructor(private _urlService: UrlService, private http: HttpClient) { }
 
-  getConfigEvent(eventId: number) {
-    const URL_SERVICE = `${this._urlService.getEndPointPubConfigEvent()}/${eventId}/presentation/1`;
+  getConfigEvent(eventId: number, presentationId: number) {
+    const URL_SERVICE = `${this._urlService.getEndPointPubConfigEvent()}/${eventId}/presentation/${presentationId}`;
     return this.http.get<ConfigEvent>(URL_SERVICE);
   }
 }

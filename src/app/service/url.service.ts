@@ -19,7 +19,7 @@ export class UrlService {
     return `${this.urlBasePublic}v.1/event`;
   }
   getEndPointPubImageById() {
-    return `${this.urlBasePublic}v.1/event_images/event`;
+    return `${this.urlBasePublic}v.1/event_images/event/`;
   }
   getEndPointPubLogin() {
     return `${this.urlBasePublic}login/`;

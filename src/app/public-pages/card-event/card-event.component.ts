@@ -34,16 +34,15 @@ export class CardEventComponent implements OnInit {
     this._events.getEventImages(this.event.id).subscribe((resp) => {
       resp[0].base64 = `data:image/jpeg;base64,${resp[0].base64}`;
       this.eventImages = resp;
-      console.log(resp)
-    });
-
-    this._configEvent.getConfigEvent(this.event.id).subscribe((resp) => {
-      this.configEvent = resp;
     });
 
     this._presentation.getPresentation(this.event.id).subscribe((resp) => {
       this.presentation = resp;
-      console.log(resp)
+      this._configEvent
+        .getConfigEvent(this.event.id, this.presentation[0].id)
+        .subscribe((resp) => {
+          this.configEvent = resp;
+        });
     });
   }
 }
