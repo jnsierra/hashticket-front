@@ -1,11 +1,14 @@
 <br />
 &nbsp;
-<button mat-fab color="primary" (click)="insertar()">
+<button mat-raised-button color="warn" (click)="insertar()">
     Insertar
 </button>&nbsp;
-<button mat-fab color="warn" (click)="update()">
-    Actualiza
-</button> 
+<button mat-raised-button color="warn" (click)="update()">
+    Actualizar
+</button>&nbsp;
+<button mat-raised-button color="primary" (click)="sendPresentation()">
+  Presentación
+</button>
 <br/>
 <br/>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

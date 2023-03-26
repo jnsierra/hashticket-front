@@ -26,6 +26,7 @@ import { PresentationComponent } from './presentation/presentation.component';
 import { PresentationEditComponent } from './presentation-edit/presentation-edit.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { EventCardComponent } from './event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MusicBandEditComponent,
     PresentationComponent,
     PresentationEditComponent,
+    EventCardComponent,
   ],
   imports: [
     CommonModule,

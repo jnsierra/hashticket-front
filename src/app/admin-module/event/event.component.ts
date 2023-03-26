@@ -6,6 +6,7 @@ import { ViewLocationComponent } from '../view-location/view-location.component'
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-event',
@@ -26,10 +27,10 @@ export class EventComponent {
   selection = new SelectionModel<Event>(true, []);
 
   constructor(
-    private _eventService: EventService,
-    public dialog: MatDialog,
-    private router: Router
-  ) {
+      private _eventService: EventService
+    , public dialog: MatDialog
+    , private router: Router
+    , private _snackBar: MatSnackBar  ) {
     this.getAllEvents();
   }
   getAllEvents() {
@@ -91,6 +92,20 @@ export class EventComponent {
     }else if(this.selection.selected.length > 1 ){
       alert('Acción no permitida para mas de un item');
     }
+    return;
+  }
+  sendPresentation(){
+    var msn = '';
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/presentation/${this.selection.selected[0].id}`;
+      this.router.navigateByUrl(URL_SERVICE);
+    }else if(this.selection.selected.length == 0){
+      msn = 'Debes seleccionar un item';
+    }else if(this.selection.selected.length > 1 ){
+      msn = 'Acción no permitida para mas de un item';
+    }
+    this._snackBar.open(msn, 'cerrar', {horizontalPosition: 'center',
+      verticalPosition: 'top'});
     return;
   }
 }

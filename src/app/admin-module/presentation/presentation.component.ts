@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Presentation } from 'src/app/entities/presentation';
@@ -12,16 +12,22 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./presentation.component.scss'],
 })
 export class PresentationComponent {
-  displayedColumns: string[] = ['id', 'name', 'eventId'];
+  displayedColumns: string[] = ['select','id', 'name'];
   dataSource = new MatTableDataSource<Presentation>();
   selection = new SelectionModel<Presentation>(true, []);
+  idEvent:number;
 
   constructor(
-    private _presentationService: PresentationService,
-    public dialog: MatDialog,
-    private router: Router
+      private _presentationService: PresentationService
+    , public dialog: MatDialog
+    , private router: Router
+    , private activatedRoute: ActivatedRoute
   ) {
+    this.idEvent = 0;
     this.getAllPresentations();
+    this.activatedRoute.params.subscribe(params => {
+      this.idEvent = params['id'] as number;
+    });
   }
   getAllPresentations() {
     this._presentationService.getAll().subscribe((resp) => {
@@ -60,6 +66,17 @@ export class PresentationComponent {
       alert('Al insertar no debe estar seleccionado ningún item');
       return;
     }
-    this.router.navigateByUrl('/presentationEdit');
+    this.router.navigateByUrl(`/presentationInsert/${this.idEvent}`);
+  }
+  update(){
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/presentationUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
+      console.log(URL_SERVICE);
+      this.router.navigateByUrl(URL_SERVICE);
+    }else if(this.selection.selected.length == 0){
+      alert('Debes seleccionar un item');
+    }else if(this.selection.selected.length > 1 ){
+      alert('Acción no permitida para mas de un item');
+    }
   }
 }

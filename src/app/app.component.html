@@ -16,8 +16,10 @@
         </button>
       </mat-toolbar-row>
       <mat-toolbar-row class="hidden-mobile">
-        <a routerLink="" class="px-4">Eventos</a>
-        <a routerLink="/signin" class="px-4">Iniciar sesión</a>
+        <a routerLink="" class="px-4">Eventos</a>&nbsp;&nbsp;
+        <a routerLink="/signin"  *ngIf="!isAutenticated()" class="px-4">Iniciar sesión</a>&nbsp;&nbsp;
+        <a (click)="logout()" *ngIf="isAutenticated()" >Cerrar Sesión</a>&nbsp;&nbsp;
+        <a routerLink="/homeAdmin" *ngIf="isAutenticated()" >Home</a>
       </mat-toolbar-row>
     </mat-toolbar>
     <router-outlet></router-outlet><br>

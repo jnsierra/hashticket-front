@@ -15,6 +15,11 @@ export class PresentationService {
     );
   }
 
+  getById(id: number){
+    const URL_SERVICE = `${this._urlService.getEndPointPresentation() + id.toString()}`;
+    return this.http.get<Presentation>(URL_SERVICE);
+  }
+
   insert(presentation: Presentation) {
     return this.http.post<Presentation>(
       this._urlService.getEndPointPresentation(),

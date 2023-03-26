@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    urlBaseBussines : '/api/api-business/',
-    urlBaseDatos: '/api/api-acceso-datos/',
-    urlPublic: '/api/api-public-users/'
+    urlBaseBussines : '/api-business/',
+    urlBaseDatos: '/api-acceso-datos/',
+    urlBasePublic: '/api-public-users/'
   };

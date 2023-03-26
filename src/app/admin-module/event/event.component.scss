@@ -1,0 +1,15 @@
+.mat-mdc-snack-bar-container {
+    &.blue-snackbar {
+      --mdc-snackbar-container-color: #2196f3;
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+    }
+  }
+
+.mat-mdc-snack-bar-container {
+    &.red-snackbar {
+      --mdc-snackbar-container-color: #e2271a;
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+    }
+  }

@@ -23,8 +23,9 @@ const routes: Routes = [
   { path: 'event', component: EventComponent, canActivate: [AuthGuard]},
   { path: 'musicBand', component: MusicBandComponent, canActivate: [AuthGuard] },
   { path: 'musicBandEdit', component: MusicBandEditComponent, canActivate: [AuthGuard] },
-  { path: 'presentation', component: PresentationComponent, canActivate: [AuthGuard] },
-  { path: 'presentationEdit', component: PresentationEditComponent, canActivate: [AuthGuard] },
+  { path: 'presentation/:id', component: PresentationComponent, canActivate: [AuthGuard] },
+  { path: 'presentationInsert/:idEvent', component: PresentationEditComponent, canActivate: [AuthGuard] },
+  { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
