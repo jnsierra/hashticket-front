@@ -93,8 +93,6 @@ export class EventEditComponent implements OnInit{
     });
   }
   changeDepartment(event:MatSelectChange){
-    // console.log(event);
-    // console.log(this.departmentCode);
     this.findCities();
   }
   findCities(){

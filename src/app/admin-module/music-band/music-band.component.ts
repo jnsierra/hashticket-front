@@ -26,7 +26,6 @@ export class MusicBandComponent {
   getAllMusicBands() {
     this._musicBandService.getAll().subscribe((resp) => {
       this.dataSource.data = resp;
-      console.log(resp);
     });
   }
 

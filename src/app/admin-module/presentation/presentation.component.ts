@@ -71,7 +71,6 @@ export class PresentationComponent {
   update(){
     if (this.selection.selected.length == 1) {
       const URL_SERVICE = `/presentationUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
-      console.log(URL_SERVICE);
       this.router.navigateByUrl(URL_SERVICE);
     }else if(this.selection.selected.length == 0){
       alert('Debes seleccionar un item');

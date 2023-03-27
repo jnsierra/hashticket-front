@@ -13,3 +13,16 @@ mat-form-field{
 mat-card-content{
     margin-left: 10%;
 }
+
+.mat-mdc-snack-bar-container {
+    &.green-snackbar {
+      --mdc-snackbar-container-color: #56AB39;
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+    }
+    &.red-snackbar {
+        --mdc-snackbar-container-color: #D14125;
+        --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+      }
+  }
