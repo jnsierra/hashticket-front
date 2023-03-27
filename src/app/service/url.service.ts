@@ -54,4 +54,10 @@ export class UrlService {
   getEndPointPresentation(){
     return `${this.urlBaseDatos}v.1/presentation/`;
   }
+  getEndPointEventImages() {
+    return `${this.urlBaseDatos}v.1/event_images/`;
+  }
+  getEndPointBusinessEventImages() {
+    return `${this.urlBaseBusiness}v.1/event_images/`;
+  }
 }
