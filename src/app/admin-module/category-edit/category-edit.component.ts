@@ -21,7 +21,7 @@ export class CategoryEditComponent {
     this.category = new Category();
   }
 
-  ejecutarAccion(f: NgForm) {
+  executeAction(f: NgForm) {
     if (f.invalid) {
       this._snackBar.open('Formulario Invalido', 'Cerrar', {
         duration: 2000,
