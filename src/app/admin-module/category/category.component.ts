@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/entities/category';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CategoryService } from 'src/app/service/category.service';
@@ -19,7 +20,8 @@ export class CategoryComponent {
   constructor(
     private _categoryService: CategoryService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.getAllCategories();
   }
@@ -57,9 +59,34 @@ export class CategoryComponent {
 
   insert() {
     if (this.selection.selected.length > 0) {
-      alert('Al insertar no debe estar seleccionado ningún item');
+      this._snackBar.open(
+        'Al insertar no debe estar seleccionado ningún item',
+        'Cerrar',
+        {
+          duration: 2000,
+          panelClass: ['red-snackbar'],
+        }
+      );
       return;
     }
     this.router.navigateByUrl('/categoryEdit');
+  }
+
+  update() {
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/categoryEdit/${this.selection.selected[0].id}`;
+      this.router.navigateByUrl(URL_SERVICE);
+    } else if (this.selection.selected.length == 0) {
+      this._snackBar.open('Debes seleccionar un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
+    } else if (this.selection.selected.length > 1) {
+      this._snackBar.open('Acción no permitida para mas de un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
+    }
+    return;
   }
 }
