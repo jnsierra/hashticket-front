@@ -12,6 +12,7 @@ import { PresentationComponent } from './admin-module/presentation/presentation.
 import { PresentationEditComponent } from './admin-module/presentation-edit/presentation-edit.component';
 import { PublicComponent } from './components/public/public.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { ImagesEventComponent } from './admin-module/images-event/images-event.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'presentation/:id', component: PresentationComponent, canActivate: [AuthGuard] },
   { path: 'presentationInsert/:idEvent', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
+  { path: 'imageEvent/:id', component: ImagesEventComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
