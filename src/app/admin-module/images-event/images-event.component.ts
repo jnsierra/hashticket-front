@@ -1,5 +1,12 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventImageService } from 'src/app/service/event-image.service';
+import { EventImages } from '../../entities/event-images'
+import { ViewImageComponent } from '../view-image/view-image.component';
 
 @Component({
   selector: 'app-images-event',
@@ -8,10 +15,76 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ImagesEventComponent {
   idEvent:number;
-  constructor(private activatedRoute: ActivatedRoute){
+  displayedColumns: string[] = ['select','id', 'description', 'typeImg', 'img'];
+  dataSource = new MatTableDataSource<EventImages>();
+  selection = new SelectionModel<EventImages>(true, []);
+  constructor(private activatedRoute: ActivatedRoute
+    , private _snackBar: MatSnackBar
+    , private router: Router
+    , public dialog: MatDialog
+    , private _eventImageService: EventImageService
+    ){
     this.idEvent = 0;
     this.activatedRoute.params.subscribe(params => {
       this.idEvent = params['id'] as number;
+      this.getAllEventImages();
+    });
+  }
+  getAllEventImages(){
+    this._eventImageService.getEventImagesByEvent(this.idEvent).subscribe(data => {
+      this.dataSource.data = data;
+    });
+  }
+  insert() {
+    if (this.selection.selected.length > 0) {
+      this._snackBar.open('Al insertar no debe estar seleccionado ningún item', 'cerrar');
+      return;
+    }
+    this.router.navigateByUrl(`/eventImagesInsert/${this.idEvent}`);
+  }
+  update(){
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/eventImagesUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
+      this.router.navigateByUrl(URL_SERVICE);
+    }else if(this.selection.selected.length == 0){
+      this._snackBar.open('Debes seleccionar un item', 'cerrar');
+    }else if(this.selection.selected.length > 1 ){
+      this._snackBar.open('Acción no permitida para mas de un item', 'cerrar');
+    }
+  }
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: EventImages): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
+      row.id + 1
+    }`;
+  }
+  showImages(id:number){
+    const dialogRef = this.dialog.open(ViewImageComponent, {
+      width: '400px',
+      height: '400px',
+      enterAnimationDuration: '10',
+      exitAnimationDuration: '10',
+      data: {
+        idEventImage: id
+      },
     });
   }
 }

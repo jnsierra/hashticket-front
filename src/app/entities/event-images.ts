@@ -1,11 +1,13 @@
 export class EventImages {
+  id:number;
+  eventId: number;
   description: string;
   location: string;
   typeImages: string;
-  eventId: number;
   base64: string;
 
   constructor() {
+    this.id = 0;
     this.description = '';
     this.location = '';
     this.typeImages = '';

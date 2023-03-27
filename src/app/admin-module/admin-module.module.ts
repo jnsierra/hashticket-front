@@ -28,6 +28,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { EventCardComponent } from './event-card/event-card.component';
 import { ImagesEventComponent } from './images-event/images-event.component';
+import { ViewImageComponent } from './view-image/view-image.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ImagesEventComponent } from './images-event/images-event.component';
     PresentationEditComponent,
     EventCardComponent,
     ImagesEventComponent,
+    ViewImageComponent,
   ],
   imports: [
     CommonModule,
