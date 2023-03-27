@@ -9,20 +9,18 @@ import { CityService } from 'src/app/service/city.service';
 import { CountryService } from 'src/app/service/country.service';
 import { DepartmentService } from 'src/app/service/department.service';
 import { EventService } from 'src/app/service/event.service';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
 import { CategoryEvent } from 'src/app/entities/category-event';
 import { CategoryEventService } from 'src/app/service/category-event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-event-edit',
   templateUrl: './event-edit.component.html',
-  styleUrls: ['./event-edit.component.scss']
+  styleUrls: ['./event-edit.component.scss'],
 })
-export class EventEditComponent implements OnInit{
-
+export class EventEditComponent implements OnInit {
   event: Event;
   countries: Country[];
   departments: Department[];
@@ -30,19 +28,21 @@ export class EventEditComponent implements OnInit{
   categoriesEvent: CategoryEvent[];
   countryCode: number;
   departmentCode: number;
-  id:string;
-  insert:boolean;
-  butonEnabled:boolean;
+  id: string;
+  insert: boolean;
+  butonEnabled: boolean;
 
-  constructor(private _countryService: CountryService
-    , private _departmentService: DepartmentService
-    , private _cityService: CityService
-    , private _eventService: EventService
-    , private datepipe: DatePipe
-    , private _categoryEventService: CategoryEventService
-    , private activatedRoute: ActivatedRoute
-    , private router: Router
-    , private _snackBar: MatSnackBar){
+  constructor(
+    private _countryService: CountryService,
+    private _departmentService: DepartmentService,
+    private _cityService: CityService,
+    private _eventService: EventService,
+    private datepipe: DatePipe,
+    private _categoryEventService: CategoryEventService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {
     this.event = new Event();
     this.countries = [];
     this.departments = [];
@@ -53,13 +53,13 @@ export class EventEditComponent implements OnInit{
     this.id = '';
     this.insert = true;
     this.butonEnabled = false;
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'] as string;
       if (this.id === undefined) {
         this.insert = true;
-      }else{
+      } else {
         this.insert = false;
-        this._eventService.getById(this.id).subscribe(resp => {
+        this._eventService.getById(this.id).subscribe((resp) => {
           this.event = resp;
           this.countryCode = 57;
           this.findDepartments();
@@ -74,49 +74,64 @@ export class EventEditComponent implements OnInit{
     this.findCategories();
     this.event.eventStatus = 'CREATED';
   }
-  findCategories(){
-    this._categoryEventService.getAllCategories().subscribe(resp => {
+  findCategories() {
+    this._categoryEventService.getAllCategories().subscribe((resp) => {
       this.categoriesEvent = resp;
     });
   }
-  findCountries(){
-    this._countryService.getCountries().subscribe(resp => {
+  findCountries() {
+    this._countryService.getCountries().subscribe((resp) => {
       this.countries = resp;
     });
   }
-  changeCountry(event:MatSelectChange){
+  changeCountry(event: MatSelectChange) {
     this.findDepartments();
   }
-  findDepartments(){
-    this._departmentService.getDepartmentByCountryCode(this.countryCode).subscribe(resp => {
-      this.departments = resp;
-    });
+  findDepartments() {
+    this._departmentService
+      .getDepartmentByCountryCode(this.countryCode)
+      .subscribe((resp) => {
+        this.departments = resp;
+      });
   }
-  changeDepartment(event:MatSelectChange){
+  changeDepartment(event: MatSelectChange) {
     this.findCities();
   }
-  findCities(){
-    this._cityService.getCitiesByDepartamentCode(this.event.departmentCode).subscribe(resp => {
-      this.cities = resp;
-    });
+  findCities() {
+    this._cityService
+      .getCitiesByDepartamentCode(this.event.departmentCode)
+      .subscribe((resp) => {
+        this.cities = resp;
+      });
   }
-  ejecutarAccion(f: NgForm){
-    if( f.invalid){
-      this._snackBar.open('Formulario Invalido', 'cerrar');
-      return 
+  ejecutarAccion(f: NgForm) {
+    if (f.invalid) {
+      this._snackBar.open('Formulario Invalido', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
+      return;
     }
     let fecha = this.datepipe.transform(this.event.date, 'yyyy-MM-dd');
     this.event.date = fecha as string;
-    this._eventService.insert(this.event).subscribe(resp => {
-      if(resp.id === undefined || resp.id === null){
-        this._snackBar.open('Error al crear evento', 'cerrar');
-      }else{
-        this.butonEnabled = true;
-        this._snackBar.open('Operación exitosa', 'cerrar').onAction().subscribe(resp =>{
-          this.router.navigateByUrl('event');
+    this._eventService.insert(this.event).subscribe((resp) => {
+      if (resp.id === undefined || resp.id === null) {
+        this._snackBar.open('Error al crear evento', 'Cerrar', {
+          duration: 2000,
+          panelClass: ['red-snackbar'],
         });
+      } else {
+        this.butonEnabled = true;
+        this._snackBar
+          .open('Operación exitosa', 'Cerrar', {
+            duration: 2000,
+            panelClass: ['green-snackbar'],
+          })
+          .afterDismissed()
+          .subscribe((resp) => {
+            this.router.navigateByUrl('event');
+          });
       }
     });
   }
-
 }
