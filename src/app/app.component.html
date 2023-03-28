@@ -2,7 +2,14 @@
   <mat-drawer #drawer mode="side"
     ><br />
     <a routerLink="" class="px-4">Eventos</a><br /><br />
-    <a routerLink="/signin" class="px-4">Iniciar sesión</a>
+    <div *ngIf="!isAutenticated()">
+      <a routerLink="/signin" class="px-4">Iniciar sesión</a><br /><br />
+    </div>
+    <a routerLink="/homeAdmin" class="px-4" *ngIf="isAutenticated()">Home</a
+    ><br /><br />
+    <a (click)="logout()" class="px-4" *ngIf="isAutenticated()"
+      >Cerrar sesión</a
+    >
   </mat-drawer>
   <mat-drawer-content>
     <!-- Header -->
@@ -28,7 +35,9 @@
         <a routerLink="/homeAdmin" class="px-4" *ngIf="isAutenticated()"
           >Home</a
         >
-        <a (click)="logout()" class="px-4" *ngIf="isAutenticated()">Cerrar sesión</a>
+        <a (click)="logout()" class="px-4" *ngIf="isAutenticated()"
+          >Cerrar sesión</a
+        >
       </mat-toolbar-row>
     </mat-toolbar>
     <router-outlet></router-outlet><br />
