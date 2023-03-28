@@ -33,7 +33,6 @@ export class MusicBandEditComponent {
       return 
     }
     this._musicBandService.insert(this.musicBand).subscribe(resp => {
-      console.log(resp);
     });
     alert('Envia el formulario');
   }

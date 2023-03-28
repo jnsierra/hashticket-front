@@ -1,6 +1,7 @@
 <mat-drawer-container class="example-container" hasBackdrop="true">
-  <mat-drawer #drawer mode="side"><br>
-    <a routerLink="" class="px-4">Eventos</a><br><br>
+  <mat-drawer #drawer mode="side"
+    ><br />
+    <a routerLink="" class="px-4">Eventos</a><br /><br />
     <a routerLink="/signin" class="px-4">Iniciar sesión</a>
   </mat-drawer>
   <mat-drawer-content>
@@ -11,25 +12,29 @@
           <img src="/assets/images/Logo.png" width="130" height="130" />
         </div>
         <span class="spacer"></span>
-        <button mat-icon-button aria-label="Icono menu" (click)="drawer.toggle()">
+        <button
+          mat-icon-button
+          aria-label="Icono menu"
+          (click)="drawer.toggle()"
+        >
           <mat-icon>menu</mat-icon>
         </button>
       </mat-toolbar-row>
       <mat-toolbar-row class="hidden-mobile">
-        <a routerLink="" class="px-4">Eventos</a>&nbsp;&nbsp;
-        <a routerLink="/signin"  *ngIf="!isAutenticated()" class="px-4">Iniciar sesión</a>&nbsp;&nbsp;
-        <a (click)="logout()" *ngIf="isAutenticated()" >Cerrar Sesión</a>&nbsp;&nbsp;
-        <a routerLink="/homeAdmin" *ngIf="isAutenticated()" >Home</a>
+        <a routerLink="" class="px-4">Eventos</a>
+        <a routerLink="/signin" *ngIf="!isAutenticated()" class="px-4"
+          >Iniciar sesión</a
+        >
+        <a routerLink="/homeAdmin" class="px-4" *ngIf="isAutenticated()"
+          >Home</a
+        >
+        <a (click)="logout()" class="px-4" *ngIf="isAutenticated()">Cerrar sesión</a>
       </mat-toolbar-row>
     </mat-toolbar>
-    <router-outlet></router-outlet><br>
+    <router-outlet></router-outlet><br />
     <!-- Footer -->
     <mat-toolbar color="gray">
-      <mat-toolbar-row class="text-sm">
-        COMPRABOLETAS
-      </mat-toolbar-row>
+      <mat-toolbar-row class="text-sm"> COMPRABOLETAS </mat-toolbar-row>
     </mat-toolbar>
   </mat-drawer-content>
 </mat-drawer-container>
-
-
