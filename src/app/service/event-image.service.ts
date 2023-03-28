@@ -27,4 +27,8 @@ export class EventImageService {
       })
     );
   }
+  insertByEvent(eventImages: EventImages){
+    const URL_SERVICE = `${this._urlService.getEndPointBusinessEventImages()}`;
+    return this.http.post<EventImages>(URL_SERVICE, eventImages);
+  }
 }

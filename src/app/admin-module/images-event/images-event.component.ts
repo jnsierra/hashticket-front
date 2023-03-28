@@ -40,16 +40,22 @@ export class ImagesEventComponent {
       this._snackBar.open('Al insertar no debe estar seleccionado ningún item', 'cerrar');
       return;
     }
-    this.router.navigateByUrl(`/eventImagesInsert/${this.idEvent}`);
+    this.router.navigateByUrl(`/imageEventInsert/${this.idEvent}`);
   }
   update(){
     if (this.selection.selected.length == 1) {
       const URL_SERVICE = `/eventImagesUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     }else if(this.selection.selected.length == 0){
-      this._snackBar.open('Debes seleccionar un item', 'cerrar');
+      this._snackBar.open('Debes seleccionar un item', 'cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
     }else if(this.selection.selected.length > 1 ){
-      this._snackBar.open('Acción no permitida para mas de un item', 'cerrar');
+      this._snackBar.open('Acción no permitida para más de un item', 'cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
     }
   }
   /** Whether the number of selected elements matches the total number of rows. */
