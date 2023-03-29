@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { EventService } from 'src/app/service/event.service';
+import { Component } from '@angular/core';
 import { Event } from '../../entities/event';
+import { EventService } from 'src/app/service/event.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewLocationComponent } from '../view-location/view-location.component';
-import { SelectionModel } from '@angular/cdk/collections';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SelectionModel } from '@angular/cdk/collections';
+import { ViewLocationComponent } from '../view-location/view-location.component';
 
 @Component({
   selector: 'app-event',

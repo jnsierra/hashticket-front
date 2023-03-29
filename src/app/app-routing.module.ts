@@ -14,6 +14,7 @@ import { PublicComponent } from './components/public/public.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { ImagesEventComponent } from './admin-module/images-event/images-event.component';
 import { ImagesEventEditComponent } from './admin-module/images-event-edit/images-event-edit.component';
+import { ZoneComponent } from './admin-module/zone/zone.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'imageEventInsert/:idEvent', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
   { path: 'eventImagesUpdate/:idEvent/:id', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
+  { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 

@@ -15,8 +15,10 @@ export class PresentationService {
     );
   }
 
-  getById(id: number){
-    const URL_SERVICE = `${this._urlService.getEndPointPresentation() + id.toString()}`;
+  getById(id: number) {
+    const URL_SERVICE = `${
+      this._urlService.getEndPointPresentation() + id.toString()
+    }`;
     return this.http.get<Presentation>(URL_SERVICE);
   }
 

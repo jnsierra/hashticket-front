@@ -60,4 +60,7 @@ export class UrlService {
   getEndPointBusinessEventImages() {
     return `${this.urlBaseBusiness}v.1/event_images/`;
   }
+  getEndPointZone(){
+    return `${this.urlBaseBusiness}v.1/zone/`;
+  }
 }
