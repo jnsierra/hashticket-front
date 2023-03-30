@@ -1,4 +1,4 @@
-export class ConfigEvent {
+export class ConfigEventTable {
     id: number;
     eventId: number;
     doorOpening: string;
@@ -6,6 +6,7 @@ export class ConfigEvent {
     numberOfTicketSold: number;
     eventDate: string;
     presentationId: number;
+    presentationName: string;
 
     constructor() {
         this.id = 0;
@@ -15,5 +16,6 @@ export class ConfigEvent {
         this.numberOfTicketSold = 0;
         this.eventDate = '01/01/1999';
         this.presentationId = 0;
+        this.presentationName = '';
     }
 }

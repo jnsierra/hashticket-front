@@ -25,7 +25,7 @@ export class UrlService {
     return `${this.urlBasePublic}login/`;
   }
   getEndPointPubConfigEvent() {
-    return `${this.urlBasePublic}v.1/config_event/event`;
+    return `${this.urlBasePublic}v.1/config_event/`;
   }
   getEndPointPubPresentation(){
     return `${this.urlBasePublic}v.1/presentation/event`;
@@ -59,5 +59,8 @@ export class UrlService {
   }
   getEndPointBusinessEventImages() {
     return `${this.urlBaseBusiness}v.1/event_images/`;
+  }
+  getEndPointConfigEvent() {
+    return `${this.urlBaseDatos}v.1/config_event/`;
   }
 }

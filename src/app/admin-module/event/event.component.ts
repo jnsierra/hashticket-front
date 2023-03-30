@@ -127,4 +127,20 @@ export class EventComponent {
       verticalPosition: 'top',
     });
   }
+  configEvent(){
+    var msn = '';
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/configEvent/${this.selection.selected[0].id}`;
+      this.router.navigateByUrl(URL_SERVICE);
+      return;
+    } else if (this.selection.selected.length == 0) {
+      msn = 'Debes seleccionar un item';
+    } else if (this.selection.selected.length > 1) {
+      msn = 'Acción no permitida para mas de un item';
+    }
+    this._snackBar.open(msn, 'cerrar', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
 }
