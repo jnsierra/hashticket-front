@@ -38,7 +38,7 @@ export class ConfigEventComponent {
         configEventTable.doorOpening = resp.doorOpening;
 
         configEventTable.numberOfTickets = resp.numberOfTickets;
-        configEventTable.numberOfTicketSold = resp.numberOfTicketSold;
+        configEventTable.numberOfTicketSold = resp.numberOfTicketsSold;
         configEventTable.eventDate = resp.eventDate;
         configEventTable.presentationId = resp.presentationId;
         return configEventTable;

@@ -3,17 +3,17 @@ export class ConfigEvent {
     eventId: number;
     doorOpening: string;
     numberOfTickets: number;
-    numberOfTicketSold: number;
+    numberOfTicketsSold: number;
     eventDate: string;
     presentationId: number;
 
     constructor() {
         this.id = 0;
         this.eventId = 0;
-        this.doorOpening = '00:00 AM';
+        this.doorOpening = '00:00';
         this.numberOfTickets = 0;
-        this.numberOfTicketSold = 0;
-        this.eventDate = '01/01/1999';
+        this.numberOfTicketsSold = 0;
+        this.eventDate = '';
         this.presentationId = 0;
     }
 }

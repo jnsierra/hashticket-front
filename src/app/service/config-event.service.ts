@@ -18,4 +18,8 @@ export class ConfigEventService {
     const URL_SERVICE = `${this._urlService.getEndPointConfigEvent()}event/${eventId}`;
     return this.http.get<ConfigEvent[]>(URL_SERVICE);
   }
+  save(configEvent:ConfigEvent){
+    const URL_SERVICE = `${this._urlService.getEndPointConfigEvent()}`;
+    return this.http.post<ConfigEvent>(URL_SERVICE,configEvent);
+  }
 }

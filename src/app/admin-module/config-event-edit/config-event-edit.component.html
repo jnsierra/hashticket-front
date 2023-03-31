@@ -1,8 +1,7 @@
 <br />
-<app-event-card [eventId]="event.id"></app-event-card>
+<app-event-card [eventId]="configEvent.eventId"></app-event-card>
 <br />
 <br />
-{{presentations|json}}
 <form #f="ngForm" (ngSubmit)="executeAction(f)">
     <mat-card width="100%" style="margin-left: 20%; margin-right: 20%">
         <mat-card-header>
@@ -13,7 +12,6 @@
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <mat-grid-list cols="1" rowHeight="100px">
                 <mat-form-field class="full-width">
                     <mat-label>Presentación</mat-label>
                     <mat-select [(ngModel)]="configEvent.presentationId" name="presentation" required>
@@ -21,9 +19,33 @@
                             {{pr.name}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>
-            </mat-grid-list>
+                </mat-form-field><br/>
+                <mat-form-field class="full-width">
+                    <mat-label>Apertura de puertas</mat-label>
+                    <input class="inputs-form" type="text" name="openDoors" matInput [(ngModel)]="configEvent.doorOpening" required>
+                </mat-form-field><br/>
+                <mat-form-field >
+                    <mat-label>Fecha de evento</mat-label>
+                    <mat-error *ngIf="f.submitted && f.controls['eventDate'].invalid ">
+                        Fecha de evento obligatorio
+                    </mat-error>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="configEvent.eventDate" name="eventDate" required>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field><br />
+                <mat-form-field class="full-width">
+                    <mat-label>Número de tickets del evento</mat-label>
+                    <input class="inputs-form" type="number" name="numberTickets" matInput [(ngModel)]="configEvent.numberOfTickets" required>
+                </mat-form-field><br/>
+                <mat-form-field class="full-width">
+                    <mat-label>Número de tickets vendidos</mat-label>
+                    <input class="inputs-form" type="number" name="numberTicketsSold" matInput [(ngModel)]="configEvent.numberOfTicketsSold" required>
+                </mat-form-field><br/>
         </mat-card-content>
-
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary" type="submit" [disabled]="butonDisabled">{{createAction ? 'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
+            <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn" [disabled]="butonDisabled">CANCELAR</button>
+        </mat-card-actions>
     </mat-card>
 </form>
