@@ -44,4 +44,8 @@ export class PresentationService {
       presentation
     );
   }
+  getByIdEvent(idEvent: number){
+    const URL_SERVICE = `${this._urlService.getEndPointPresentation()}/event/${idEvent}`;
+    return this.http.get<Presentation[]>(URL_SERVICE)
+  }
 }

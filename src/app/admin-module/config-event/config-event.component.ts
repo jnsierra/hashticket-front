@@ -1,7 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigEventTable } from 'src/app/entities/config-event-table';
 import { ConfigEventService } from 'src/app/service/config-event.service';
 import { EventService } from 'src/app/service/event.service';
@@ -20,7 +20,7 @@ export class ConfigEventComponent {
   event:Event;
   
   constructor(private activatedRoute: ActivatedRoute
-    , private _eventService:EventService
+    , private router: Router
     , private _configEventService: ConfigEventService
     , private _presentationService: PresentationService){
     this.event = new Event(); 
@@ -43,7 +43,6 @@ export class ConfigEventComponent {
         configEventTable.presentationId = resp.presentationId;
         return configEventTable;
       });
-      console.log(configEventsTable)
       this.getPresentation(configEventsTable);
     });
   }
@@ -81,7 +80,12 @@ export class ConfigEventComponent {
     }`;
   }
   insert(){
-
+    alert('Llego');
+    if (this.selection.selected.length > 0) {
+      alert('Al insertar no debe estar seleccionado ningún item');
+      return;
+    }
+    this.router.navigateByUrl(`/configEventInsert/${this.event.id}`);
   }
   update(){
 

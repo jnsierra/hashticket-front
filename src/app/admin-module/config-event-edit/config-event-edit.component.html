@@ -1,0 +1,29 @@
+<br />
+<app-event-card [eventId]="event.id"></app-event-card>
+<br />
+<br />
+{{presentations|json}}
+<form #f="ngForm" (ngSubmit)="executeAction(f)">
+    <mat-card width="100%" style="margin-left: 20%; margin-right: 20%">
+        <mat-card-header>
+            <mat-card-title>Configuraciones del evento</mat-card-title>
+            <mat-card-subtitle>
+                <span *ngIf="createAction">Creación</span>
+                <span *ngIf="!createAction">Actualización</span>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list cols="1" rowHeight="100px">
+                <mat-form-field class="full-width">
+                    <mat-label>Presentación</mat-label>
+                    <mat-select [(ngModel)]="configEvent.presentationId" name="presentation" required>
+                        <mat-option *ngFor="let pr of presentations" [value]="pr.id">
+                            {{pr.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-list>
+        </mat-card-content>
+
+    </mat-card>
+</form>
