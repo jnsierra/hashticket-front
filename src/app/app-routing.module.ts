@@ -16,6 +16,8 @@ import { ImagesEventComponent } from './admin-module/images-event/images-event.c
 import { ImagesEventEditComponent } from './admin-module/images-event-edit/images-event-edit.component';
 import { ConfigEventComponent } from './admin-module/config-event/config-event.component';
 import { ConfigEventEditComponent } from './admin-module/config-event-edit/config-event-edit.component';
+import { EventCategoryComponent } from './admin-module/event-category/event-category.component';
+import { EventCategoryEditComponent } from './admin-module/event-category-edit/event-category-edit.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -36,6 +38,9 @@ const routes: Routes = [
   { path: 'configEvent/:idEvent', component: ConfigEventComponent, canActivate:[AuthGuard]},
   { path: 'configEventInsert/:idEvent', component: ConfigEventEditComponent, canActivate:[AuthGuard]},
   { path: 'configEventUpdate/:idEvent/:id', component: ConfigEventEditComponent, canActivate:[AuthGuard]},
+  { path: 'eventCategory', component: EventCategoryComponent, canActivate:[AuthGuard]},
+  { path: 'eventCategoryInsert', component: EventCategoryEditComponent, canActivate:[AuthGuard]},
+  { path: 'eventCategoryUpdate/:id', component: EventCategoryEditComponent, canActivate:[AuthGuard]},
   { path: 'signin', component: SigninComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];

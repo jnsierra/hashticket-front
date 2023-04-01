@@ -32,6 +32,8 @@ import { ViewImageComponent } from './view-image/view-image.component';
 import { ImagesEventEditComponent } from './images-event-edit/images-event-edit.component';
 import { ConfigEventComponent } from './config-event/config-event.component';
 import { ConfigEventEditComponent } from './config-event-edit/config-event-edit.component';
+import { EventCategoryComponent } from './event-category/event-category.component';
+import { EventCategoryEditComponent } from './event-category-edit/event-category-edit.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { ConfigEventEditComponent } from './config-event-edit/config-event-edit.
     ImagesEventEditComponent,
     ConfigEventComponent,
     ConfigEventEditComponent,
+    EventCategoryComponent,
+    EventCategoryEditComponent,
   ],
   imports: [
     CommonModule,
