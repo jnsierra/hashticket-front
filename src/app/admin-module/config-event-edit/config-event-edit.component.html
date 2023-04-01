@@ -45,7 +45,7 @@
         </mat-card-content>
         <mat-card-actions align="end">
             <button mat-raised-button color="primary" type="submit" [disabled]="butonDisabled">{{createAction ? 'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
-            <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn" [disabled]="butonDisabled">CANCELAR</button>
+            <button mat-raised-button color="primary" routerLink="/configEvent/{{configEvent.id}}" color="warn" [disabled]="butonDisabled">CANCELAR</button>
         </mat-card-actions>
     </mat-card>
 </form>

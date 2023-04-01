@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'eventImagesUpdate/:idEvent/:id', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
   { path: 'configEvent/:idEvent', component: ConfigEventComponent, canActivate:[AuthGuard]},
   { path: 'configEventInsert/:idEvent', component: ConfigEventEditComponent, canActivate:[AuthGuard]},
+  { path: 'configEventUpdate/:idEvent/:id', component: ConfigEventEditComponent, canActivate:[AuthGuard]},
   { path: 'signin', component: SigninComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];

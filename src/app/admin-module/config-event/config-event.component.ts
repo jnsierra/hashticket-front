@@ -7,6 +7,7 @@ import { ConfigEventService } from 'src/app/service/config-event.service';
 import { EventService } from 'src/app/service/event.service';
 import { PresentationService } from 'src/app/service/presentation.service';
 import { Event } from '../../entities/event';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-config-event',
@@ -21,6 +22,7 @@ export class ConfigEventComponent {
   
   constructor(private activatedRoute: ActivatedRoute
     , private router: Router
+    , private _snackBar: MatSnackBar
     , private _configEventService: ConfigEventService
     , private _presentationService: PresentationService){
     this.event = new Event(); 
@@ -38,11 +40,12 @@ export class ConfigEventComponent {
         configEventTable.doorOpening = resp.doorOpening;
 
         configEventTable.numberOfTickets = resp.numberOfTickets;
-        configEventTable.numberOfTicketSold = resp.numberOfTicketsSold;
+        configEventTable.numberOfTicketsSold = resp.numberOfTicketsSold;
         configEventTable.eventDate = resp.eventDate;
         configEventTable.presentationId = resp.presentationId;
         return configEventTable;
       });
+      console.log(configEventsTable);
       this.getPresentation(configEventsTable);
     });
   }
@@ -80,14 +83,25 @@ export class ConfigEventComponent {
     }`;
   }
   insert(){
-    alert('Llego');
     if (this.selection.selected.length > 0) {
-      alert('Al insertar no debe estar seleccionado ningún item');
       return;
     }
     this.router.navigateByUrl(`/configEventInsert/${this.event.id}`);
   }
   update(){
-
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/configEventUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
+      this.router.navigateByUrl(URL_SERVICE);
+    }else if(this.selection.selected.length == 0){
+      this._snackBar.open('Debes seleccionar un item', 'cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
+    }else if(this.selection.selected.length > 1 ){
+      this._snackBar.open('Acción no permitida para más de un item', 'cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
+    }
   }
 }
