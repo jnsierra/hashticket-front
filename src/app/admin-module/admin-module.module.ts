@@ -34,6 +34,7 @@ import { ConfigEventComponent } from './config-event/config-event.component';
 import { ConfigEventEditComponent } from './config-event-edit/config-event-edit.component';
 import { EventCategoryComponent } from './event-category/event-category.component';
 import { EventCategoryEditComponent } from './event-category-edit/event-category-edit.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { EventCategoryEditComponent } from './event-category-edit/event-category
     ConfigEventEditComponent,
     EventCategoryComponent,
     EventCategoryEditComponent,
+    TicketsComponent,
   ],
   imports: [
     CommonModule,
