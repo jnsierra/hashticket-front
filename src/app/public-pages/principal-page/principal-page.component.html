@@ -12,8 +12,8 @@
     orientation="ltr"
   >
     <mat-carousel-slide
-      *ngFor="let slide of slides; let i = index"
-      [image]="slide.image"
+      *ngFor="let slide of eventImages; let i = index"
+      [image]="slide.base64"
       overlayColor="#00000040"
       [hideOverlay]="false"
     >

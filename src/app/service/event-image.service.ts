@@ -10,9 +10,16 @@ import { map } from 'rxjs';
 export class EventImageService {
   constructor(private _urlService: UrlService, private http: HttpClient) {}
 
-  getEventImages(eventId: number) {
-    const URL_SERVICE = `${this._urlService.getEndPointPubImageById()}${eventId}?typeImages=PRINCIPAL`;
-    return this.http.get<EventImages[]>(URL_SERVICE);
+  getEventImagesByEventAndType(eventId: number, type:string) {
+    const URL_SERVICE = `${this._urlService.getEndPointPubImageById()}${eventId}?typeImages=${type}`;
+    return this.http.get<EventImages[]>(URL_SERVICE).pipe(
+      map( resp => {
+        return resp.map(item => {
+          item.base64 = `data:image/jpeg;base64,${item.base64}`
+          return item;
+      });
+      })
+    );
   }
   getEventImagesByEvent(eventId: number) {
     const URL_SERVICE = `${this._urlService.getEndPointEventImages()}/event/${eventId}`;

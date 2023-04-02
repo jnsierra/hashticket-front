@@ -31,8 +31,7 @@ export class CardEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._events.getEventImages(this.event.id).subscribe((resp) => {
-      resp[0].base64 = `data:image/jpeg;base64,${resp[0].base64}`;
+    this._events.getEventImagesByEventAndType(this.event.id, 'PRINCIPAL').subscribe((resp) => {
       this.eventImages = resp;
     });
 
