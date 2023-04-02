@@ -20,8 +20,10 @@
     </mat-carousel-slide>
   </mat-carousel>
 </p>
+<div class="container-cards">
 <div class="grid lg:grid-cols-4 gap-10 px-3">
   <div *ngFor="let evento of eventos">
     <app-card-event [event]="evento"></app-card-event>
   </div>
+</div>
 </div>

@@ -23,7 +23,6 @@ export class PrincipalPageComponent implements OnInit {
   getEvents(){
     this._events.getActiveEvents().subscribe((resp) => {
       this.eventos = resp;
-      console.log(this.eventos);
       this.getImages();
     });
   }

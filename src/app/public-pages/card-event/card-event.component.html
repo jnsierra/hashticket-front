@@ -1,37 +1,36 @@
-<mat-card style="text-align: center">
-  <mat-card-title>
-    <div *ngFor="let present of presentation">
-      {{ present.name | uppercase }}
+<mat-card>
+  <div>
+    <div *ngIf="eventImages.length > 0">
+      <img [src]="eventImages[0].base64" />
     </div>
-  </mat-card-title>
-  <div *ngFor="let eventImage of eventImages">
-    <img
-      mat-card-image
-      [src]="eventImage.base64"
-      [alt]="eventImage.description"
-    />
+    
   </div>
   <mat-card-content>
-    <mat-grid-list cols="2"
-      ><mat-grid-tile
-        ><div style="text-align: center">
+    <mat-grid-list cols="2">
+      <mat-grid-tile>
+        <div class="dateEvent" style="text-align: center">
           {{ event.date | date : "E" | uppercase }}<br />
           <div style="font-size: 60px; font-weight: bold">
             {{ event.date | date : "d" }}
           </div>
           {{ event.date | date : "MMM" | uppercase }}
-        </div> </mat-grid-tile
-      ><mat-grid-tile>
+        </div>
+      </mat-grid-tile><mat-grid-tile>
         {{ event.place }} <br />{{
-          configEvent.doorOpening.split(":")[0] +
-            ":" +
-            configEvent.doorOpening.split(".")[0].split(":")[1]
+        configEvent.doorOpening.split(":")[0] +
+        ":" +
+        configEvent.doorOpening.split(".")[0].split(":")[1]
         }}
-      </mat-grid-tile></mat-grid-list
-    >
+      </mat-grid-tile></mat-grid-list>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button>MÁS INFO</button>
-    <button mat-raised-button>TICKETS</button>
+  <mat-card-title style="text-align: center;">
+    <div *ngFor="let present of presentation">
+      {{ present.name | uppercase }}
+    </div>
+    <br/>
+  </mat-card-title>
+  <mat-card-actions align="end">
+    <button mat-button mat-raised-button>MÁS INFO</button>
+    <button mat-button mat-raised-button>TICKETS</button>
   </mat-card-actions>
 </mat-card>
