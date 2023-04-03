@@ -13,7 +13,7 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  displayedColumns: string[] = ['id', 'name', 'description'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'description'];
   dataSource = new MatTableDataSource<Category>();
   selection = new SelectionModel<Category>(true, []);
 
@@ -52,9 +52,8 @@ export class CategoryComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
 
   insert() {

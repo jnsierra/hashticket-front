@@ -12,24 +12,24 @@ import { ZoneService } from 'src/app/service/zone.service';
   styleUrls: ['./zone.component.scss']
 })
 export class ZoneComponent {
-  displayedColumns: string[] = ['select','id', 'name'];
+  displayedColumns: string[] = ['select', 'id', 'name'];
   dataSource = new MatTableDataSource<Zone>();
   selection = new SelectionModel<Zone>(true, []);
-  categoryId:number;
+  categoryId: number;
 
-  constructor(private _zoneService: ZoneService, public dialog: MatDialog, private router: Router, private activatedRoute: ActivatedRoute){
+  constructor(private _zoneService: ZoneService, public dialog: MatDialog, private router: Router, private activatedRoute: ActivatedRoute) {
     this.categoryId = 0;
     this.activatedRoute.params.subscribe(params => {
       this.categoryId = params['id'] as number;
     });
   }
-  getAllZones(){
+  getAllZones() {
     this._zoneService.getAll().subscribe((resp) => {
       this.dataSource.data = resp;
     });
   }
-   /** Whether the number of selected elements matches the total number of rows. */
-   isAllSelected() {
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
@@ -49,9 +49,8 @@ export class ZoneComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
 
   insert() {
@@ -61,13 +60,13 @@ export class ZoneComponent {
     }
     this.router.navigateByUrl(`/zoneInsert/${this.categoryId}`);
   }
-  update(){
+  update() {
     if (this.selection.selected.length == 1) {
       const URL_SERVICE = `/zoneUpdate/${this.selection.selected[0].categoryId}/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
-    }else if(this.selection.selected.length == 0){
+    } else if (this.selection.selected.length == 0) {
       alert('Debes seleccionar un item');
-    }else if(this.selection.selected.length > 1 ){
+    } else if (this.selection.selected.length > 1) {
       alert('Acción no permitida para mas de un item');
     }
   }

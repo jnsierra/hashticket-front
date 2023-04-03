@@ -79,7 +79,14 @@ export class EventComponent {
   }
   insertar() {
     if (this.selection.selected.length > 0) {
-      alert('Al insertar no debe estar seleccionado ningún item');
+      this._snackBar.open(
+        'Al insertar no debe estar seleccionado ningún item',
+        'Cerrar',
+        {
+          duration: 2000,
+          panelClass: ['red-snackbar'],
+        }
+      );
       return;
     }
     this.router.navigateByUrl('/eventInsert');
@@ -89,9 +96,15 @@ export class EventComponent {
       const URL_SERVICE = `/eventEdit/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      alert('Debes seleccionar un item');
+      this._snackBar.open('Debes seleccionar un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
     } else if (this.selection.selected.length > 1) {
-      alert('Acción no permitida para mas de un item');
+      this._snackBar.open('Acción no permitida para mas de un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
     }
     return;
   }
@@ -105,9 +118,11 @@ export class EventComponent {
     } else if (this.selection.selected.length > 1) {
       msn = 'Acción no permitida para mas de un item';
     }
-    this._snackBar.open(msn, 'cerrar', {
+    this._snackBar.open(msn, 'Cerrar', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      duration: 2000,
+      panelClass: ['red-snackbar'],
     });
     return;
   }
@@ -122,9 +137,11 @@ export class EventComponent {
     } else if (this.selection.selected.length > 1) {
       msn = 'Acción no permitida para mas de un item';
     }
-    this._snackBar.open(msn, 'cerrar', {
+    this._snackBar.open(msn, 'Cerrar', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      duration: 2000,
+      panelClass: ['red-snackbar'],
     });
   }
 }
