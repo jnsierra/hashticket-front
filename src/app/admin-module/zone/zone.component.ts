@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Zone } from 'src/app/entities/zone';
@@ -17,7 +18,7 @@ export class ZoneComponent {
   selection = new SelectionModel<Zone>(true, []);
   categoryId: number;
 
-  constructor(private _zoneService: ZoneService, public dialog: MatDialog, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private _zoneService: ZoneService, public dialog: MatDialog, private router: Router, private activatedRoute: ActivatedRoute, private _snackBar: MatSnackBar) {
     this.categoryId = 0;
     this.activatedRoute.params.subscribe(params => {
       this.categoryId = params['id'] as number;
@@ -55,7 +56,14 @@ export class ZoneComponent {
 
   insert() {
     if (this.selection.selected.length > 0) {
-      alert('Al insertar no debe estar seleccionado ningún item');
+      this._snackBar.open(
+        'Al insertar no debe estar seleccionado ningún item',
+        'Cerrar',
+        {
+          duration: 2000,
+          panelClass: ['red-snackbar'],
+        }
+      );
       return;
     }
     this.router.navigateByUrl(`/zoneInsert/${this.categoryId}`);
@@ -65,9 +73,15 @@ export class ZoneComponent {
       const URL_SERVICE = `/zoneUpdate/${this.selection.selected[0].categoryId}/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      alert('Debes seleccionar un item');
+      this._snackBar.open('Debes seleccionar un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
     } else if (this.selection.selected.length > 1) {
-      alert('Acción no permitida para mas de un item');
+      this._snackBar.open('Acción no permitida para mas de un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
     }
   }
 }
