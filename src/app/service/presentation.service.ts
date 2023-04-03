@@ -21,11 +21,33 @@ export class PresentationService {
     }`;
     return this.http.get<Presentation>(URL_SERVICE);
   }
+  getByIdPromise(id: number){
+    const promise = new Promise( (resolve, reject) =>{
+      const URL_SERVICE = `${this._urlService.getEndPointPresentation() + id.toString()}`;  
+      this.http.get<Presentation>(URL_SERVICE).subscribe({
+        next: (res: Presentation) => {
+          console.log(res);
+          resolve(res);
+        },
+        error: (err: any) => {
+          reject(err);
+        },
+        complete: () => {
+          console.log('complete');
+        },
+      });
+    });
+    return promise;
+  }
 
   insert(presentation: Presentation) {
     return this.http.post<Presentation>(
       this._urlService.getEndPointPresentation(),
       presentation
     );
+  }
+  getByIdEvent(idEvent: number){
+    const URL_SERVICE = `${this._urlService.getEndPointPresentation()}/event/${idEvent}`;
+    return this.http.get<Presentation[]>(URL_SERVICE)
   }
 }

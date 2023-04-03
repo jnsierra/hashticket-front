@@ -32,6 +32,11 @@ import { ViewImageComponent } from './view-image/view-image.component';
 import { ImagesEventEditComponent } from './images-event-edit/images-event-edit.component';
 import { ZoneComponent } from './zone/zone.component';
 import { ZoneEditComponent } from './zone-edit/zone-edit.component';
+import { ConfigEventComponent } from './config-event/config-event.component';
+import { ConfigEventEditComponent } from './config-event-edit/config-event-edit.component';
+import { EventCategoryComponent } from './event-category/event-category.component';
+import { EventCategoryEditComponent } from './event-category-edit/event-category-edit.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,11 @@ import { ZoneEditComponent } from './zone-edit/zone-edit.component';
     ImagesEventEditComponent,
     ZoneComponent,
     ZoneEditComponent,
+    ConfigEventComponent,
+    ConfigEventEditComponent,
+    EventCategoryComponent,
+    EventCategoryEditComponent,
+    TicketsComponent,
   ],
   imports: [
     CommonModule,
