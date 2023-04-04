@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { MusicBand } from 'src/app/entities/music-band';
 import { MusicBandService } from 'src/app/service/music-band.service';
@@ -12,7 +13,7 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./music-band.component.scss'],
 })
 export class MusicBandComponent {
-  displayedColumns: string[] = ['id', 'name', 'presentationId'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'presentationId'];
   dataSource = new MatTableDataSource<MusicBand>();
   selection = new SelectionModel<MusicBand>(true, []);
 

@@ -38,8 +38,7 @@
       </mat-grid-list>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">CREAR</button>
-      &nbsp;
+      <button mat-raised-button color="primary" type="submit" [disabled]="butonEnabled">{{insert ? 'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
       <button
         mat-raised-button
         color="primary"

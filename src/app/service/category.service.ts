@@ -19,4 +19,9 @@ export class CategoryService {
       category
     );
   }
+
+  getById(id:string){
+    const URL_SERVICE = `${this._urlService.getEndPointCategory() + id}`;
+    return this.http.get<Category>(URL_SERVICE);
+  }
 }
