@@ -22,6 +22,7 @@ import { PublicComponent } from './components/public/public.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { ZoneComponent } from './admin-module/zone/zone.component';
 import { ZoneEditComponent } from './admin-module/zone-edit/zone-edit.component';
+import { TicketsComponent } from './admin-module/tickets/tickets.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'presentationInsert/:idEvent', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
+  { path: 'tickets', component: TicketsComponent, canActivate:[AuthGuard]},
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit', component: ZoneEditComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit/:id', component: ZoneEditComponent, canActivate: [AuthGuard] },
