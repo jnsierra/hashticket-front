@@ -20,7 +20,8 @@ export class MusicBandComponent {
   constructor(
     private _musicBandService: MusicBandService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.getAllMusicBands();
   }
@@ -30,8 +31,8 @@ export class MusicBandComponent {
     });
   }
 
-   /** Whether the number of selected elements matches the total number of rows. */
-   isAllSelected() {
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
@@ -51,16 +52,40 @@ export class MusicBandComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
 
   insert() {
     if (this.selection.selected.length > 0) {
-      alert('Al insertar no debe estar seleccionado ningún item');
+      this._snackBar.open(
+        'Al insertar no debe estar seleccionado ningún item',
+        'Cerrar',
+        {
+          duration: 2000,
+          panelClass: ['red-snackbar'],
+        }
+      );
       return;
     }
     this.router.navigateByUrl('/musicBandEdit');
+  }
+
+  update() {
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/musicBandEdit/${this.selection.selected[0].id}`;
+      this.router.navigateByUrl(URL_SERVICE);
+    } else if (this.selection.selected.length == 0) {
+      this._snackBar.open('Debes seleccionar un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
+    } else if (this.selection.selected.length > 1) {
+      this._snackBar.open('Acción no permitida para mas de un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
+    }
+    return;
   }
 }

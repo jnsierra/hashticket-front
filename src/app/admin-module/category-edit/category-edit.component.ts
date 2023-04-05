@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Category } from 'src/app/entities/category';
 import { CategoryService } from 'src/app/service/category.service';
-import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,6 +15,7 @@ export class CategoryEditComponent {
   id: string;
   insert: boolean;
   butonEnabled: boolean;
+  msn: string;
 
   constructor(
     private _categoryService: CategoryService,
@@ -24,14 +25,17 @@ export class CategoryEditComponent {
   ) {
     this.category = new Category();
     this.id = '';
+    this.msn = '';
     this.insert = true;
     this.butonEnabled = false;
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'] as string;
       if (this.id === undefined) {
         this.insert = true;
+        this.msn = 'Categor\u00eda creada exitosamente';
       } else {
         this.insert = false;
+        this.msn = 'Categor\u00eda actualizada exitosamente';
         this._categoryService.getById(this.id).subscribe((resp) => {
           this.category = resp;
         });
@@ -49,15 +53,15 @@ export class CategoryEditComponent {
     }
     this._categoryService.insert(this.category).subscribe((resp) => {
       if (resp.id === undefined || resp.id === null) {
-        this._snackBar.open('Error al crear evento', 'Cerrar', {
+        this._snackBar.open('Error al crear categor\u00eda', 'Cerrar', {
           duration: 2000,
           panelClass: ['red-snackbar'],
         });
       } else {
         this.butonEnabled = true;
         this._snackBar
-          .open('Categoria creada exitosamente', 'OK', {
-            duration: 2000,
+          .open(this.msn, 'OK', {
+            duration: 1500,
             panelClass: ['green-snackbar'],
           })
           .afterDismissed()

@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigEvent } from 'src/app/entities/config-event';
-import { Event } from 'src/app/entities/event';
 import { Presentation } from 'src/app/entities/presentation';
 import { ConfigEventService } from 'src/app/service/config-event.service';
 import { PresentationService } from 'src/app/service/presentation.service';
