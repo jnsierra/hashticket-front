@@ -37,6 +37,8 @@ import { ConfigEventEditComponent } from './config-event-edit/config-event-edit.
 import { EventCategoryComponent } from './event-category/event-category.component';
 import { EventCategoryEditComponent } from './event-category-edit/event-category-edit.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { ArtistComponent } from './artist/artist.component';
+import { ArtistEditComponent } from './artist-edit/artist-edit.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { TicketsComponent } from './tickets/tickets.component';
     EventCategoryComponent,
     EventCategoryEditComponent,
     TicketsComponent,
+    ArtistComponent,
+    ArtistEditComponent,
   ],
   imports: [
     CommonModule,

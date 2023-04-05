@@ -27,19 +27,19 @@ export class UrlService {
   getEndPointPubConfigEvent() {
     return `${this.urlBasePublic}v.1/config_event/`;
   }
-  getEndPointPubPresentation(){
+  getEndPointPubPresentation() {
     return `${this.urlBasePublic}v.1/presentation/event`;
   }
-  getEndPointCategory(){
+  getEndPointCategory() {
     return `${this.urlBaseDatos}v.1/category/`;
   }
-  getEndPointCategoryEvent(){
+  getEndPointCategoryEvent() {
     return `${this.urlBaseDatos}v.1/category_event/`;
   }
   getEndPointCity() {
     return `${this.urlBaseDatos}v.1/city/`;
   }
-  getEndPointCountry(){
+  getEndPointCountry() {
     return `${this.urlBaseDatos}v.1/country/`;
   }
   getEndPointDepartment() {
@@ -48,10 +48,10 @@ export class UrlService {
   getEndPointEvent() {
     return `${this.urlBaseDatos}v.1/event/`;
   }
-  getEndPointMusicBand(){
+  getEndPointMusicBand() {
     return `${this.urlBaseDatos}v.1/musicBand/`;
   }
-  getEndPointPresentation(){
+  getEndPointPresentation() {
     return `${this.urlBaseDatos}v.1/presentation/`;
   }
   getEndPointEventImages() {
@@ -60,10 +60,13 @@ export class UrlService {
   getEndPointBusinessEventImages() {
     return `${this.urlBaseBusiness}v.1/event_images/`;
   }
-  getEndPointZone(){
+  getEndPointZone() {
     return `${this.urlBaseBusiness}v.1/zone/`;
   }
   getEndPointConfigEvent() {
     return `${this.urlBaseDatos}v.1/config_event/`;
+  }
+  getEndPointArtist() {
+    return `${this.urlBaseDatos}v.1/artist/`;
   }
 }
