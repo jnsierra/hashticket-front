@@ -18,6 +18,7 @@ import { ConfigEventComponent } from './admin-module/config-event/config-event.c
 import { ConfigEventEditComponent } from './admin-module/config-event-edit/config-event-edit.component';
 import { EventCategoryComponent } from './admin-module/event-category/event-category.component';
 import { EventCategoryEditComponent } from './admin-module/event-category-edit/event-category-edit.component';
+import { TicketsComponent } from './admin-module/tickets/tickets.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'eventCategory', component: EventCategoryComponent, canActivate:[AuthGuard]},
   { path: 'eventCategoryInsert', component: EventCategoryEditComponent, canActivate:[AuthGuard]},
   { path: 'eventCategoryUpdate/:id', component: EventCategoryEditComponent, canActivate:[AuthGuard]},
+  { path: 'tickets', component: TicketsComponent, canActivate:[AuthGuard]},
   { path: 'signin', component: SigninComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];

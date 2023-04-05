@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -75,7 +76,8 @@ import { TicketsComponent } from './tickets/tickets.component';
     MatSnackBarModule,
     NgApexchartsModule,
     MatSidenavModule,
-    MatGridListModule
+    MatGridListModule,
+    MatPaginatorModule
   ],
 })
 export class AdminModuleModule { }

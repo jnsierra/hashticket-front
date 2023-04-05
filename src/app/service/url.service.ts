@@ -63,4 +63,10 @@ export class UrlService {
   getEndPointConfigEvent() {
     return `${this.urlBaseDatos}v.1/config_event/`;
   }
+  getEndPointBusinessTickets(){
+    return `${this.urlBaseBusiness}v.1/ticket/`;
+  }
+  getEndPointTickets(){
+    return `${this.urlBaseDatos}v.1/ticket/`;
+  }
 }
