@@ -10,29 +10,15 @@
         <mat-grid-tile>
           <mat-form-field class="full-width">
             <mat-label>Nombre</mat-label>
-            <input
-              class="inputs-form"
-              type="text"
-              name="name"
-              matInput
-              placeholder="Nombre del artista"
-              [(ngModel)]="artist.name"
-              required
-            />
+            <input class="inputs-form" type="text" name="name" matInput placeholder="Nombre del artista"
+              [(ngModel)]="artist.name" required />
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field class="full-width">
             <mat-label>Descripción</mat-label>
-            <input
-              class="inputs-form"
-              type="text"
-              name="description"
-              matInput
-              placeholder="Descripción del artista"
-              [(ngModel)]="artist.description"
-              required
-            />
+            <input class="inputs-form" type="text" name="description" matInput placeholder="Descripción del artista"
+              [(ngModel)]="artist.description" required />
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
@@ -47,13 +33,9 @@
       </mat-grid-list>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit" [disabled]="butonEnabled">{{insert ? 'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
-      <button
-        mat-raised-button
-        color="primary"
-        routerLink="/homeAdmin"
-        color="warn"
-      >
+      <button mat-raised-button color="primary" type="submit" [disabled]="butonEnabled">{{insert ? 'INSERTAR' :
+        'ACTUALIZAR'}}</button> &nbsp;
+      <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn">
         CANCELAR
       </button>
     </mat-card-actions>

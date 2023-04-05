@@ -27,38 +27,36 @@
             </mat-form-field><br />
             <mat-form-field class="full-width">
                 <mat-select name="typeImage" [(ngModel)]="eventImages.typeImages">
-                    <mat-option value="-1" >Seleccione una opcion</mat-option>
+                    <mat-option value="-1">Seleccione una opcion</mat-option>
                     <mat-option value="PRINCIPAL">PRINCIPAL</mat-option>
                     <mat-option value="MINIATURE">MINIATURE</mat-option>
                 </mat-select>
-            </mat-form-field><br/>
+            </mat-form-field><br />
             <div>
-                <input type="file" class="file-upload" (change)="onFileSelected($event)" accept="image/jpeg" #fileUpload class="file-input"/>
+                <input type="file" class="file-upload" (change)="onFileSelected($event)" accept="image/jpeg" #fileUpload
+                    class="file-input" />
                 <div class="file-upload">
 
                     {{fileName || "Imagen no cargada aún"}}
-                 
-                     <button mat-mini-fab color="primary" class="upload-btn"
-                       (click)="fileUpload.click()">
-                         <mat-icon>attach_file</mat-icon>
-                     </button>
-                 </div>
+
+                    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>
+                </div>
             </div>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <div *ngIf="!createAccion">
                 Imagen Actual
-                <mat-icon
-                aria-hidden="false"
-                aria-label="image"
-                fontIcon="image_on"
-                (click)="showImages(eventImages.id)"
-              ></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="image" fontIcon="image_on"
+                    (click)="showImages(eventImages.id)"></mat-icon>
             </div>
         </mat-card-content>
         <mat-card-actions align="end">
-            <button mat-raised-button color="primary" type="submit" [disabled]="!enableButton">{{createAccion ? 'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
-            <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn" [disabled]="!enableButton">CANCELAR</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!enableButton">{{createAccion ?
+                'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
+            <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn"
+                [disabled]="!enableButton">CANCELAR</button>
         </mat-card-actions>
     </mat-card>
 </form>

@@ -54,8 +54,8 @@ export class ArtistEditComponent implements OnInit {
 
   findMusicBand() {
     this._musicBandService.getAll().subscribe((resp) => {
-        this.musicBand = resp;
-      });
+      this.musicBand = resp;
+    });
   }
   executeAction(f: NgForm) {
     if (f.invalid) {

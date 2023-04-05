@@ -10,15 +10,15 @@ export class CategoryEventService {
 
   constructor(private _urlService: UrlService, private http: HttpClient) { }
 
-  getAllCategories(){
+  getAllCategories() {
     const URL_SERVICE = `${this._urlService.getEndPointCategoryEvent()}`;
     return this.http.get<CategoryEvent[]>(URL_SERVICE);
   }
-  save(categoryEvent:CategoryEvent){
+  save(categoryEvent: CategoryEvent) {
     const URL_SERVICE = `${this._urlService.getEndPointCategoryEvent()}`;
-    return this.http.post<CategoryEvent>(URL_SERVICE,categoryEvent);
+    return this.http.post<CategoryEvent>(URL_SERVICE, categoryEvent);
   }
-  getById(id:number){
+  getById(id: number) {
     const URL_SERVICE = `${this._urlService.getEndPointCategoryEvent() + id}`;
     return this.http.get<CategoryEvent>(URL_SERVICE);
   }

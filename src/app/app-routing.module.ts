@@ -21,36 +21,39 @@ import { PresentationEditComponent } from './admin-module/presentation-edit/pres
 import { PublicComponent } from './components/public/public.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { ZoneComponent } from './admin-module/zone/zone.component';
+import { ZoneEditComponent } from './admin-module/zone-edit/zone-edit.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
   { path: 'homeAdmin', component: HomeAdminComponent },
-  { path: 'artist', component: ArtistComponent, canActivate: [AuthGuard]},
-  { path: 'artistEdit', component: ArtistEditComponent, canActivate: [AuthGuard]},
-  { path: 'artistEdit/:id', component: ArtistEditComponent, canActivate: [AuthGuard]},
-  { path: 'category', component: CategoryComponent, canActivate: [AuthGuard]},
+  { path: 'artist', component: ArtistComponent, canActivate: [AuthGuard] },
+  { path: 'artistEdit', component: ArtistEditComponent, canActivate: [AuthGuard] },
+  { path: 'artistEdit/:id', component: ArtistEditComponent, canActivate: [AuthGuard] },
+  { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
+  { path: 'categoryEdit', component: CategoryEditComponent, canActivate: [AuthGuard] },
   { path: 'categoryEdit/:id', component: CategoryEditComponent, canActivate: [AuthGuard] },
-  { path: 'categoryEdit', component: CategoryEditComponent, canActivate: [AuthGuard]},
-  { path: 'eventInsert', component: EventEditComponent, canActivate: [AuthGuard] },
+  { path: 'configEvent/:idEvent', component: ConfigEventComponent, canActivate: [AuthGuard] },
+  { path: 'configEventInsert/:idEvent', component: ConfigEventEditComponent, canActivate: [AuthGuard] },
+  { path: 'configEventUpdate/:idEvent/:id', component: ConfigEventEditComponent, canActivate: [AuthGuard] },
+  { path: 'event', component: EventComponent, canActivate: [AuthGuard] },
+  { path: 'eventCategory', component: EventCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'eventCategoryInsert', component: EventCategoryEditComponent, canActivate: [AuthGuard] },
+  { path: 'eventCategoryUpdate/:id', component: EventCategoryEditComponent, canActivate: [AuthGuard] },
   { path: 'eventEdit/:id', component: EventEditComponent, canActivate: [AuthGuard] },
-  { path: 'event', component: EventComponent, canActivate: [AuthGuard]},
+  { path: 'eventImagesUpdate/:idEvent/:id', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
+  { path: 'eventInsert', component: EventEditComponent, canActivate: [AuthGuard] },
+  { path: 'imageEvent/:id', component: ImagesEventComponent, canActivate: [AuthGuard] },
+  { path: 'imageEventInsert/:idEvent', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
   { path: 'musicBand', component: MusicBandComponent, canActivate: [AuthGuard] },
   { path: 'musicBandEdit', component: MusicBandEditComponent, canActivate: [AuthGuard] },
   { path: 'musicBandEdit/:id', component: MusicBandEditComponent, canActivate: [AuthGuard] },
   { path: 'presentation/:id', component: PresentationComponent, canActivate: [AuthGuard] },
   { path: 'presentationInsert/:idEvent', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
-  { path: 'imageEvent/:id', component: ImagesEventComponent, canActivate: [AuthGuard] },
-  { path: 'imageEventInsert/:idEvent', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
-  { path: 'eventImagesUpdate/:idEvent/:id', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
-  { path: 'configEvent/:idEvent', component: ConfigEventComponent, canActivate:[AuthGuard]},
-  { path: 'configEventInsert/:idEvent', component: ConfigEventEditComponent, canActivate:[AuthGuard]},
-  { path: 'configEventUpdate/:idEvent/:id', component: ConfigEventEditComponent, canActivate:[AuthGuard]},
-  { path: 'eventCategory', component: EventCategoryComponent, canActivate:[AuthGuard]},
-  { path: 'eventCategoryInsert', component: EventCategoryEditComponent, canActivate:[AuthGuard]},
-  { path: 'eventCategoryUpdate/:id', component: EventCategoryEditComponent, canActivate:[AuthGuard]},
   { path: 'signin', component: SigninComponent },
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },
+  { path: 'zoneEdit', component: ZoneEditComponent, canActivate: [AuthGuard] },
+  { path: 'zoneEdit/:id', component: ZoneEditComponent, canActivate: [AuthGuard] },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
@@ -58,4 +61,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

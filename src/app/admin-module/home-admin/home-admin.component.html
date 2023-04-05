@@ -1,22 +1,16 @@
 <mat-drawer-container class="example-container" hasBackdrop="true">
-  <mat-drawer #drawer mode="side"
-    ><br>
-      <a routerLink="/event" routerLinkActive="active">Eventos</a><br><br>
-      <a routerLink="/eventCategory" routerLinkActive="active">Categorias evento</a><br><br>
-      <a routerLink="/category" routerLinkActive="active">Categorias</a><br><br>
-      <a routerLink="/musicBand" routerLinkActive="active">Bandas musicales</a><br><br>
-      <a routerLink="/artist" routerLinkActive="active">Artistas</a><br><br>
-      <a routerLink="/zone" routerLinkActive="active">Zonas</a><br><br>
+  <mat-drawer #drawer mode="side"><br>
+    <a routerLink="/event" routerLinkActive="active">Eventos</a><br><br>
+    <a routerLink="/eventCategory" routerLinkActive="active">Categorias evento</a><br><br>
+    <a routerLink="/category" routerLinkActive="active">Categorias</a><br><br>
+    <a routerLink="/musicBand" routerLinkActive="active">Bandas musicales</a><br><br>
+    <a routerLink="/artist" routerLinkActive="active">Artistas</a><br><br>
+    <a routerLink="/zone" routerLinkActive="active">Zonas</a><br><br>
   </mat-drawer>
   <mat-drawer-content>
     <button mat-icon-button aria-label="Icono menu" (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <apx-chart
-      [series]="series"
-      [chart]="chart"
-      [title]="title"
-      [labels]="labels"
-    ></apx-chart>
+    <apx-chart [series]="series" [chart]="chart" [title]="title" [labels]="labels"></apx-chart>
   </mat-drawer-content>
 </mat-drawer-container>

@@ -78,7 +78,7 @@ import { ArtistEditComponent } from './artist-edit/artist-edit.component';
     FormsModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatCardModule,  
+    MatCardModule,
     MatSelectModule,
     MatSnackBarModule,
     NgApexchartsModule,

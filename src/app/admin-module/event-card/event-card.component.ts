@@ -8,11 +8,11 @@ import { EventService } from 'src/app/service/event.service';
   styleUrls: ['./event-card.component.scss']
 })
 export class EventCardComponent implements OnInit {
-  event:Event;
+  event: Event;
   @Input()
-  eventId:number;
+  eventId: number;
 
-  constructor( private _eventService: EventService){
+  constructor(private _eventService: EventService) {
     this.event = new Event();
     this.eventId = 0;
   }
@@ -20,6 +20,6 @@ export class EventCardComponent implements OnInit {
     this._eventService.getById(this.eventId.toString()).subscribe(resp => {
       this.event = resp;
     });
-    
+
   }
 }

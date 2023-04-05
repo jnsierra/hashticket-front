@@ -7,14 +7,14 @@ import { UrlService } from './url.service';
   providedIn: 'root',
 })
 export class ZoneService {
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
   getAll() {
     return this.http.get<Zone[]>(this._urlService.getEndPointZone());
   }
 
-  getById(id: number) {
-    const URL_SERVICE = `${this._urlService.getEndPointZone() + id.toString()}`;
+  getById(id: string) {
+    const URL_SERVICE = `${this._urlService.getEndPointZone() + id}`;
     return this.http.get<Zone>(URL_SERVICE);
   }
 

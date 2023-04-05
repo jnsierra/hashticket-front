@@ -11,7 +11,7 @@ import { EventImageService } from 'src/app/service/event-image.service';
 export class ViewImageComponent {
 
   idImage: number;
-  eventImages:EventImages;
+  eventImages: EventImages;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any
     , private _eventImageService: EventImageService) {
@@ -19,8 +19,8 @@ export class ViewImageComponent {
     this.eventImages = new EventImages();
     this.getImage();
   }
-  getImage(){
-    this._eventImageService.getEventImagesById(this.idImage).subscribe(data =>{
+  getImage() {
+    this._eventImageService.getEventImagesById(this.idImage).subscribe(data => {
       this.eventImages = data;
     });
   }

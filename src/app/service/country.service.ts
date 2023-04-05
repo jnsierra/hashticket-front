@@ -8,9 +8,9 @@ import { UrlService } from './url.service';
 })
 export class CountryService {
 
-  constructor(private _urlService: UrlService, private http: HttpClient) { } 
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
-  getCountries(){
+  getCountries() {
     const URL_SERVICE = `${this._urlService.getEndPointCountry()}`;
     return this.http.get<Country[]>(URL_SERVICE);
   }

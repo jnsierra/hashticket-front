@@ -20,7 +20,7 @@ export class MusicBandService {
     );
   }
 
-  getById(id:string){
+  getById(id: string) {
     const URL_SERVICE = `${this._urlService.getEndPointMusicBand() + id}`;
     return this.http.get<MusicBand>(URL_SERVICE);
   }

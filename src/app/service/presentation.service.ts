@@ -7,7 +7,7 @@ import { UrlService } from './url.service';
   providedIn: 'root',
 })
 export class PresentationService {
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
   getAll() {
     return this.http.get<Presentation[]>(
@@ -16,14 +16,13 @@ export class PresentationService {
   }
 
   getById(id: number) {
-    const URL_SERVICE = `${
-      this._urlService.getEndPointPresentation() + id.toString()
-    }`;
+    const URL_SERVICE = `${this._urlService.getEndPointPresentation() + id.toString()
+      }`;
     return this.http.get<Presentation>(URL_SERVICE);
   }
-  getByIdPromise(id: number){
-    const promise = new Promise( (resolve, reject) =>{
-      const URL_SERVICE = `${this._urlService.getEndPointPresentation() + id.toString()}`;  
+  getByIdPromise(id: number) {
+    const promise = new Promise((resolve, reject) => {
+      const URL_SERVICE = `${this._urlService.getEndPointPresentation() + id.toString()}`;
       this.http.get<Presentation>(URL_SERVICE).subscribe({
         next: (res: Presentation) => {
           console.log(res);
@@ -46,7 +45,7 @@ export class PresentationService {
       presentation
     );
   }
-  getByIdEvent(idEvent: number){
+  getByIdEvent(idEvent: number) {
     const URL_SERVICE = `${this._urlService.getEndPointPresentation()}/event/${idEvent}`;
     return this.http.get<Presentation[]>(URL_SERVICE)
   }

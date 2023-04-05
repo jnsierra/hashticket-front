@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,16 +13,17 @@ import { ZoneService } from 'src/app/service/zone.service';
   styleUrls: ['./zone.component.scss']
 })
 export class ZoneComponent {
-  displayedColumns: string[] = ['select', 'id', 'name'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'categoryId'];
   dataSource = new MatTableDataSource<Zone>();
   selection = new SelectionModel<Zone>(true, []);
-  categoryId: number;
 
-  constructor(private _zoneService: ZoneService, public dialog: MatDialog, private router: Router, private activatedRoute: ActivatedRoute, private _snackBar: MatSnackBar) {
-    this.categoryId = 0;
-    this.activatedRoute.params.subscribe(params => {
-      this.categoryId = params['id'] as number;
-    });
+  constructor(
+    private _zoneService: ZoneService,
+    public dialog: MatDialog,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {
+    this.getAllZones();
   }
   getAllZones() {
     this._zoneService.getAll().subscribe((resp) => {
@@ -66,11 +67,11 @@ export class ZoneComponent {
       );
       return;
     }
-    this.router.navigateByUrl(`/zoneInsert/${this.categoryId}`);
+    this.router.navigateByUrl(`/zoneEdit`);
   }
   update() {
     if (this.selection.selected.length == 1) {
-      const URL_SERVICE = `/zoneUpdate/${this.selection.selected[0].categoryId}/${this.selection.selected[0].id}`;
+      const URL_SERVICE = `/zoneEdit/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
       this._snackBar.open('Debes seleccionar un item', 'Cerrar', {

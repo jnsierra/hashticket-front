@@ -7,7 +7,7 @@ import { UrlService } from './url.service';
   providedIn: 'root'
 })
 export class ArtistService {
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
   getAll() {
     return this.http.get<Artist[]>(this._urlService.getEndPointArtist());
@@ -20,7 +20,7 @@ export class ArtistService {
     );
   }
 
-  getById(id:string){
+  getById(id: string) {
     const URL_SERVICE = `${this._urlService.getEndPointArtist() + id}`;
     return this.http.get<Artist>(URL_SERVICE);
   }

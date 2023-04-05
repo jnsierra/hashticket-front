@@ -1,7 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { EventCategory } from 'src/app/entities/event-category';
 import { CategoryEventService } from 'src/app/service/category-event.service';
 
@@ -19,12 +19,12 @@ export class EventCategoryComponent {
   ];
   dataSource = new MatTableDataSource<EventCategory>();
   selection = new SelectionModel<EventCategory>(true, []);
-  constructor(private activatedRoute: ActivatedRoute
-    , private router: Router
-    , private _categoryEventService:CategoryEventService){
+  constructor(
+    private router: Router,
+    private _categoryEventService: CategoryEventService) {
     this.getEventCategories()
   }
-  getEventCategories(){
+  getEventCategories() {
     this._categoryEventService.getAllCategories().subscribe(data => {
       this.dataSource.data = data;
     });
@@ -50,9 +50,8 @@ export class EventCategoryComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
   insertar() {
     if (this.selection.selected.length > 0) {

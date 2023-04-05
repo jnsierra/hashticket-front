@@ -7,7 +7,7 @@ import { Presentation } from 'src/app/entities/presentation';
   providedIn: 'root',
 })
 export class PresentationService {
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
   getPresentation(eventId: number) {
     const URL_SERVICE = `${this._urlService.getEndPointPubPresentation()}/${eventId}`;

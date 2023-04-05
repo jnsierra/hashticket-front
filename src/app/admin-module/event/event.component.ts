@@ -62,9 +62,8 @@ export class EventComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
   openLocation(event: Event) {
     const dialogRef = this.dialog.open(ViewLocationComponent, {
@@ -144,7 +143,7 @@ export class EventComponent {
       panelClass: ['red-snackbar'],
     });
   }
-  configEvent(){
+  configEvent() {
     var msn = '';
     if (this.selection.selected.length == 1) {
       const URL_SERVICE = `/configEvent/${this.selection.selected[0].id}`;

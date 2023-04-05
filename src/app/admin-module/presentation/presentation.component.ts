@@ -12,13 +12,13 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./presentation.component.scss'],
 })
 export class PresentationComponent {
-  displayedColumns: string[] = ['select','id', 'name'];
+  displayedColumns: string[] = ['select', 'id', 'name'];
   dataSource = new MatTableDataSource<Presentation>();
   selection = new SelectionModel<Presentation>(true, []);
-  idEvent:number;
+  idEvent: number;
 
   constructor(
-      private _presentationService: PresentationService
+    private _presentationService: PresentationService
     , public dialog: MatDialog
     , private router: Router
     , private activatedRoute: ActivatedRoute
@@ -56,9 +56,8 @@ export class PresentationComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
 
   insert() {
@@ -68,13 +67,13 @@ export class PresentationComponent {
     }
     this.router.navigateByUrl(`/presentationInsert/${this.idEvent}`);
   }
-  update(){
+  update() {
     if (this.selection.selected.length == 1) {
       const URL_SERVICE = `/presentationUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
-    }else if(this.selection.selected.length == 0){
+    } else if (this.selection.selected.length == 0) {
       alert('Debes seleccionar un item');
-    }else if(this.selection.selected.length > 1 ){
+    } else if (this.selection.selected.length > 1) {
       alert('Acción no permitida para mas de un item');
     }
   }

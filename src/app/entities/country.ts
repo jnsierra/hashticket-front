@@ -1,10 +1,10 @@
 export class Country {
-    
+
     code: number;
-    name: string; 
+    name: string;
     diminutive: number;
 
-    constructor(){
+    constructor() {
         this.code = 0;
         this.name = '';
         this.diminutive = 0;

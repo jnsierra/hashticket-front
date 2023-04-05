@@ -61,7 +61,7 @@ export class UrlService {
     return `${this.urlBaseBusiness}v.1/event_images/`;
   }
   getEndPointZone() {
-    return `${this.urlBaseBusiness}v.1/zone/`;
+    return `${this.urlBaseDatos}v.1/zone/`;
   }
   getEndPointConfigEvent() {
     return `${this.urlBaseDatos}v.1/config_event/`;

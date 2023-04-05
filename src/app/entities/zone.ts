@@ -4,7 +4,7 @@ export class Zone {
     description: string;
     categoryId: number;
 
-    constructor(){
+    constructor() {
         this.id = 0;
         this.name = '';
         this.description = '';
