@@ -69,4 +69,7 @@ export class UrlService {
   getEndPointArtist() {
     return `${this.urlBaseDatos}v.1/artist/`;
   }
+  getEndPointZoneConfigEvent(){
+    return `${this.urlBaseDatos}v.1/zone_config_event/`;
+  }
 }

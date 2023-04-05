@@ -39,6 +39,8 @@ import { EventCategoryEditComponent } from './event-category-edit/event-category
 import { TicketsComponent } from './tickets/tickets.component';
 import { ArtistComponent } from './artist/artist.component';
 import { ArtistEditComponent } from './artist-edit/artist-edit.component';
+import { ZoneConfigEventComponent } from './zone-config-event/zone-config-event.component';
+import { ZoneConfigEventEditComponent } from './zone-config-event-edit/zone-config-event-edit.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { ArtistEditComponent } from './artist-edit/artist-edit.component';
     TicketsComponent,
     ArtistComponent,
     ArtistEditComponent,
+    ZoneConfigEventComponent,
+    ZoneConfigEventEditComponent,
   ],
   imports: [
     CommonModule,
