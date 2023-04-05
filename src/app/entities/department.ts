@@ -1,8 +1,8 @@
 export class Department {
     code: number;
-    name: string; 
+    name: string;
     countryCode: number;
-    constructor(){
+    constructor() {
         this.code = 0;
         this.name = '';
         this.countryCode = 0;

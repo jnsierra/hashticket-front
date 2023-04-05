@@ -1,6 +1,11 @@
-mat-form-field{
+mat-form-field {
     width: 80%;
 }
-mat-card-content{
+
+mat-card-content {
     margin-left: 10%;
+}
+
+mat-card-actions {
+    justify-content: end;
 }

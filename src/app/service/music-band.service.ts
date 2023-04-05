@@ -7,7 +7,7 @@ import { UrlService } from './url.service';
   providedIn: 'root',
 })
 export class MusicBandService {
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
   getAll() {
     return this.http.get<MusicBand[]>(this._urlService.getEndPointMusicBand());
@@ -18,5 +18,10 @@ export class MusicBandService {
       this._urlService.getEndPointMusicBand(),
       musicBand
     );
+  }
+
+  getById(id: string) {
+    const URL_SERVICE = `${this._urlService.getEndPointMusicBand() + id}`;
+    return this.http.get<MusicBand>(URL_SERVICE);
   }
 }

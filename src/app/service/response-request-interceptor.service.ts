@@ -7,15 +7,15 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ResponseRequestInterceptorService implements HttpInterceptor{
+export class ResponseRequestInterceptorService implements HttpInterceptor {
 
   constructor(private _authService: AuthService
-    ,private router: Router) { }
+    , private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe( catchError( (error : HttpErrorResponse) => {
+    return next.handle(req).pipe(catchError((error: HttpErrorResponse) => {
       let errorMsg = '';
-      if(error.status == 403){
+      if (error.status == 403) {
         this._authService.logout();
         alert('Error de autenticación o vencimiento del token. Realice login de nuevo');
         this.router.navigateByUrl("/signin");

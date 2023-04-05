@@ -1,5 +1,5 @@
 export class EventImages {
-  id:number;
+  id: number;
   eventId: number;
   description: string;
   location: string;

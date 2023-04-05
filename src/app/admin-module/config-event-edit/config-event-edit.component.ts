@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigEvent } from 'src/app/entities/config-event';
-import { Event } from 'src/app/entities/event';
 import { Presentation } from 'src/app/entities/presentation';
 import { ConfigEventService } from 'src/app/service/config-event.service';
 import { PresentationService } from 'src/app/service/presentation.service';
@@ -14,17 +13,17 @@ import { PresentationService } from 'src/app/service/presentation.service';
   templateUrl: './config-event-edit.component.html',
   styleUrls: ['./config-event-edit.component.scss']
 })
-export class ConfigEventEditComponent implements OnInit{
-  configEvent:ConfigEvent;
-  createAction:boolean;
-  presentations:Presentation[];
-  butonDisabled:boolean;
+export class ConfigEventEditComponent implements OnInit {
+  configEvent: ConfigEvent;
+  createAction: boolean;
+  presentations: Presentation[];
+  butonDisabled: boolean;
   constructor(private activatedRoute: ActivatedRoute
     , private router: Router
     , private _snackBar: MatSnackBar
     , private datepipe: DatePipe
-    , private _presentationService:PresentationService
-    , private _configEventService:ConfigEventService){
+    , private _presentationService: PresentationService
+    , private _configEventService: ConfigEventService) {
     this.configEvent = new ConfigEvent();
     this.createAction = true;
     this.butonDisabled = false;
@@ -36,19 +35,19 @@ export class ConfigEventEditComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    if( !(this.configEvent.id === undefined)){
+    if (!(this.configEvent.id === undefined)) {
       this.createAction = false;
       this._configEventService.getById(this.configEvent.id).subscribe(resp => {
         this.configEvent = resp;
       });
     }
   }
-  getPresentations(){
+  getPresentations() {
     this._presentationService.getByIdEvent(this.configEvent.eventId).subscribe(resp => {
       this.presentations = resp;
     });
   }
-  executeAction(f:NgForm){
+  executeAction(f: NgForm) {
     if (f.invalid) {
       return;
     }

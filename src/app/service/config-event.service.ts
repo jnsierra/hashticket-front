@@ -14,15 +14,15 @@ export class ConfigEventService {
     const URL_SERVICE = `${this._urlService.getEndPointPubConfigEvent()}event/${eventId}/presentation/${presentationId}`;
     return this.http.get<ConfigEvent>(URL_SERVICE);
   }
-  getConfigEventByIdEvent(eventId:number){
+  getConfigEventByIdEvent(eventId: number) {
     const URL_SERVICE = `${this._urlService.getEndPointConfigEvent()}event/${eventId}`;
     return this.http.get<ConfigEvent[]>(URL_SERVICE);
   }
-  save(configEvent:ConfigEvent){
+  save(configEvent: ConfigEvent) {
     const URL_SERVICE = `${this._urlService.getEndPointConfigEvent()}`;
-    return this.http.post<ConfigEvent>(URL_SERVICE,configEvent);
+    return this.http.post<ConfigEvent>(URL_SERVICE, configEvent);
   }
-  getById(id: number){
+  getById(id: number) {
     const URL_SERVICE = `${this._urlService.getEndPointConfigEvent()}${id}`;
     return this.http.get<ConfigEvent>(URL_SERVICE);
   }

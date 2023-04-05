@@ -11,13 +11,13 @@ export class AppComponent {
   title = 'hashticket-front';
 
   constructor(private _authService: AuthService
-    , private router: Router){}
+    , private router: Router) { }
 
-  logout(){
+  logout() {
     this._authService.logout();
     this.router.navigateByUrl('/');
   }
-  isAutenticated(){
+  isAutenticated() {
     return this._authService.isAuthenticated();
   }
 

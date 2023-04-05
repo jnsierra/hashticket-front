@@ -3,7 +3,7 @@ export class MusicBand {
     name: string;
     presentationId: number;
 
-    constructor(){
+    constructor() {
         this.id = 0;
         this.name = '';
         this.presentationId = 0;

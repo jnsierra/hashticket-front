@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthInterceptorService implements HttpInterceptor{
+export class AuthInterceptorService implements HttpInterceptor {
 
   constructor() { }
 
@@ -15,7 +15,7 @@ export class AuthInterceptorService implements HttpInterceptor{
     if (token) {
       request = req.clone({
         setHeaders: {
-          authorization: `Bearer ${ token }`
+          authorization: `Bearer ${token}`
         }
       });
     }

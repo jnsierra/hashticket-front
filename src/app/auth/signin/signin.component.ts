@@ -9,28 +9,28 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
 })
-export class SigninComponent implements OnInit{
+export class SigninComponent implements OnInit {
   loginEntity: Login;
 
-  constructor(private _authService: AuthService, private router: Router){
+  constructor(private _authService: AuthService, private router: Router) {
     this.loginEntity = new Login();
   }
   ngOnInit(): void {
-    if(this._authService.isAuthenticated()){
+    if (this._authService.isAuthenticated()) {
       this.sendHome();
     }
   }
-  sendLogin(){
-    this._authService.login(this.loginEntity).subscribe( resp => {
-      if(resp.loginAction == 'SUCCESS'){
+  sendLogin() {
+    this._authService.login(this.loginEntity).subscribe(resp => {
+      if (resp.loginAction == 'SUCCESS') {
         this.sendHome();
       }
     });
   }
-  generarLogin( f:NgForm ){
+  generarLogin(f: NgForm) {
     this.sendLogin();
   }
-  sendHome(){
+  sendHome() {
     this.router.navigateByUrl('/homeAdmin');
   }
 }

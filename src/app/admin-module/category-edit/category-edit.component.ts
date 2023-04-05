@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Category } from 'src/app/entities/category';
 import { CategoryService } from 'src/app/service/category.service';
-import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-category-edit',
@@ -12,13 +12,35 @@ import { Router } from '@angular/router';
 })
 export class CategoryEditComponent {
   category: Category;
+  id: string;
+  insert: boolean;
+  butonEnabled: boolean;
+  msn: string;
 
   constructor(
     private _categoryService: CategoryService,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.category = new Category();
+    this.id = '';
+    this.msn = '';
+    this.insert = true;
+    this.butonEnabled = false;
+    this.activatedRoute.params.subscribe((params) => {
+      this.id = params['id'] as string;
+      if (this.id === undefined) {
+        this.insert = true;
+        this.msn = 'Categor\u00eda creada exitosamente';
+      } else {
+        this.insert = false;
+        this.msn = 'Categor\u00eda actualizada exitosamente';
+        this._categoryService.getById(this.id).subscribe((resp) => {
+          this.category = resp;
+        });
+      }
+    });
   }
 
   executeAction(f: NgForm) {
@@ -29,15 +51,24 @@ export class CategoryEditComponent {
       });
       return;
     }
-    this._categoryService.insert(this.category).subscribe();
-    this._snackBar
-      .open('Categoria creada exitosamente', 'OK', {
-        duration: 2000,
-        panelClass: ['green-snackbar'],
-      })
-      .afterDismissed()
-      .subscribe((resp) => {
-        this.router.navigateByUrl('category');
-      });
+    this._categoryService.insert(this.category).subscribe((resp) => {
+      if (resp.id === undefined || resp.id === null) {
+        this._snackBar.open('Error al crear categor\u00eda', 'Cerrar', {
+          duration: 2000,
+          panelClass: ['red-snackbar'],
+        });
+      } else {
+        this.butonEnabled = true;
+        this._snackBar
+          .open(this.msn, 'OK', {
+            duration: 1500,
+            panelClass: ['green-snackbar'],
+          })
+          .afterDismissed()
+          .subscribe((resp) => {
+            this.router.navigateByUrl('category');
+          });
+      }
+    });
   }
 }

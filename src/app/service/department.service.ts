@@ -10,11 +10,11 @@ export class DepartmentService {
 
   constructor(private _urlService: UrlService, private http: HttpClient) { }
 
-  getDepartmentById(code: number){
+  getDepartmentById(code: number) {
     const URL_SERVICE = `${this._urlService.getEndPointDepartment() + code}`;
     return this.http.get<Department>(URL_SERVICE);
   }
-  getDepartmentByCountryCode(countryCode: number){
+  getDepartmentByCountryCode(countryCode: number) {
     const URL_SERVICE = `${this._urlService.getEndPointDepartment()}/country/${countryCode}`;
     return this.http.get<Department[]>(URL_SERVICE);
   }

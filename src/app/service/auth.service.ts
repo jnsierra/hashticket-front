@@ -17,10 +17,10 @@ export class AuthService {
     this.userToken = '';
   }
 
-  login(loginEntity: Login){
+  login(loginEntity: Login) {
     const URL_SERVICE = `${this._urlService.getEndPointPubLogin()}`;
-    return this.http.post<LoginResponse>(  URL_SERVICE, loginEntity).pipe(
-      map( resp => {
+    return this.http.post<LoginResponse>(URL_SERVICE, loginEntity).pipe(
+      map(resp => {
         this.saveToken(resp.token);
         return resp;
       })
@@ -32,7 +32,6 @@ export class AuthService {
   }
   private saveToken(token: string) {
     this.userToken = token;
-    console.log(token)
     localStorage.setItem('token', token);
   }
   readToken(): string {

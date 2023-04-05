@@ -10,17 +10,17 @@ import { CategoryEventService } from 'src/app/service/category-event.service';
   templateUrl: './event-category-edit.component.html',
   styleUrls: ['./event-category-edit.component.scss']
 })
-export class EventCategoryEditComponent implements OnInit{
-  eventCategory:EventCategory;
-  createAccion:boolean;
-  botonInactive:boolean;
-  constructor(private _categoryEventService:CategoryEventService
+export class EventCategoryEditComponent implements OnInit {
+  eventCategory: EventCategory;
+  createAccion: boolean;
+  botonInactive: boolean;
+  constructor(private _categoryEventService: CategoryEventService
     , private activatedRoute: ActivatedRoute
     , private router: Router
-    , private _snackBar: MatSnackBar){
-    this.eventCategory=new EventCategory();
-    this.createAccion=true;
-    this.botonInactive=false;
+    , private _snackBar: MatSnackBar) {
+    this.eventCategory = new EventCategory();
+    this.createAccion = true;
+    this.botonInactive = false;
     this.activatedRoute.params.subscribe(params => {
       this.eventCategory.id = params['id'] as number;
     });
@@ -28,16 +28,16 @@ export class EventCategoryEditComponent implements OnInit{
   ngOnInit(): void {
     this.getEventCategory();
   }
-  getEventCategory(){
-    if(! (this.eventCategory.id === undefined)){
+  getEventCategory() {
+    if (!(this.eventCategory.id === undefined)) {
       this._categoryEventService.getById(this.eventCategory.id).subscribe(res => {
         this.eventCategory = res;
       });
     }
   }
-  executeAction(f:NgForm){
-    if(f.invalid){
-      return ;
+  executeAction(f: NgForm) {
+    if (f.invalid) {
+      return;
     }
     this._categoryEventService.save(this.eventCategory).subscribe(res => {
       this._snackBar.open('Operacion exitosa', 'Cerrar', {

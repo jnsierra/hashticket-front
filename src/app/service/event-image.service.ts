@@ -8,16 +8,16 @@ import { map } from 'rxjs';
   providedIn: 'root',
 })
 export class EventImageService {
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
-  getEventImagesByEventAndType(eventId: number, type:string) {
+  getEventImagesByEventAndType(eventId: number, type: string) {
     const URL_SERVICE = `${this._urlService.getEndPointPubImageById()}${eventId}?typeImages=${type}`;
     return this.http.get<EventImages[]>(URL_SERVICE).pipe(
-      map( resp => {
+      map(resp => {
         return resp.map(item => {
           item.base64 = `data:image/jpeg;base64,${item.base64}`
           return item;
-      });
+        });
       })
     );
   }
@@ -28,13 +28,13 @@ export class EventImageService {
   getEventImagesById(id: number) {
     const URL_SERVICE = `${this._urlService.getEndPointBusinessEventImages()}${id}`;
     return this.http.get<EventImages>(URL_SERVICE).pipe(
-      map( resp => {
+      map(resp => {
         resp.base64 = `data:image/jpeg;base64,${resp.base64}`;
         return resp;
       })
     );
   }
-  insertByEvent(eventImages: EventImages){
+  insertByEvent(eventImages: EventImages) {
     const URL_SERVICE = `${this._urlService.getEndPointBusinessEventImages()}`;
     return this.http.post<EventImages>(URL_SERVICE, eventImages);
   }

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { EventService } from 'src/app/service/event.service';
+import { Component } from '@angular/core';
 import { Event } from '../../entities/event';
+import { EventService } from 'src/app/service/event.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewLocationComponent } from '../view-location/view-location.component';
-import { SelectionModel } from '@angular/cdk/collections';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SelectionModel } from '@angular/cdk/collections';
+import { ViewLocationComponent } from '../view-location/view-location.component';
 
 @Component({
   selector: 'app-event',
@@ -62,9 +62,8 @@ export class EventComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
   openLocation(event: Event) {
     const dialogRef = this.dialog.open(ViewLocationComponent, {
@@ -79,7 +78,14 @@ export class EventComponent {
   }
   insertar() {
     if (this.selection.selected.length > 0) {
-      alert('Al insertar no debe estar seleccionado ningún item');
+      this._snackBar.open(
+        'Al insertar no debe estar seleccionado ningún item',
+        'Cerrar',
+        {
+          duration: 2000,
+          panelClass: ['red-snackbar'],
+        }
+      );
       return;
     }
     this.router.navigateByUrl('/eventInsert');
@@ -89,9 +95,15 @@ export class EventComponent {
       const URL_SERVICE = `/eventEdit/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      alert('Debes seleccionar un item');
+      this._snackBar.open('Debes seleccionar un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
     } else if (this.selection.selected.length > 1) {
-      alert('Acción no permitida para mas de un item');
+      this._snackBar.open('Acción no permitida para mas de un item', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['red-snackbar'],
+      });
     }
     return;
   }
@@ -105,9 +117,11 @@ export class EventComponent {
     } else if (this.selection.selected.length > 1) {
       msn = 'Acción no permitida para mas de un item';
     }
-    this._snackBar.open(msn, 'cerrar', {
+    this._snackBar.open(msn, 'Cerrar', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      duration: 2000,
+      panelClass: ['red-snackbar'],
     });
     return;
   }
@@ -122,12 +136,14 @@ export class EventComponent {
     } else if (this.selection.selected.length > 1) {
       msn = 'Acción no permitida para mas de un item';
     }
-    this._snackBar.open(msn, 'cerrar', {
+    this._snackBar.open(msn, 'Cerrar', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      duration: 2000,
+      panelClass: ['red-snackbar'],
     });
   }
-  configEvent(){
+  configEvent() {
     var msn = '';
     if (this.selection.selected.length == 1) {
       const URL_SERVICE = `/configEvent/${this.selection.selected[0].id}`;

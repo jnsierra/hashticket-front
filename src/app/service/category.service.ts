@@ -7,7 +7,7 @@ import { Category } from '../entities/category';
   providedIn: 'root',
 })
 export class CategoryService {
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
   getAll() {
     return this.http.get<Category[]>(this._urlService.getEndPointCategory());
@@ -18,5 +18,10 @@ export class CategoryService {
       this._urlService.getEndPointCategory(),
       category
     );
+  }
+
+  getById(id: string) {
+    const URL_SERVICE = `${this._urlService.getEndPointCategory() + id}`;
+    return this.http.get<Category>(URL_SERVICE);
   }
 }

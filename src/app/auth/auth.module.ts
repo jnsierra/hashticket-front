@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SigninComponent } from './signin/signin.component';
-import { MatSnackBarModule, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
@@ -27,4 +27,4 @@ import { MatGridListModule } from '@angular/material/grid-list';
   ],
   exports: [SigninComponent],
 })
-export class AuthModule {}
+export class AuthModule { }

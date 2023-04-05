@@ -15,7 +15,7 @@ import { ViewImageComponent } from '../view-image/view-image.component';
   templateUrl: './images-event-edit.component.html',
   styleUrls: ['./images-event-edit.component.scss']
 })
-export class ImagesEventEditComponent implements OnInit{
+export class ImagesEventEditComponent implements OnInit {
 
   eventImages: EventImages;
   createAccion: boolean;
@@ -43,7 +43,7 @@ export class ImagesEventEditComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    if( !(this.eventImages.id===undefined)){
+    if (!(this.eventImages.id === undefined)) {
       this._eventImageService.getEventImagesById(this.eventImages.id).subscribe(resp => {
         this.eventImages = resp;
         this.createAccion = false;
@@ -54,22 +54,22 @@ export class ImagesEventEditComponent implements OnInit{
     if (f.invalid) {
       return;
     }
-    if(this.eventImages.typeImages === '-1'){
+    if (this.eventImages.typeImages === '-1') {
       this._snackBar.open('Seleccione un tipo de imagen', 'Cerrar', {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
-      return ; 
+      return;
     }
-    if(this.fileName===''){
+    if (this.fileName === '') {
       this._snackBar.open('La imagen es obligatoria', 'Cerrar', {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
-      return ; 
+      return;
     }
     this._eventImageService.insertByEvent(this.eventImages).subscribe(resp => {
-      if( !(resp.id===undefined) && !(resp.id===null) && !(resp.id===0)){
+      if (!(resp.id === undefined) && !(resp.id === null) && !(resp.id === 0)) {
         this.enableButton = false;
         this._snackBar.open('Operacion exitosa', 'Cerrar', {
           duration: 2000,
@@ -91,7 +91,7 @@ export class ImagesEventEditComponent implements OnInit{
       this.fileName = file.name;
     }
   }
-  showImages(id:number){
+  showImages(id: number) {
     const dialogRef = this.dialog.open(ViewImageComponent, {
       width: '400px',
       height: '400px',

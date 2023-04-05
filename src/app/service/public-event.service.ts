@@ -7,7 +7,7 @@ import { Event } from 'src/app/entities/event';
   providedIn: 'root',
 })
 export class EventService {
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
   getActiveEvents() {
     const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}/active`;

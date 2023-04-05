@@ -10,9 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './presentation-edit.component.html',
   styleUrls: ['./presentation-edit.component.scss']
 })
-export class PresentationEditComponent implements OnInit{
+export class PresentationEditComponent implements OnInit {
   presentation: Presentation;
-  botonInactive:boolean;
+  botonInactive: boolean;
 
   constructor(private _presentationService: PresentationService
     , private activatedRoute: ActivatedRoute
@@ -26,27 +26,27 @@ export class PresentationEditComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    if( !(this.presentation.id === undefined)){
+    if (!(this.presentation.id === undefined)) {
       this._presentationService.getById(this.presentation.id).subscribe(resp => {
         this.presentation = resp;
-      }); 
+      });
     }
   }
-  executeAction(f: NgForm){
-    if( f.invalid){
-      return 
+  executeAction(f: NgForm) {
+    if (f.invalid) {
+      return
     }
     this._presentationService.insert(this.presentation).subscribe(resp => {
       this.botonInactive = true;
-      this._snackBar.open('Operación exitosa', 'cerrar').onAction().subscribe(resp =>{
+      this._snackBar.open('Operación exitosa', 'cerrar').onAction().subscribe(resp => {
         this.sendListPresentation();
       });
     });
   }
-  cancelar(){
+  cancelar() {
     this.sendListPresentation();
   }
-  sendListPresentation(){
+  sendListPresentation() {
     this.router.navigateByUrl(`presentation/${this.presentation.eventId}`);
   }
 }

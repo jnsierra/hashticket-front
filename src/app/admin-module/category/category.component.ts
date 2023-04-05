@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Category } from 'src/app/entities/category';
+import { CategoryService } from 'src/app/service/category.service';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
-import { CategoryService } from 'src/app/service/category.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-category',
@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  displayedColumns: string[] = ['id', 'name', 'description'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'description'];
   dataSource = new MatTableDataSource<Category>();
   selection = new SelectionModel<Category>(true, []);
 
@@ -52,9 +52,8 @@ export class CategoryComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
 
   insert() {
@@ -87,6 +86,25 @@ export class CategoryComponent {
         panelClass: ['red-snackbar'],
       });
     }
+    return;
+  }
+
+  sendZone() {
+    var msn = '';
+    if (this.selection.selected.length == 1) {
+      const URL_SERVICE = `/zone/${this.selection.selected[0].id}`;
+      this.router.navigateByUrl(URL_SERVICE);
+    } else if (this.selection.selected.length == 0) {
+      msn = 'Debes seleccionar un item';
+    } else if (this.selection.selected.length > 1) {
+      msn = 'Acción no permitida para mas de un item';
+    }
+    this._snackBar.open(msn, 'Cerrar', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 2000,
+      panelClass: ['red-snackbar'],
+    });
     return;
   }
 }

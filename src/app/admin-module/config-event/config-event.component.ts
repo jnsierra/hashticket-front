@@ -15,25 +15,25 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./config-event.component.scss']
 })
 export class ConfigEventComponent {
-  displayedColumns: string[] = ['select','id','presentation','apertura_puertas','fecha_evento','numero_tickets','tickets_vendidos'];
+  displayedColumns: string[] = ['select', 'id', 'presentation', 'apertura_puertas', 'fecha_evento', 'numero_tickets', 'tickets_vendidos'];
   dataSource = new MatTableDataSource<ConfigEventTable>();
   selection = new SelectionModel<ConfigEventTable>(true, []);
-  event:Event;
-  
+  event: Event;
+
   constructor(private activatedRoute: ActivatedRoute
     , private router: Router
     , private _snackBar: MatSnackBar
     , private _configEventService: ConfigEventService
-    , private _presentationService: PresentationService){
-    this.event = new Event(); 
+    , private _presentationService: PresentationService) {
+    this.event = new Event();
     this.activatedRoute.params.subscribe(params => {
       this.event.id = params['idEvent'] as number;
       this.getConfigEvents();
     });
   }
-  getConfigEvents(){
+  getConfigEvents() {
     this._configEventService.getConfigEventByIdEvent(this.event.id).subscribe(res => {
-      var configEventsTable:ConfigEventTable[] = res.map( resp =>{
+      var configEventsTable: ConfigEventTable[] = res.map(resp => {
         var configEventTable = new ConfigEventTable();
         configEventTable.id = resp.id;
         configEventTable.eventId = resp.eventId;
@@ -49,9 +49,9 @@ export class ConfigEventComponent {
       this.getPresentation(configEventsTable);
     });
   }
-  getPresentation(configEventsTable:ConfigEventTable[]){
+  getPresentation(configEventsTable: ConfigEventTable[]) {
     configEventsTable.forEach(resp => {
-      this._presentationService.getById(resp.presentationId).subscribe(data =>{
+      this._presentationService.getById(resp.presentationId).subscribe(data => {
         resp.presentationName = data.name;
       })
     });
@@ -78,26 +78,25 @@ export class ConfigEventComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.id + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
   }
-  insert(){
+  insert() {
     if (this.selection.selected.length > 0) {
       return;
     }
     this.router.navigateByUrl(`/configEventInsert/${this.event.id}`);
   }
-  update(){
+  update() {
     if (this.selection.selected.length == 1) {
       const URL_SERVICE = `/configEventUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
-    }else if(this.selection.selected.length == 0){
+    } else if (this.selection.selected.length == 0) {
       this._snackBar.open('Debes seleccionar un item', 'cerrar', {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
-    }else if(this.selection.selected.length > 1 ){
+    } else if (this.selection.selected.length > 1) {
       this._snackBar.open('Acción no permitida para más de un item', 'cerrar', {
         duration: 2000,
         panelClass: ['red-snackbar'],

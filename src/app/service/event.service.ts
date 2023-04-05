@@ -10,13 +10,13 @@ export class EventService {
 
   constructor(private _urlService: UrlService, private http: HttpClient) { }
 
-  insert(event:Event){
+  insert(event: Event) {
     return this.http.post<Event>(this._urlService.getEndPointEvent(), event);
   }
-  getAll(){
+  getAll() {
     return this.http.get<Event[]>(this._urlService.getEndPointEvent());
   }
-  getById(id:string){
+  getById(id: string) {
     const URL_SERVICE = `${this._urlService.getEndPointEvent() + id}`;
     return this.http.get<Event>(URL_SERVICE);
   }
