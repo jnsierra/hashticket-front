@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Artist } from 'src/app/entities/artist';
 import { ArtistService } from 'src/app/service/artist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MusicBand } from 'src/app/entities/music-band';
+import { MusicBandService } from 'src/app/service/music-band.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -10,20 +12,23 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './artist-edit.component.html',
   styleUrls: ['./artist-edit.component.scss']
 })
-export class ArtistEditComponent {
+export class ArtistEditComponent implements OnInit {
   artist: Artist;
   id: string;
   insert: boolean;
   butonEnabled: boolean;
   msn: string;
-  
+  musicBand: MusicBand[];
+
   constructor(
     private _artistService: ArtistService,
+    private _musicBandService: MusicBandService,
     private _snackBar: MatSnackBar,
     private router: Router,
     private activatedRoute: ActivatedRoute,
   ) {
     this.artist = new Artist();
+    this.musicBand = [];
     this.id = '';
     this.msn = '';
     this.insert = true;
@@ -43,6 +48,15 @@ export class ArtistEditComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.findMusicBand();
+  }
+
+  findMusicBand() {
+    this._musicBandService.getAll().subscribe((resp) => {
+        this.musicBand = resp;
+      });
+  }
   executeAction(f: NgForm) {
     if (f.invalid) {
       this._snackBar.open('Formulario Invalido', 'Cerrar', {

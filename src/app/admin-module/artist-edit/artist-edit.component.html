@@ -3,7 +3,7 @@
   <mat-card width="100%" style="margin-left: 20%; margin-right: 20%">
     <mat-card-header>
       <mat-card-title>Artistas</mat-card-title>
-      <mat-card-subtitle>Creación</mat-card-subtitle>
+      <mat-card-subtitle>{{insert ? 'Creación' : 'Actualización'}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <mat-grid-list cols="1" rowHeight="100px">
@@ -34,6 +34,15 @@
               required
             />
           </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Banda musical</mat-label>
+            <mat-select [(ngModel)]="artist.musicBandId" name="musicBandId">
+              <mat-option *ngFor="let msband of musicBand" [value]="msband.id">
+                {{ msband.name }}
+              </mat-option>
+            </mat-select> </mat-form-field><br />
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card-content>

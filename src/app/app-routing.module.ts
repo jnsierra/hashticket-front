@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'homeAdmin', component: HomeAdminComponent },
   { path: 'artist', component: ArtistComponent, canActivate: [AuthGuard]},
   { path: 'artistEdit', component: ArtistEditComponent, canActivate: [AuthGuard]},
-  { path: 'artistEdit:id', component: ArtistEditComponent, canActivate: [AuthGuard]},
+  { path: 'artistEdit/:id', component: ArtistEditComponent, canActivate: [AuthGuard]},
   { path: 'category', component: CategoryComponent, canActivate: [AuthGuard]},
   { path: 'categoryEdit/:id', component: CategoryEditComponent, canActivate: [AuthGuard] },
   { path: 'categoryEdit', component: CategoryEditComponent, canActivate: [AuthGuard]},
