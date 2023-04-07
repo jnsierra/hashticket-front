@@ -37,10 +37,10 @@ export class ZoneEditComponent implements OnInit {
       this.id = params['id'] as string;
       if (this.id === undefined) {
         this.insert = true;
-        this.msn = 'Artista creado exitosamente';
+        this.msn = 'Zona creada exitosamente';
       } else {
         this.insert = false;
-        this.msn = 'Artista actualizado exitosamente';
+        this.msn = 'Zona actualizada exitosamente';
         this._zoneService.getById(this.id).subscribe((resp) => {
           this.zone = resp;
         });
@@ -67,20 +67,20 @@ export class ZoneEditComponent implements OnInit {
     }
     this._zoneService.insert(this.zone).subscribe((resp) => {
       if (resp.id === undefined || resp.id === null) {
-        this._snackBar.open('Error al crear artista', 'Cerrar', {
+        this._snackBar.open('Error al crear la zona', 'Cerrar', {
           duration: 2000,
           panelClass: ['red-snackbar'],
         });
       } else {
         this.butonEnabled = true;
         this._snackBar
-          .open(this.msn, 'OK', {
+          .open('Zona creada exitosamente', 'OK', {
             duration: 1500,
             panelClass: ['green-snackbar'],
           })
           .afterDismissed()
           .subscribe((resp) => {
-            this.router.navigateByUrl('artist');
+            this.router.navigateByUrl('zone');
           });
       }
     });

@@ -23,10 +23,12 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { ZoneComponent } from './admin-module/zone/zone.component';
 import { ZoneEditComponent } from './admin-module/zone-edit/zone-edit.component';
 import { TicketsComponent } from './admin-module/tickets/tickets.component';
+import { MoreInfoComponent } from './components/more-info/more-info.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
   { path: 'homeAdmin', component: HomeAdminComponent },
+  { path: 'moreInfo/:idEvent', component: MoreInfoComponent},
   { path: 'artist', component: ArtistComponent, canActivate: [AuthGuard] },
   { path: 'artistEdit', component: ArtistEditComponent, canActivate: [AuthGuard] },
   { path: 'artistEdit/:id', component: ArtistEditComponent, canActivate: [AuthGuard] },
@@ -56,6 +58,7 @@ const routes: Routes = [
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit', component: ZoneEditComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit/:id', component: ZoneEditComponent, canActivate: [AuthGuard] },
+
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
