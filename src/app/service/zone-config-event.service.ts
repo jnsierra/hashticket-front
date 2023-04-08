@@ -9,4 +9,9 @@ import { ZoneConfigEvent } from '../entities/zone-config-event';
 export class ZoneConfigEventService {
 
   constructor(private _urlService: UrlService, private http: HttpClient) { }
+
+  getZoneConfigEventByIdEvent(eventId: number) {
+    const URL_SERVICE = `${this._urlService.getEndPointConfigEvent()}event/${eventId}`;
+    return this.http.get<ZoneConfigEvent[]>(URL_SERVICE);
+  }
 }

@@ -14,16 +14,18 @@ import { EventCategoryEditComponent } from './admin-module/event-category-edit/e
 import { HomeAdminComponent } from './admin-module/home-admin/home-admin.component';
 import { ImagesEventComponent } from './admin-module/images-event/images-event.component';
 import { ImagesEventEditComponent } from './admin-module/images-event-edit/images-event-edit.component';
+import { MoreInfoComponent } from './components/more-info/more-info.component';
 import { MusicBandComponent } from './admin-module/music-band/music-band.component';
 import { MusicBandEditComponent } from './admin-module/music-band-edit/music-band-edit.component';
 import { PresentationComponent } from './admin-module/presentation/presentation.component';
 import { PresentationEditComponent } from './admin-module/presentation-edit/presentation-edit.component';
 import { PublicComponent } from './components/public/public.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { TicketsComponent } from './admin-module/tickets/tickets.component';
 import { ZoneComponent } from './admin-module/zone/zone.component';
 import { ZoneEditComponent } from './admin-module/zone-edit/zone-edit.component';
-import { TicketsComponent } from './admin-module/tickets/tickets.component';
-import { MoreInfoComponent } from './components/more-info/more-info.component';
+import { ZoneConfigEventComponent } from './admin-module/zone-config-event/zone-config-event.component';
+import { ZoneConfigEventEditComponent } from './admin-module/zone-config-event-edit/zone-config-event-edit.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -58,7 +60,9 @@ const routes: Routes = [
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit', component: ZoneEditComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit/:id', component: ZoneEditComponent, canActivate: [AuthGuard] },
-
+  { path: 'zoneConfigEvent', component: ZoneConfigEventComponent, canActivate: [AuthGuard]},
+  { path: 'zoneConfigEventEdit', component: ZoneConfigEventEditComponent, canActivate: [AuthGuard]},
+  { path: 'zoneConfigEventEdit/:id', component: ZoneConfigEventEditComponent, canActivate: [AuthGuard]},
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
