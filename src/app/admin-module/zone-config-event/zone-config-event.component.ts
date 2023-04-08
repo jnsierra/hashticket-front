@@ -75,5 +75,4 @@ export class ZoneConfigEventComponent implements OnInit {
       });
     }
   }
-
 }

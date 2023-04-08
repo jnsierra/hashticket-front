@@ -4,7 +4,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigEventTable } from 'src/app/entities/config-event-table';
 import { ConfigEventService } from 'src/app/service/config-event.service';
-import { EventService } from 'src/app/service/event.service';
 import { PresentationService } from 'src/app/service/presentation.service';
 import { Event } from '../../entities/event';
 import { MatSnackBar } from '@angular/material/snack-bar';

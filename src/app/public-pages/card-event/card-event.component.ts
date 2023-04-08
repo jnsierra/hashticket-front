@@ -6,6 +6,7 @@ import { ConfigEvent } from 'src/app/entities/config-event';
 import { ConfigEventService } from 'src/app/service/config-event.service';
 import { Presentation } from 'src/app/entities/presentation';
 import { PresentationService } from 'src/app/service/public-presentation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-event',
@@ -22,7 +23,8 @@ export class CardEventComponent implements OnInit {
   constructor(
     private _events: EventImageService,
     private _configEvent: ConfigEventService,
-    private _presentation: PresentationService
+    private _presentation: PresentationService,
+    private router: Router,
   ) {
     this.event = new Event();
     this.eventImages = [];
@@ -43,5 +45,8 @@ export class CardEventComponent implements OnInit {
           this.configEvent = resp;
         });
     });
+  }
+  moreInfo(){
+    this.router.navigateByUrl(`/moreInfo/${this.event.id}`);
   }
 }
