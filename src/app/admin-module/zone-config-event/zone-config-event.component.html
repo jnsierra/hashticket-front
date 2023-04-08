@@ -1,1 +1,21 @@
-<p>zone-config-event works!</p>
+<br/>
+<br/>
+<mat-form-field appearance="fill">
+    <mat-label>Eventos</mat-label>
+    <mat-select [(ngModel)]="eventId" (selectionChange)="getPresentationsByEvent()" name="event" required>
+        <mat-option *ngFor="let event of events" [value]="event.id">
+            {{event.name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>&nbsp;&nbsp;
+<mat-form-field appearance="fill">
+    <mat-label>Presentation</mat-label>
+    <mat-select [(ngModel)]="presentationId" name="presentation" required>
+        <mat-option *ngFor="let pr of presentations" [value]="pr.id">
+            {{pr.name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+<button mat-raised-button color="primary" (click)="consultar()" >Consultar</button>&nbsp;&nbsp;
+<button mat-raised-button color="primary" (click)="insertar()">Insertar</button>&nbsp;&nbsp;
+<button mat-raised-button color="primary" (click)="update()">Actualizar</button>&nbsp;&nbsp;

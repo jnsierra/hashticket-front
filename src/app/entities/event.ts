@@ -1,5 +1,6 @@
 export class Event {
   id: number;
+  name: string;
   place: string;
   date: string;
   time: string;
@@ -14,6 +15,7 @@ export class Event {
 
   constructor() {
     this.id = 0;
+    this.name = '';
     this.place = '';
     this.date = '';
     this.time = '';

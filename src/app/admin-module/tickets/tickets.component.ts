@@ -47,7 +47,6 @@ export class TicketsComponent {
     });
   }
   getPresentationsByEvent(){
-    console.log(this.eventId);
     this._presentationService.getByIdEvent(this.eventId).subscribe(resp => {
       this.presentations = resp;
     });

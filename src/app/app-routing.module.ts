@@ -24,6 +24,8 @@ import { ZoneComponent } from './admin-module/zone/zone.component';
 import { ZoneEditComponent } from './admin-module/zone-edit/zone-edit.component';
 import { TicketsComponent } from './admin-module/tickets/tickets.component';
 import { MoreInfoComponent } from './components/more-info/more-info.component';
+import { ZoneConfigEventComponent } from './admin-module/zone-config-event/zone-config-event.component';
+import { ZoneConfigEventEditComponent } from './admin-module/zone-config-event-edit/zone-config-event-edit.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -58,7 +60,9 @@ const routes: Routes = [
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit', component: ZoneEditComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit/:id', component: ZoneEditComponent, canActivate: [AuthGuard] },
-
+  { path: 'zoneConfig', component: ZoneConfigEventComponent, canActivate: [AuthGuard] },
+  { path: 'zoneConfigInsert', component: ZoneConfigEventEditComponent, canActivate: [AuthGuard] },
+  { path: 'zoneConfigUpdate/:id', component: ZoneConfigEventEditComponent, canActivate: [AuthGuard] },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
