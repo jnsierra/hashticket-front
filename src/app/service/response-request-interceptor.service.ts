@@ -9,8 +9,10 @@ import { AuthService } from './auth.service';
 })
 export class ResponseRequestInterceptorService implements HttpInterceptor {
 
-  constructor(private _authService: AuthService
-    , private router: Router) { }
+  constructor(
+    private _authService: AuthService,
+    private router: Router
+  ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(catchError((error: HttpErrorResponse) => {
