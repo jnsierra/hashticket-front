@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Event } from 'src/app/entities/event';
 import { EventImages } from 'src/app/entities/event-images';
 import { EventImageService } from '../../service/event-image.service';
-import { EventService } from 'src/app/service/public-event.service';
+import { EventService } from 'src/app/service/event.service';
 
 @Component({
   selector: 'app-more-info',

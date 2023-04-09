@@ -20,4 +20,12 @@ export class EventService {
     const URL_SERVICE = `${this._urlService.getEndPointEvent() + id}`;
     return this.http.get<Event>(URL_SERVICE);
   }
+  getEventByEventIdAndPresentationId() {
+    const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}/1/presentation/1`;
+    return this.http.get(URL_SERVICE);
+  }
+  getActiveEvents() {
+    const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}/active`;
+    return this.http.get<Event[]>(URL_SERVICE);
+  }
 }

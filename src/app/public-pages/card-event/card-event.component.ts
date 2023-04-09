@@ -5,7 +5,7 @@ import { EventImageService } from '../../service/event-image.service';
 import { ConfigEvent } from 'src/app/entities/config-event';
 import { ConfigEventService } from 'src/app/service/config-event.service';
 import { Presentation } from 'src/app/entities/presentation';
-import { PresentationService } from 'src/app/service/public-presentation.service';
+import { PresentationService } from 'src/app/service/presentation.service';
 import { Router } from '@angular/router';
 
 @Component({

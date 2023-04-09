@@ -9,7 +9,7 @@ import { AuthService } from './service/auth.service';
 })
 export class AppComponent {
   title = 'hashticket-front';
-
+  year = new Date().getFullYear();
   constructor(private _authService: AuthService
     , private router: Router) { }
 

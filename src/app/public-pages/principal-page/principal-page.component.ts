@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../../service/public-event.service';
+import { EventService } from 'src/app/service/event.service';
 import { Event } from 'src/app/entities/event';
 import { EventImageService } from 'src/app/service/event-image.service';
 import { EventImages } from 'src/app/entities/event-images';
@@ -13,7 +13,7 @@ export class PrincipalPageComponent implements OnInit {
   eventos: Event[];
   eventImages: EventImages[];
 
-  constructor(private _events: EventService
+  constructor(private _eventService: EventService
     , private _eventImagesService:EventImageService
     ) {
     this.eventos = [];
@@ -21,7 +21,7 @@ export class PrincipalPageComponent implements OnInit {
     this.getEvents();
   }
   getEvents(){
-    this._events.getActiveEvents().subscribe((resp) => {
+    this._eventService.getActiveEvents().subscribe((resp) => {
       this.eventos = resp;
       this.getImages();
     });
