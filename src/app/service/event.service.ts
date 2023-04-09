@@ -20,12 +20,12 @@ export class EventService {
     const URL_SERVICE = `${this._urlService.getEndPointEvent() + id}`;
     return this.http.get<Event>(URL_SERVICE);
   }
-  getEventByEventIdAndPresentationId() {
-    const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}/1/presentation/1`;
+  getEventByEventIdAndPresentationId(eventId: string, presentationId: string) {
+    const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}${eventId}/presentation/${presentationId}`;
     return this.http.get(URL_SERVICE);
   }
   getActiveEvents() {
-    const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}/active`;
+    const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}active`;
     return this.http.get<Event[]>(URL_SERVICE);
   }
 }

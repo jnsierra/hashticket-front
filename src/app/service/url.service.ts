@@ -16,7 +16,7 @@ export class UrlService {
   }
 
   getEndPointPubEvent() {
-    return `${this.urlBasePublic}v.1/event`;
+    return `${this.urlBasePublic}v.1/event/`;
   }
   getEndPointPubImageById() {
     return `${this.urlBasePublic}v.1/event_images/event/`;
@@ -28,7 +28,7 @@ export class UrlService {
     return `${this.urlBasePublic}v.1/config_event/`;
   }
   getEndPointPubPresentation() {
-    return `${this.urlBasePublic}v.1/presentation/event`;
+    return `${this.urlBasePublic}v.1/presentation/event/`;
   }
   getEndPointCategory() {
     return `${this.urlBaseDatos}v.1/category/`;
