@@ -45,7 +45,6 @@ export class ZoneConfigEventComponent implements OnInit {
   }
   consultar(){
     this._zoneConfigEventService.getByIdEventAndIdPresentation(this.eventId, this.presentationId).subscribe(data =>{
-      console.log(data);
     });
   }
   insertar(){

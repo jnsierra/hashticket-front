@@ -17,6 +17,7 @@ export class ResponseRequestInterceptorService implements HttpInterceptor {
       let errorMsg = '';
       if (error.status == 403) {
         this._authService.logout();
+        //Pendiente cambiar alert por modal
         alert('Error de autenticación o vencimiento del token. Realice login de nuevo');
         this.router.navigateByUrl("/signin");
       }

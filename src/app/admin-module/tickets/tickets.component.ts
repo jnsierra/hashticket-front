@@ -59,7 +59,6 @@ export class TicketsComponent {
   generarTickets(){
     this._ticketService.generateTickets(this.eventId, this.presentationId).subscribe(res => {
       if(res.code === 1){
-        console.log(res);
         this._snackBar.open(res.message, 'Cerrar', {
           duration: 2000,
           panelClass: ['green-snackbar'],
@@ -76,7 +75,5 @@ export class TicketsComponent {
   handlePageEvent(e: PageEvent) {
     this.records = e.pageSize;
     this.buscarTickets(e.pageIndex);
-    console.log('Llego aquí');
-    console.log(e);
   }
 }

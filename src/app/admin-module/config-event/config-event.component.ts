@@ -44,7 +44,6 @@ export class ConfigEventComponent {
         configEventTable.presentationId = resp.presentationId;
         return configEventTable;
       });
-      console.log(configEventsTable);
       this.getPresentation(configEventsTable);
     });
   }

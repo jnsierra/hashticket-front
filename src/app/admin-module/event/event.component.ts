@@ -157,6 +157,8 @@ export class EventComponent {
     this._snackBar.open(msn, 'cerrar', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      duration: 2000,
+      panelClass: ['red-snackbar'],
     });
   }
 }
