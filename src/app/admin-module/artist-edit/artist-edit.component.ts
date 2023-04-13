@@ -75,7 +75,7 @@ export class ArtistEditComponent implements OnInit {
         this.butonEnabled = true;
         this._snackBar
           .open(this.msn, 'OK', {
-            duration: 1500,
+            duration: 1000,
             panelClass: ['green-snackbar'],
           })
           .afterDismissed()

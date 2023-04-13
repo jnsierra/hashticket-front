@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./music-band-edit.component.scss']
 })
 export class MusicBandEditComponent {
+  msn: string;
   musicBand: MusicBand;
   presentation: Presentation[];
   id: string;
@@ -26,6 +27,7 @@ export class MusicBandEditComponent {
     private _snackBar: MatSnackBar,
     private router: Router
   ) {
+    this.msn = '';
     this.musicBand = new MusicBand();
     this.presentation = [];
     this.id = '';
@@ -35,8 +37,10 @@ export class MusicBandEditComponent {
       this.id = params['id'] as string;
       if (this.id === undefined) {
         this.insert = true;
+        this.msn = 'Banda creada exitosamente';
       } else {
         this.insert = false;
+        this.msn = 'Banda actualizada exitosamente';
         this._musicBandService.getById(this.id).subscribe((resp) => {
           this.musicBand = resp;
         });
@@ -69,8 +73,8 @@ export class MusicBandEditComponent {
       } else {
         this.butonEnabled = true;
         this._snackBar
-          .open('Banda músical creada exitosamente', 'OK', {
-            duration: 2000,
+          .open(this.msn, 'OK', {
+            duration: 1000,
             panelClass: ['green-snackbar'],
           })
           .afterDismissed()
