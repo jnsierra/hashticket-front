@@ -30,7 +30,7 @@ import { ZoneConfigEventEditComponent } from './admin-module/zone-config-event-e
 const routes: Routes = [
   { path: '', component: PublicComponent },
   { path: 'homeAdmin', component: HomeAdminComponent },
-  { path: 'moreInfo/:idEvent', component: MoreInfoComponent},
+  { path: 'moreInfo/:idEvent/:idPresentation', component: MoreInfoComponent},
   { path: 'artist', component: ArtistComponent, canActivate: [AuthGuard] },
   { path: 'artistEdit', component: ArtistEditComponent, canActivate: [AuthGuard] },
   { path: 'artistEdit/:id', component: ArtistEditComponent, canActivate: [AuthGuard] },

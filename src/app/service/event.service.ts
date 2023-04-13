@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UrlService } from './url.service';
 import { Event } from '../entities/event';
+import { FullEvent } from '../entities/full-event';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class EventService {
   }
   getEventByEventIdAndPresentationId(eventId: string, presentationId: string) {
     const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}${eventId}/presentation/${presentationId}`;
-    return this.http.get(URL_SERVICE);
+    return this.http.get<FullEvent>(URL_SERVICE);
   }
   getActiveEvents() {
     const URL_SERVICE = `${this._urlService.getEndPointPubEvent()}active`;

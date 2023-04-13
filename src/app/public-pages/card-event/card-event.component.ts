@@ -47,6 +47,6 @@ export class CardEventComponent implements OnInit {
     });
   }
   moreInfo(){
-    this.router.navigateByUrl(`/moreInfo/${this.event.id}`);
+    this.router.navigateByUrl(`/moreInfo/${this.event.id}/${this.presentation[0].id}`);
   }
 }

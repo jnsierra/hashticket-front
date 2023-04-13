@@ -4,6 +4,8 @@ import { Event } from 'src/app/entities/event';
 import { EventImages } from 'src/app/entities/event-images';
 import { EventImageService } from '../../service/event-image.service';
 import { EventService } from 'src/app/service/event.service';
+import { Presentation } from 'src/app/entities/presentation';
+import { FullEvent } from 'src/app/entities/full-event';
 
 @Component({
   selector: 'app-more-info',
@@ -12,24 +14,28 @@ import { EventService } from 'src/app/service/event.service';
 })
 export class MoreInfoComponent {
   event: Event;
-  presentationId: number;
-  test: string
+  presentation: Presentation;
+  test: string;
+  fullEvent: FullEvent;
   constructor(
     private activatedRoute: ActivatedRoute,
     private _eventImageService: EventImageService,
     private _eventService: EventService
   ) {
     this.event = new Event();
+    this.presentation = new Presentation();
+    this.fullEvent = new FullEvent();
     this.activatedRoute.params.subscribe((params) => {
       this.event.id = params['idEvent'] as number;
-      // this.getEvent();
+      this.presentation.id = params['idPresentation'] as number;
+      this.getEvent();
     });
     
   }
 
   getEvent(){
-    this._eventService.getEventByEventIdAndPresentationId(this.event.id.toString(), this.presentationId.toString()).subscribe((resp) => {
-      console.log(resp)
+    this._eventService.getEventByEventIdAndPresentationId(this.event.id.toString(), this.presentation.id.toString()).subscribe((resp) => {
+      this.fullEvent = resp;
     });
   }
 
