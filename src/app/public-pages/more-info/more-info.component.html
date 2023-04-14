@@ -1,24 +1,22 @@
 <br />
-<div class="grid lg:grid-cols-4 gap-10 px-3">
-    <h1>{{fullEvent.name}}</h1>
-    <br><br>
-    <mat-grid-list cols="2">
-        <mat-grid-tile>
-
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-grid-tile-header>
-                Información general
-            </mat-grid-tile-header>
-            {{"Lugar: "+fullEvent.place}}
-            <br>
-            {{"Ciudad: "+fullEvent.countyName}}
-            <br>
-            {{"Fecha: "+(fullEvent.date | date : "d/M/y" )}}
-            <br>
-            {{"Hora: "+fullEvent.time}}
-            <br>
-            {{"Categoría: "+fullEvent.categoryEventName}}
-        </mat-grid-tile>
-    </mat-grid-list>
+<div class="px-10">
+    <h1 class="py-5">{{fullEvent.name}}</h1>
+    <div class="grid grid-cols-2 gap-4">
+        <div *ngIf="eventImages.length > 0">
+            <img [src]="eventImages[0].base64" />
+        </div>
+        <div>
+            <h1 class="mb-8">Información general</h1>
+            <p class="text-blue-600/100">Lugar: &nbsp;</p>
+            <p>{{fullEvent.place}}</p>
+            <p class="text-blue-600/100">Ciudad: &nbsp;</p>
+            <p>{{fullEvent.cityName}}</p>
+            <p class="text-blue-600/100">Fecha: &nbsp;</p>
+            <p>{{fullEvent.date | date : "d/M/y"}}</p>
+            <p class="text-blue-600/100">Hora: &nbsp;</p>
+            <p>{{fullEvent.time}}</p>
+            <p class="text-blue-600/100">Categoría: &nbsp;</p>
+            <p>{{fullEvent.categoryEventName}}</p>
+        </div>
+    </div>
 </div>

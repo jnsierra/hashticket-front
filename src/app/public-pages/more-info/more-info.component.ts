@@ -16,6 +16,7 @@ import { FullEvent } from 'src/app/entities/full-event';
 export class MoreInfoComponent {
   event: Event;
   presentation: Presentation;
+  eventImages: EventImages[];
   test: string;
   fullEvent: FullEvent;
   constructor(
@@ -24,12 +25,14 @@ export class MoreInfoComponent {
     private _eventService: EventService
   ) {
     this.event = new Event();
+    this.eventImages = [];
     this.presentation = new Presentation();
     this.fullEvent = new FullEvent();
     this.activatedRoute.params.subscribe((params) => {
       this.event.id = params['idEvent'] as number;
       this.presentation.id = params['idPresentation'] as number;
       this.getEvent();
+      this.getEventImage();
     });
 
   }
@@ -37,6 +40,12 @@ export class MoreInfoComponent {
   getEvent() {
     this._eventService.getEventByEventIdAndPresentationId(this.event.id.toString(), this.presentation.id.toString()).subscribe((resp) => {
       this.fullEvent = resp;
+    });
+  }
+
+  getEventImage() {
+    this._eventImageService.getEventImagesByEventAndType(this.event.id, 'PRINCIPAL').subscribe((resp) => {
+      this.eventImages = resp;
     });
   }
 
