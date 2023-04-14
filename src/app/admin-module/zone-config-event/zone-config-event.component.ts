@@ -21,7 +21,7 @@ export class ZoneConfigEventComponent implements OnInit {
   presentationId:number;
   presentations:Presentation[];
 
-  displayedColumns: string[] = ['select', 'id', 'name', 'description'];
+  displayedColumns: string[] = ['select', 'id', 'zone', 'configEvent', 'cost', 'numberOfTickets'];
   dataSource = new MatTableDataSource<ZoneConfigEvent>();
   selection = new SelectionModel<ZoneConfigEvent>(true, []);
 
@@ -45,6 +45,7 @@ export class ZoneConfigEventComponent implements OnInit {
   }
   consultar(){
     this._zoneConfigEventService.getByIdEventAndIdPresentation(this.eventId, this.presentationId).subscribe(data =>{
+      this.dataSource.data = data;
     });
   }
   insertar(){
@@ -74,4 +75,29 @@ export class ZoneConfigEventComponent implements OnInit {
       });
     }
   }
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: ZoneConfigEvent): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
+      }`;
+  }
+
 }
