@@ -21,12 +21,11 @@ import { DatePipe } from '@angular/common';
 import { ResponseRequestInterceptorService } from './service/response-request-interceptor.service'
 import localEs from '@angular/common/locales/es-CO';
 import 'hammerjs';
-import { MoreInfoComponent } from './components/more-info/more-info.component';
 
 registerLocaleData(localEs);
 
 @NgModule({
-  declarations: [AppComponent, PublicComponent, MoreInfoComponent],
+  declarations: [AppComponent, PublicComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,

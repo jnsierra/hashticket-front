@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Event } from 'src/app/entities/event';
 import { EventImages } from 'src/app/entities/event-images';
@@ -6,6 +6,7 @@ import { EventImageService } from '../../service/event-image.service';
 import { EventService } from 'src/app/service/event.service';
 import { Presentation } from 'src/app/entities/presentation';
 import { FullEvent } from 'src/app/entities/full-event';
+
 
 @Component({
   selector: 'app-more-info',
@@ -30,10 +31,10 @@ export class MoreInfoComponent {
       this.presentation.id = params['idPresentation'] as number;
       this.getEvent();
     });
-    
+
   }
 
-  getEvent(){
+  getEvent() {
     this._eventService.getEventByEventIdAndPresentationId(this.event.id.toString(), this.presentation.id.toString()).subscribe((resp) => {
       this.fullEvent = resp;
     });

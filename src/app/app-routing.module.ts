@@ -14,7 +14,7 @@ import { EventCategoryEditComponent } from './admin-module/event-category-edit/e
 import { HomeAdminComponent } from './admin-module/home-admin/home-admin.component';
 import { ImagesEventComponent } from './admin-module/images-event/images-event.component';
 import { ImagesEventEditComponent } from './admin-module/images-event-edit/images-event-edit.component';
-import { MoreInfoComponent } from './components/more-info/more-info.component';
+import { MoreInfoComponent } from './public-pages/more-info/more-info.component';
 import { MusicBandComponent } from './admin-module/music-band/music-band.component';
 import { MusicBandEditComponent } from './admin-module/music-band-edit/music-band-edit.component';
 import { PresentationComponent } from './admin-module/presentation/presentation.component';
