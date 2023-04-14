@@ -42,19 +42,39 @@ export class ZoneConfigEventEditComponent implements OnInit{
     this.insertAccion = true;
     this.botonInactive = false;
     this.eventId = 0;
+    this.getZones();
+    this.getEvents();
     this.activatedRoute.params.subscribe(params => {
       this.zoneConfigEvent.id = params['id'] as number;
     });
   }
   ngOnInit(): void {
-    this.getZones();
-    this.getEvents();
     if(this.zoneConfigEvent.id !== undefined){
       this.insertAccion = false;
+      this.getZoneConfigEvent(this.zoneConfigEvent.id);
     }
+  }
+  getZoneConfigEvent(id:number){
+    this._zoneConfigEventService.getById(id).subscribe(data => {
+      this.getConfigEventById(data.configEventId);
+      this.zoneConfigEvent=data;
+    });
+  }
+  getConfigEventById(id:number){
+    this._configEventsService.getById(id).subscribe(data => {
+      this.configEvent = data;
+      this.eventId = data.eventId;
+      this.presentationId = data.presentationId;
+      this.getPresentationsByEvent();
+    });
   }
   getEvents(){
     this._eventService.getAll().subscribe(data => this.events = data);
+  }
+  getPresentationsByEvent(){
+    this._presentationService.getByIdEvent(this.eventId).subscribe(resp => {
+      this.presentations = resp;
+    }); 
   }
   getZones(){
     this._zoneService.getAll().subscribe(data => {
@@ -70,11 +90,7 @@ export class ZoneConfigEventEditComponent implements OnInit{
   cancelar(){
     this.router.navigateByUrl('zoneConfig');
   }
-  getPresentationsByEvent(){
-    this._presentationService.getByIdEvent(this.eventId).subscribe(resp => {
-      this.presentations = resp;
-    }); 
-  }
+  
   executeAction(f:NgForm){
     if(f.invalid){
       return ; 

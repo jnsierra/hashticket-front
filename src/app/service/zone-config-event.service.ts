@@ -21,4 +21,8 @@ export class ZoneConfigEventService {
     const URL_SERVICE = `${this._urlService.getEndPointPubZoneConfigEvent()}event/${idEvent}/presentation/${idPresentation}`;
     return this.http.get<ZoneConfigEvent[]>(URL_SERVICE);
   }
+  getById(id:number){
+    const URL_SERVICE = `${this._urlService.getEndPointZoneConfigEvent() + id}`;
+    return this.http.get<ZoneConfigEvent>(URL_SERVICE);
+  }
 }
