@@ -1,3 +1,6 @@
+import { ConfigEvent } from "./config-event";
+import { Presentation } from "./presentation";
+
 export class FullEvent {
     id: number;
     name: string;
@@ -13,8 +16,8 @@ export class FullEvent {
     countyName: string;
     eventStatus: string;
     categoryEventName: string;
-    presentation: [];
-    configEvents: [];
+    presentation: Presentation[];
+    configEvents: ConfigEvent[];
 
     constructor() {
       this.id = 0;

@@ -17,6 +17,10 @@
             <p>{{fullEvent.time}}</p>
             <p class="text-blue-600/100">Categoría: &nbsp;</p>
             <p>{{fullEvent.categoryEventName}}</p>
+            <br>
+            <div *ngFor="let event of fullEvent.configEvents">
+                <button mat-raised-button color="warn">Comprar función {{event.eventDate | date : 'MMMM d'}} </button>
+            </div>
         </div>
     </div>
 </div>
