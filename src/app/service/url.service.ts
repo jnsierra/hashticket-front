@@ -72,6 +72,9 @@ export class UrlService {
   getEndPointZoneConfigEvent() {
     return `${this.urlBaseDatos}v.1/zone_config_event/`;
   }
+  getEndPointPubZoneConfigEvent() {
+    return `${this.urlBasePublic}v.1/zone_config_event/`;
+  }
   getEndPointBusinessTickets() {
     return `${this.urlBaseBusiness}v.1/ticket/`;
   }

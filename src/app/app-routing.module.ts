@@ -26,11 +26,10 @@ import { ZoneComponent } from './admin-module/zone/zone.component';
 import { ZoneEditComponent } from './admin-module/zone-edit/zone-edit.component';
 import { ZoneConfigEventComponent } from './admin-module/zone-config-event/zone-config-event.component';
 import { ZoneConfigEventEditComponent } from './admin-module/zone-config-event-edit/zone-config-event-edit.component';
+import { TicketSelectionComponent } from './public-pages/ticket-selection/ticket-selection.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
-  { path: 'homeAdmin', component: HomeAdminComponent },
-  { path: 'moreInfo/:idEvent/:idPresentation', component: MoreInfoComponent},
   { path: 'artist', component: ArtistComponent, canActivate: [AuthGuard] },
   { path: 'artistEdit', component: ArtistEditComponent, canActivate: [AuthGuard] },
   { path: 'artistEdit/:id', component: ArtistEditComponent, canActivate: [AuthGuard] },
@@ -47,8 +46,10 @@ const routes: Routes = [
   { path: 'eventEdit/:id', component: EventEditComponent, canActivate: [AuthGuard] },
   { path: 'eventImagesUpdate/:idEvent/:id', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
   { path: 'eventInsert', component: EventEditComponent, canActivate: [AuthGuard] },
+  { path: 'homeAdmin', component: HomeAdminComponent },
   { path: 'imageEvent/:id', component: ImagesEventComponent, canActivate: [AuthGuard] },
   { path: 'imageEventInsert/:idEvent', component: ImagesEventEditComponent, canActivate: [AuthGuard] },
+  { path: 'moreInfo/:idEvent/:idPresentation', component: MoreInfoComponent },
   { path: 'musicBand', component: MusicBandComponent, canActivate: [AuthGuard] },
   { path: 'musicBandEdit', component: MusicBandEditComponent, canActivate: [AuthGuard] },
   { path: 'musicBandEdit/:id', component: MusicBandEditComponent, canActivate: [AuthGuard] },
@@ -56,7 +57,8 @@ const routes: Routes = [
   { path: 'presentationInsert/:idEvent', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
-  { path: 'tickets', component: TicketsComponent, canActivate:[AuthGuard]},
+  { path: 'ticketSelection/:idEvent/:idPresentation', component: TicketSelectionComponent },
+  { path: 'tickets', component: TicketsComponent, canActivate: [AuthGuard] },
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit', component: ZoneEditComponent, canActivate: [AuthGuard] },
   { path: 'zoneEdit/:id', component: ZoneEditComponent, canActivate: [AuthGuard] },

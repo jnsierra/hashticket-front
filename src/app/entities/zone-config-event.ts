@@ -1,9 +1,12 @@
+import { Zone } from "./zone";
+
 export class ZoneConfigEvent {
-    id:number;
+    id: number;
     zoneId: number;
     configEventId: number;
     numberOfTickets: number;
-    cost:number;
+    cost: number;
+    zone: Zone;
 
     constructor() {
         this.id = 0;

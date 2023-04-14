@@ -17,7 +17,6 @@ export class MoreInfoComponent {
   event: Event;
   presentation: Presentation;
   eventImages: EventImages[];
-  test: string;
   fullEvent: FullEvent;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,6 +50,6 @@ export class MoreInfoComponent {
   }
 
   buyTicket() {
-    this.router.navigateByUrl(`/buyTicket/${this.event.id}/${this.presentation.id}`);
+    this.router.navigateByUrl(`/ticketSelection/${this.fullEvent.id}/${this.presentation.id}`);
   }
 }

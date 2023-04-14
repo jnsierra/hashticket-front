@@ -8,9 +8,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { CardEventComponent } from './card-event/card-event.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MoreInfoComponent } from './more-info/more-info.component';
+import { TicketSelectionComponent } from './ticket-selection/ticket-selection.component';
 
 @NgModule({
-  declarations: [PrincipalPageComponent, CardEventComponent, MoreInfoComponent],
+  declarations: [PrincipalPageComponent, CardEventComponent, MoreInfoComponent, TicketSelectionComponent],
   imports: [
     CommonModule,
     HttpClientModule,
