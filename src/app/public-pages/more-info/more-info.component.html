@@ -1,12 +1,12 @@
 <br />
 <div class="px-10">
-    <h1 class="py-5">{{fullEvent.name}}</h1>
+    <h1 class="py-5 text-blue-600/100">{{fullEvent.name | uppercase}}</h1>
     <div class="grid grid-cols-2 gap-4">
         <div *ngIf="eventImages.length > 0">
             <img [src]="eventImages[0].base64" />
         </div>
         <div>
-            <h1 class="mb-8">Información general</h1>
+            <h2 class="mb-8">Información general</h2>
             <p class="text-blue-600/100">Lugar: &nbsp;</p>
             <p>{{fullEvent.place}}</p>
             <p class="text-blue-600/100">Ciudad: &nbsp;</p>
@@ -19,7 +19,7 @@
             <p>{{fullEvent.categoryEventName}}</p>
             <br>
             <div *ngFor="let event of fullEvent.configEvents">
-                <button mat-raised-button color="warn">Comprar función {{event.eventDate | date : 'MMMM d'}} </button>
+                <button mat-raised-button color="warn">Comprar función {{event.eventDate | date : 'MMMM  d'}} </button><br>
             </div>
         </div>
     </div>
