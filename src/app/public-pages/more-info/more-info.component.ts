@@ -4,9 +4,9 @@ import { Event } from 'src/app/entities/event';
 import { EventImages } from 'src/app/entities/event-images';
 import { EventImageService } from '../../service/event-image.service';
 import { EventService } from 'src/app/service/event.service';
-import { Presentation } from 'src/app/entities/presentation';
 import { FullEvent } from 'src/app/entities/full-event';
-
+import { Presentation } from 'src/app/entities/presentation';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-more-info',
@@ -22,7 +22,8 @@ export class MoreInfoComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private _eventImageService: EventImageService,
-    private _eventService: EventService
+    private _eventService: EventService,
+    private router: Router,
   ) {
     this.event = new Event();
     this.eventImages = [];
@@ -49,4 +50,7 @@ export class MoreInfoComponent {
     });
   }
 
+  buyTicket() {
+    this.router.navigateByUrl(`/buyTicket/${this.event.id}/${this.presentation.id}`);
+  }
 }

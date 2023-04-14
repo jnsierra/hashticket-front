@@ -5,6 +5,7 @@ import { GenericResponse } from '../entities/generic-response';
 import { TicketView } from '../entities/ticket-view';
 import { map } from 'rxjs';
 import { GenericQuery } from '../entities/generic-query';
+import { Ticket } from '../entities/ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class TicketsService {
         return item;
       })
     );
+  }
+
+  buyTicket(ticket: Ticket){
+    return this.http.post<Ticket>(this._urlService.getEndPointBusinessTickets(), ticket);
   }
 }

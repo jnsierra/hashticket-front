@@ -42,7 +42,7 @@
                 <div *ngIf="event.numberOfTicketsSold < event.numberOfTickets; then thenTemplate; else elseTemplate">
                 </div>
                 <ng-template #thenTemplate>
-                    <button mat-raised-button color="warn">Comprar función {{event.eventDate | date : 'MMMM  d'}} </button><br>
+                    <button mat-raised-button color="warn" (click)="buyTicket()">Comprar función {{event.eventDate | date : 'MMMM  d'}} </button><br>
                  </ng-template>
                  <ng-template #elseTemplate>
                     <button mat-raised-button color="warn" disabled>Comprar función {{event.eventDate | date : 'MMMM  d'}} </button><br>
