@@ -3,7 +3,7 @@
     <div *ngIf="eventImages.length > 0">
       <img [src]="eventImages[0].base64" />
     </div>
-    
+
   </div>
   <mat-card-content>
     <mat-grid-list cols="2">
@@ -27,10 +27,10 @@
     <div *ngFor="let present of presentation">
       {{ present.name | uppercase }}
     </div>
-    <br/>
+    <br />
   </mat-card-title>
   <mat-card-actions>
     <button mat-button mat-raised-button (click)="moreInfo()">MÁS INFO</button>
-    <button mat-button mat-raised-button>TICKETS</button>
+    <button mat-button mat-raised-button (click)="buyTicket()">TICKETS</button>
   </mat-card-actions>
 </mat-card>
