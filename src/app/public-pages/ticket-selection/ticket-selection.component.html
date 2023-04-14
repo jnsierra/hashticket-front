@@ -1,16 +1,26 @@
-<br>
-<h1>Rangos de precios</h1>
-<br>
-<div *ngFor="let event of zoneConfigEvent">
-    <div *ngIf="event.numberOfTickets != 0; then thenTemplate; else elseTemplate"></div>
-    <ng-template #thenTemplate>
-        <input type="checkbox" name="" id="">
-        <p>{{event.zone.name}}</p>
-        <p>{{event.cost}}</p>
-    </ng-template>
-    <ng-template #elseTemplate>
-        <input type="checkbox" name="" id="" disabled>
-        <p>{{event.zone.name}}</p>
-        <p>{{event.cost}}</p>
-    </ng-template>
+<div class="px-10">
+    <br>
+    <h1>Rangos de precios</h1>
+    <br>
+    <div class="grid grid-cols-3 gap-1">
+        <div *ngFor="let event of zoneConfigEvent">
+            <div *ngIf="event.numberOfTickets != 0; then thenTemplate; else elseTemplate"></div>
+            <ng-template #thenTemplate>
+                <mat-radio-button></mat-radio-button>
+                <p>{{event.zone.name}}</p>
+                <p>{{event.cost | currency:'COP'}}</p>
+            </ng-template>
+            <ng-template #elseTemplate>
+                <mat-radio-button disabled></mat-radio-button>
+                <p>{{event.zone.name}}</p>
+                <p>${{event.cost | currency:'COP'}}</p>
+            </ng-template>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Cantidad</mat-label>
+            <input matInput #numberOfTickets placeholder="# tickets" maxlength="3">
+            <mat-hint>{{numberOfTickets.value.length}} / 3</mat-hint>
+          </mat-form-field>
+    </div>
+    <button mat-raised-button color="warn" (click)="openConfirmation()">Comprar</button>
 </div>
