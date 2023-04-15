@@ -16,6 +16,7 @@ export class SignupComponent {
   password: string;
   msn: string;
   userValidation: boolean;
+  emailRegexp: RegExp;
 
   constructor(
     private _authService: AuthService,
@@ -27,46 +28,53 @@ export class SignupComponent {
     this.loginEntity = new Login();
     this.password = '';
     this.msn = '';
-    this.userValidation = true;
+    this.emailRegexp = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/
+    this.userValidation = false;
     title.setTitle('CompraBoletas - Crear cuenta');
     meta.updateTag({ name: 'description', content: "Página para creación de cuenta" })
   }
   sendForm(f: NgForm) {
-    if (this.loginEntity.email.includes('@')) {
-      if (this.loginEntity.password != '') {
-        if (this.password == this.loginEntity.password) {
-          this.userValidation = true;
-          this.createUser();
+    if (this.loginEntity.name != '') {
+      if (this.emailRegexp.test(this.loginEntity.email)) {
+        if (this.loginEntity.password.length >= 8) {
+          if (this.password == this.loginEntity.password) {
+            this.userValidation = true;
+            this.createUser();
+          } else {
+            this.msn = 'Contraseña no concuerda';
+          }
         } else {
-          this.userValidation = false;
-          this.msn = 'Contraseña no concuerda';
+          this.msn = 'Contraseña debe tener mínimo 8 carácteres';
         }
       } else {
-        this.userValidation = false;
-        this.msn = 'Contraseña no puede estar vacía';
+        this.msn = 'Correo no valido';
       }
     } else {
-      this.userValidation = false;
-      this.msn = 'Correo incorrecto';
+      this.msn = 'Nombre no puede estar vacío';
     }
     this.openSnackbar();
   }
   createUser() {
-    this._authService.signUp(this.loginEntity).subscribe(resp => {
-      console.log(resp);
-      if (resp.state == 'ACTIVE') {
-        this.sendLogin();
-      } else {
-        this.msn = 'Error en creación de usuario';
-        this.userValidation = false;
-        this.openSnackbar();
-      }
-    });
+    try {
+      this._authService.signUp(this.loginEntity).subscribe(resp => {
+        if (resp.state == 'ACTIVE') {
+          this.sendLogin();
+        } else {
+          this.msn = 'Error en creación de usuario';
+          this.userValidation = false;
+          this.openSnackbar();
+        }
+      });
+    } catch (error) {
+      this.msn = 'Error en creación de usuario';
+      this.userValidation = false;
+      this.openSnackbar();
+    }
   }
   sendLogin() {
     this.router.navigateByUrl('/signin');
   }
-  openSnackbar(){
+  openSnackbar() {
     if (this.userValidation == false) {
       this._snackBar.open(this.msn, 'Cerrar', {
         duration: 1500,
