@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/service/auth.service';
+import { Login } from 'src/app/entities/login';
+import { Meta, Title } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Login } from 'src/app/entities/login';
-import { AuthService } from 'src/app/service/auth.service';
-import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-signin',
@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
   constructor(private _authService: AuthService, private router: Router, private title: Title, private meta: Meta) {
     this.loginEntity = new Login();
     title.setTitle('Login');
-    meta.updateTag({name:'description', content:"Página para inicio de sesión"})
+    meta.updateTag({ name: 'description', content: "Página para inicio de sesión" })
   }
   ngOnInit(): void {
     if (this._authService.isAuthenticated()) {

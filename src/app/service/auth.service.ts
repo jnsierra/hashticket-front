@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login } from '../entities/login';
+import { LoginResponse } from '../entities/login-response';
+import { map } from 'rxjs/operators';
+import { SignupResponse } from '../entities/signup-response';
 import { UrlService } from './url.service';
 
-import { map } from 'rxjs/operators';
-import { LoginResponse } from '../entities/login-response';
+
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +50,9 @@ export class AuthService {
       return true;
     }
     return false;
+  }
+  signup(loginEntity: Login) {
+    const URL_SERVICE = `${this._urlService.getEndPointPubUser()}`;
+    return this.http.post<SignupResponse>(URL_SERVICE, loginEntity);
   }
 }

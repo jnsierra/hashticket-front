@@ -10,9 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { SigninComponent } from './signin/signin.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
-  declarations: [SigninComponent],
+  declarations: [SigninComponent, SignupComponent],
   imports: [
     CommonModule,
     BrowserModule,
