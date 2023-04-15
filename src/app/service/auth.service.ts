@@ -51,7 +51,7 @@ export class AuthService {
     }
     return false;
   }
-  signup(loginEntity: Login) {
+  signUp(loginEntity: Login) {
     const URL_SERVICE = `${this._urlService.getEndPointPubUser()}`;
     return this.http.post<SignupResponse>(URL_SERVICE, loginEntity);
   }
