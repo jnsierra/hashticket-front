@@ -21,7 +21,6 @@
 <button mat-raised-button color="primary" (click)="update()">Actualizar</button>&nbsp;&nbsp;
 <br/>
 <br/>
-{{eventId}}
 <app-event-card *ngIf="eventId" [eventId]="eventId"></app-event-card>
 <br/>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
