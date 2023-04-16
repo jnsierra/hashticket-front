@@ -21,12 +21,13 @@ import { PresentationComponent } from './admin-module/presentation/presentation.
 import { PresentationEditComponent } from './admin-module/presentation-edit/presentation-edit.component';
 import { PublicComponent } from './components/public/public.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { TicketsComponent } from './admin-module/tickets/tickets.component';
+import { TicketSelectionComponent } from './public-pages/ticket-selection/ticket-selection.component';
 import { ZoneComponent } from './admin-module/zone/zone.component';
 import { ZoneEditComponent } from './admin-module/zone-edit/zone-edit.component';
 import { ZoneConfigEventComponent } from './admin-module/zone-config-event/zone-config-event.component';
 import { ZoneConfigEventEditComponent } from './admin-module/zone-config-event-edit/zone-config-event-edit.component';
-import { TicketSelectionComponent } from './public-pages/ticket-selection/ticket-selection.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'presentationInsert/:idEvent', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'ticketSelection/:idEvent/:idPresentation', component: TicketSelectionComponent },
   { path: 'tickets', component: TicketsComponent, canActivate: [AuthGuard] },
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },

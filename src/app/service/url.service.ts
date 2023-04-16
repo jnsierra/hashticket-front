@@ -81,4 +81,7 @@ export class UrlService {
   getEndPointTickets(){
     return `${this.urlBaseDatos}v.1/ticket/`;
   }
+  getEndPointPubUser() {
+    return `${this.urlBasePublic}v.1/user/`;
+  }
 }

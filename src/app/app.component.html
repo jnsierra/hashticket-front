@@ -26,6 +26,10 @@
             <mat-icon>account_circle</mat-icon>&nbsp;
             <span class="texto">Ingresar</span>
           </a>&nbsp;&nbsp;
+          <a routerLink="/signup" *ngIf="!isAutenticated()" class="px-4">
+            <mat-icon>account_circle</mat-icon>&nbsp;
+            <span class="texto">Crear cuenta</span>
+          </a>&nbsp;&nbsp;
           <a routerLink="" class="px-4">
             <mat-icon>event</mat-icon>&nbsp;
             <span class="texto">Eventos</span>
