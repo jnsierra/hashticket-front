@@ -17,6 +17,7 @@ export class SignupComponent {
   msn: string;
   userValidation: boolean;
   emailRegexp: RegExp;
+  passwordRegExp: RegExp;
 
   constructor(
     private _authService: AuthService,
@@ -29,14 +30,15 @@ export class SignupComponent {
     this.password = '';
     this.msn = '';
     this.emailRegexp = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/
+    this.passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
     this.userValidation = false;
-    title.setTitle('CompraBoletas - Crear cuenta');
-    meta.updateTag({ name: 'description', content: "Página para creación de cuenta" })
+    this.title.setTitle('CompraBoletas - Crear cuenta');
+    this.meta.updateTag({ name: 'description', content: "Página para creación de cuenta" })
   }
   sendForm(f: NgForm) {
     if (this.loginEntity.name != '') {
       if (this.emailRegexp.test(this.loginEntity.email)) {
-        if (this.loginEntity.password.length >= 8) {
+        if (this.passwordRegExp.test(this.loginEntity.password)) {
           if (this.password == this.loginEntity.password) {
             this.userValidation = true;
             this.createUser();
@@ -44,7 +46,7 @@ export class SignupComponent {
             this.msn = 'Contraseña no concuerda';
           }
         } else {
-          this.msn = 'Contraseña debe tener mínimo 8 carácteres';
+          this.msn = 'Contraseña debe tener mínimo 8 carácteres, al menos una letra mayúscula, una minuscula, un número y un carácter especial';
         }
       } else {
         this.msn = 'Correo no valido';
@@ -55,16 +57,18 @@ export class SignupComponent {
     this.openSnackbar();
   }
   createUser() {
-    this._authService.signUp(this.loginEntity).subscribe(resp => {
-      if (resp.status == 200 && resp.body?.state == 'ACTIVE') {
-        this.sendLogin();
-      }
-    },
-      (error) => {
+    this._authService.signUp(this.loginEntity).subscribe({
+      next: (resp) => {
+        if (resp.status == 200 && resp.body?.state == 'ACTIVE') {
+          this.sendLogin();
+        }
+      },
+      error: (e) => {
         this.userValidation = false;
         this.msn = 'Correo ya registrado';
         this.openSnackbar();
-      });
+      }
+    });
   }
   sendLogin() {
     this.router.navigateByUrl('/signin');
@@ -72,8 +76,9 @@ export class SignupComponent {
   openSnackbar() {
     if (this.userValidation == false) {
       this._snackBar.open(this.msn, 'Cerrar', {
-        duration: 1500,
+        duration: 2000,
         panelClass: ['red-snackbar'],
+        verticalPosition: 'top'
       });
     }
   }

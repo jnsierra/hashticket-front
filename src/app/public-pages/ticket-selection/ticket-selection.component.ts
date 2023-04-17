@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Event } from 'src/app/entities/event';
 import { MatDialog } from '@angular/material/dialog';
 import { Presentation } from 'src/app/entities/presentation';
-import { Router } from '@angular/router';
 import { ZoneConfigEvent } from 'src/app/entities/zone-config-event';
 import { ZoneConfigEventService } from 'src/app/service/zone-config-event.service';
+import { ConfirmTicketComponent } from '../confirm-ticket/confirm-ticket.component';
 
 @Component({
   selector: 'app-ticket-selection',
@@ -18,7 +18,6 @@ export class TicketSelectionComponent {
   zoneConfigEvent: ZoneConfigEvent[];
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private _zoneConfigEventService: ZoneConfigEventService,
     public dialog: MatDialog,
   ) {
@@ -37,15 +36,18 @@ export class TicketSelectionComponent {
       this.zoneConfigEvent = resp;
     });
   }
-  openConfirmation() {
-    //   const dialogRef = this.dialog.open(ViewImageComponent, {
-    //     width: '400px',
-    //     height: '400px',
-    //     enterAnimationDuration: '10',
-    //     exitAnimationDuration: '10',
-    //     data: {
-    //     },
-    //   });
-    // }
+  openConfirmation(zone:string, numberOfTickets:string, cost: string) {
+      const dialogRef = this.dialog.open(ConfirmTicketComponent, {
+        width: '400px',
+        height: '230px',
+        enterAnimationDuration: '10',
+        exitAnimationDuration: '10',
+        data: {
+          zone: zone,
+          quantity: numberOfTickets,
+          totalValue: Number(numberOfTickets)*Number(cost)
+        },
+      });
+    }
   }
-}
+
