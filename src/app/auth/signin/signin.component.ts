@@ -25,7 +25,7 @@ export class SigninComponent implements OnInit {
   }
   sendLogin() {
     this._authService.login(this.loginEntity).subscribe(resp => {
-      if (resp.loginAction == 'SUCCESS') {
+      if (resp.body!.loginAction == 'SUCCESS') {
         this.sendHome();
       }
     });

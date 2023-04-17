@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login } from '../entities/login';
 import { LoginResponse } from '../entities/login-response';
 import { map } from 'rxjs/operators';
 import { SignupResponse } from '../entities/signup-response';
 import { UrlService } from './url.service';
-
-
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,9 @@ export class AuthService {
 
   login(loginEntity: Login) {
     const URL_SERVICE = `${this._urlService.getEndPointPubLogin()}`;
-    return this.http.post<LoginResponse>(URL_SERVICE, loginEntity).pipe(
+    return this.http.post<LoginResponse>(URL_SERVICE, loginEntity, { observe: 'response' }).pipe(
       map(resp => {
-        this.saveToken(resp.token);
+        this.saveToken(resp.body!.token);
         return resp;
       })
     );
@@ -52,7 +53,14 @@ export class AuthService {
     return false;
   }
   signUp(loginEntity: Login) {
-    const URL_SERVICE = `${this._urlService.getEndPointPubUser()}`;
-    return this.http.post<SignupResponse>(URL_SERVICE, loginEntity);
+    return this.http.post<SignupResponse>(`${this._urlService.getEndPointPubUser()}`, loginEntity, { observe: 'response' })
+    // .pipe(
+    //   catchError(error => {
+    //     return throwError(error);
+    //   })
+    // )
+    //   .subscribe(response => {
+    //     return response
+    //   });
   }
 }

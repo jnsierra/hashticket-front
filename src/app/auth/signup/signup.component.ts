@@ -55,21 +55,16 @@ export class SignupComponent {
     this.openSnackbar();
   }
   createUser() {
-    try {
-      this._authService.signUp(this.loginEntity).subscribe(resp => {
-        if (resp.state == 'ACTIVE') {
-          this.sendLogin();
-        } else {
-          this.msn = 'Error en creación de usuario';
-          this.userValidation = false;
-          this.openSnackbar();
-        }
+    this._authService.signUp(this.loginEntity).subscribe(resp => {
+      if (resp.status == 200 && resp.body?.state == 'ACTIVE') {
+        this.sendLogin();
+      }
+    },
+      (error) => {
+        this.userValidation = false;
+        this.msn = 'Correo ya registrado';
+        this.openSnackbar();
       });
-    } catch (error) {
-      this.msn = 'Error en creación de usuario';
-      this.userValidation = false;
-      this.openSnackbar();
-    }
   }
   sendLogin() {
     this.router.navigateByUrl('/signin');
