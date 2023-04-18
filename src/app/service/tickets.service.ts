@@ -12,26 +12,30 @@ import { Ticket } from '../entities/ticket';
 })
 export class TicketsService {
 
-  constructor(private _urlService: UrlService, private http: HttpClient) {}
+  constructor(private _urlService: UrlService, private http: HttpClient) { }
 
-  generateTickets(eventId:number, presentationId:number){
+  generateTickets(eventId: number, presentationId: number) {
     const URL_SERVICE = `${this._urlService.getEndPointBusinessTickets()}generate/event/${eventId}/presentation/${presentationId}`;
     return this.http.get<GenericResponse>(URL_SERVICE);
   }
 
-  getByEventAndPresentation(eventId:number, presentationId: number, records:number, page:number){
+  getByEventAndPresentation(eventId: number, presentationId: number, records: number, page: number) {
     let params = new HttpParams().set("record", records).set("page", page);
     const URL_SERVICE = `${this._urlService.getEndPointTickets()}event/${eventId}/presentation/${presentationId}`;
-    return this.http.get<GenericQuery<TicketView>>(URL_SERVICE,{params:params})
+    return this.http.get<GenericQuery<TicketView>>(URL_SERVICE, { params: params })
       .pipe(
-      map( item => {
-        item.results = item.results.sort( (a, b) => (a.numberTicket > b.numberTicket) ? 1:-1 )
-        return item;
-      })
-    );
+        map(item => {
+          item.results = item.results.sort((a, b) => (a.numberTicket > b.numberTicket) ? 1 : -1)
+          return item;
+        })
+      );
   }
 
-  buyTicket(ticket: Ticket){
-    return this.http.post<Ticket>(this._urlService.getEndPointBusinessTickets(), ticket);
+  buyTicket(ticket: Ticket) {
+    return this.http.post<Ticket>(`${this._urlService.getEndPointBusinessTickets()}buy`, ticket);
+  } 
+
+  getTicketsByEventPresentationZoneAndCategory(eventId: number, presentationId: number, zoneId: number, categoryId: number) {
+    return this.http.get<Ticket>(`${this._urlService.getEndPointPubTickets()}event/${eventId}/presentation/${presentationId}/zone/${zoneId}/category/${categoryId}`);
   }
 }

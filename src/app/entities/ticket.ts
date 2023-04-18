@@ -6,6 +6,7 @@ export class Ticket {
     numberTicket: number;
     numberOfTickets:number;
     state: string;
+    numberTickets: [];
     constructor(){
         this.eventId = 0;
         this.zoneId = 0;
@@ -14,5 +15,6 @@ export class Ticket {
         this.numberTicket = 0;
         this.numberOfTickets = 0;
         this.state = '';
+        this.numberTickets = [];
     }
 }

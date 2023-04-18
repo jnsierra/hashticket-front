@@ -12,13 +12,14 @@ export class ZoneService {
   getAll() {
     return this.http.get<Zone[]>(this._urlService.getEndPointZone());
   }
-
   getById(id: string) {
     const URL_SERVICE = `${this._urlService.getEndPointZone() + id}`;
     return this.http.get<Zone>(URL_SERVICE);
   }
-
   insert(zone: Zone) {
     return this.http.post<Zone>(this._urlService.getEndPointZone(), zone);
+  }
+  getByCategory(categoryId: number) {
+    return this.http.get<Zone>(`${this._urlService.getEndPointZone()}category/${categoryId}`);
   }
 }
