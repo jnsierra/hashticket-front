@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { MoreInfoComponent } from './more-info/more-info.component';
 import { PrincipalPageComponent } from './principal-page/principal-page.component';
 import { TicketSelectionComponent } from './ticket-selection/ticket-selection.component';
@@ -25,7 +26,8 @@ import { ConfirmTicketComponent } from './confirm-ticket/confirm-ticket.componen
     MatButtonModule,
     MatRadioModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   exports: [PrincipalPageComponent],
 })

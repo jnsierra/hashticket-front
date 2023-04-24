@@ -78,6 +78,9 @@ export class UrlService {
   getEndPointPubUser() {
     return `${this.urlBasePublic}v.1/user/`;
   }
+  getEndPointPubZone() {
+    return `${this.urlBasePublic}v.1/zone/`;
+  }
   getEndPointPubZoneConfigEvent() {
     return `${this.urlBasePublic}v.1/zone_config_event/`;
   }

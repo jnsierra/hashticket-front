@@ -22,6 +22,7 @@ import { ZoneConfigEventService } from 'src/app/service/zone-config-event.servic
 export class TicketSelectionComponent {
   category: Category[];
   event: Event;
+  categoryId: number;
   presentation: Presentation;
   ticket: Ticket[];
   zone: Zone[];
@@ -39,6 +40,7 @@ export class TicketSelectionComponent {
     this.ticket = [];
     this.zoneConfigEvent = [];
     this.category = [];
+    this.categoryId = 0;
     this.activatedRoute.params.subscribe((params) => {
       this.event.id = params['idEvent'] as number;
       this.presentation.id = params['idPresentation'] as number;
@@ -46,7 +48,7 @@ export class TicketSelectionComponent {
       this.getCategories();
     });
   }
-  
+
   getZoneConfigEvents() {
     this._zoneConfigEventService.getZoneConfigEventByEventIdAndPresentationId(this.event.id, this.presentation.id).subscribe((resp) => {
       this.zoneConfigEvent = resp;
@@ -59,7 +61,7 @@ export class TicketSelectionComponent {
     });
   }
 
-  getZonesbyCategory(categoryId:number) {
+  getZonesbyCategory(categoryId: number) {
     this._zoneService.getByCategory(categoryId).subscribe((resp) => {
       this.zone = resp;
     })
@@ -68,21 +70,21 @@ export class TicketSelectionComponent {
   getTickets(eventId: number, presentationId: number, zoneId: number, categoryId: number) {
     this._ticketService.getTicketsByEventPresentationZoneAndCategory(eventId, presentationId, zoneId, categoryId).subscribe((resp) => {
       this.ticket = resp;
-    }) 
+    })
   }
 
-  openConfirmation(zone:string, numberOfTickets:string, cost: string) {
-      const dialogRef = this.dialog.open(ConfirmTicketComponent, {
-        width: '400px',
-        height: '230px',
-        enterAnimationDuration: '10',
-        exitAnimationDuration: '10',
-        data: {
-          zone: zone,
-          quantity: numberOfTickets,
-          totalValue: Number(numberOfTickets)*Number(cost)
-        },
-      });
-    }
+  openConfirmation(zone: string, numberOfTickets: string, cost: string) {
+    const dialogRef = this.dialog.open(ConfirmTicketComponent, {
+      width: '400px',
+      height: '230px',
+      enterAnimationDuration: '10',
+      exitAnimationDuration: '10',
+      data: {
+        zone: zone,
+        quantity: numberOfTickets,
+        totalValue: Number(numberOfTickets) * Number(cost)
+      },
+    });
   }
+}
 

@@ -28,7 +28,19 @@
     <br>
     <h1>Seleccione su categoría</h1>
     <br>
-    <div *ngFor="let cat of category"> 
-        <p></p>
+    <div class="grid grid-cols-2 gap-1">
+        <div>
+            <!-- <img src="/assets/images/Escenario-removebg-preview.png"> -->
+            <img src="/assets/images/Sitio-removebg-preview.png">
+        </div>
+        <div class="px-10">
+            <mat-select [(value)]="categoryId" (selectionChange)="getZonesbyCategory(categoryId)">
+                <mat-option *ngFor="let cat of category" [value]="cat.id">{{cat.name}}</mat-option>
+            </mat-select>
+            <div *ngIf="categoryId!=0">
+                <mat-select>
+                    <mat-option *ngFor="let zon of zone" [value]="zon.id">{{zon.name}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
     </div>
-</div>
