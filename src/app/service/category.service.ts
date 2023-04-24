@@ -27,6 +27,6 @@ export class CategoryService {
 
   getByEventIdAndPresentationId(eventId: number, presentationId: number) {
     const URL_SERVICE = `${this._urlService.getEndPointPubCategory()}event/${eventId}/presentation/${presentationId}`;
-    return this.http.get<Category>(URL_SERVICE);
+    return this.http.get<Category[]>(URL_SERVICE);
   }
 }

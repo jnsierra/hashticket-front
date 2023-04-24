@@ -36,6 +36,6 @@ export class TicketsService {
   } 
 
   getTicketsByEventPresentationZoneAndCategory(eventId: number, presentationId: number, zoneId: number, categoryId: number) {
-    return this.http.get<Ticket>(`${this._urlService.getEndPointPubTickets()}event/${eventId}/presentation/${presentationId}/zone/${zoneId}/category/${categoryId}`);
+    return this.http.get<Ticket[]>(`${this._urlService.getEndPointPubTickets()}event/${eventId}/presentation/${presentationId}/zone/${zoneId}/category/${categoryId}`);
   }
 }

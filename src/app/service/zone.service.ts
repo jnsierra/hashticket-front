@@ -20,6 +20,6 @@ export class ZoneService {
     return this.http.post<Zone>(this._urlService.getEndPointZone(), zone);
   }
   getByCategory(categoryId: number) {
-    return this.http.get<Zone>(`${this._urlService.getEndPointZone()}category/${categoryId}`);
+    return this.http.get<Zone[]>(`${this._urlService.getEndPointZone()}category/${categoryId}`);
   }
 }
