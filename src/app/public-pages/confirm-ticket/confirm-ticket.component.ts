@@ -35,6 +35,8 @@ export class ConfirmTicketComponent {
   buyTicket() {
     this._ticketService.buyTicket(this.ticket).subscribe((resp) => {
       if(resp.message=='Tickets Comprados'){
+
+      } else {
         
       }
     })
