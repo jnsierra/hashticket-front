@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Ticket } from 'src/app/entities/ticket';
 import { TicketsService } from 'src/app/service/tickets.service';
 
@@ -20,7 +21,9 @@ export class ConfirmTicketComponent {
   ticket: Ticket;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, private _ticketService: TicketsService
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _ticketService: TicketsService,  
+    private router: Router
   ) {
     this.categoryId = data.categoryId;
     this.eventId = data.eventId;
@@ -28,16 +31,18 @@ export class ConfirmTicketComponent {
     this.tickets = data.tickets;
     this.totalValue = data.totalValue;
     this.quantity = data.quantity;
-    this.zone = data.zone;
-    this.ticket = { eventId: data.eventId, zoneId: data.zone, categoryId: data.categoryId, presentationId: this.presentationId, numberOfTickets: data.quantity, numberTickets: data.tickets, numberTicket: 0 };
+    this.zone = data.zone.name;
+    this.ticket = { eventId: data.eventId, presentationId: this.presentationId, zoneId: data.zone.id, categoryId: data.categoryId, numberOfTickets: data.quantity, numberTickets: data.tickets, numberTicket: 0 };
   }
 
   buyTicket() {
+    console.log(this.ticket)
     this._ticketService.buyTicket(this.ticket).subscribe((resp) => {
+      console.log(resp)
       if(resp.message=='Tickets Comprados'){
-
+        this.router.navigateByUrl('/ticketSuccess');
       } else {
-        
+        alert("Error en la compra")
       }
     })
   }

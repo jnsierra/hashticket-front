@@ -101,7 +101,7 @@ export class TicketSelectionComponent {
         eventId: this.event.id,
         presentationId: this.presentation.id,
         categoryId: this.categoryId,
-        zone: fullEvent.zone.name,
+        zone: fullEvent.zone,
         quantity: numberOfTickets,
         totalValue: Number(numberOfTickets) * Number(fullEvent.cost),
         tickets: ticket
