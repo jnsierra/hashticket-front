@@ -5,7 +5,7 @@ export class Ticket {
     presentationId: number;
     numberTicket: number;
     numberOfTickets:number;
-    state: string;
+    state?: string;
     numberTickets: [];
     constructor(){
         this.eventId = 0;

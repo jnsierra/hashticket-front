@@ -32,7 +32,7 @@ export class TicketsService {
   }
 
   buyTicket(ticket: Ticket) {
-    return this.http.post<Ticket>(`${this._urlService.getEndPointBusinessTickets()}buy`, ticket);
+    return this.http.post<GenericResponse>(`${this._urlService.getEndPointBusinessTickets()}buy`, ticket);
   } 
 
   getTicketsByEventPresentationZoneAndCategory(eventId: number, presentationId: number, zoneId: number, categoryId: number) {
