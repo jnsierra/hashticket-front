@@ -60,7 +60,7 @@ const routes: Routes = [
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'ticketSuccess', component: SuccessfulPurchaseComponent, canActivate: [AuthGuard]},
+  { path: 'ticketSuccess/:data', component: SuccessfulPurchaseComponent, canActivate: [AuthGuard]},
   { path: 'ticketSelection/:idEvent/:idPresentation', component: TicketSelectionComponent },
   { path: 'tickets', component: TicketsComponent, canActivate: [AuthGuard] },
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },

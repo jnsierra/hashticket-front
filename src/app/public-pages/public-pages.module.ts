@@ -15,6 +15,7 @@ import { PrincipalPageComponent } from './principal-page/principal-page.componen
 import { TicketSelectionComponent } from './ticket-selection/ticket-selection.component';
 import { ConfirmTicketComponent } from './confirm-ticket/confirm-ticket.component';
 import { SuccessfulPurchaseComponent } from './successful-purchase/successful-purchase.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [PrincipalPageComponent, CardEventComponent, MoreInfoComponent, TicketSelectionComponent, ConfirmTicketComponent, SuccessfulPurchaseComponent],
@@ -28,7 +29,8 @@ import { SuccessfulPurchaseComponent } from './successful-purchase/successful-pu
     MatRadioModule,
     MatInputModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    QRCodeModule
   ],
   exports: [PrincipalPageComponent],
 })
