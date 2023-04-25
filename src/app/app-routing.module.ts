@@ -22,6 +22,7 @@ import { PresentationEditComponent } from './admin-module/presentation-edit/pres
 import { PublicComponent } from './components/public/public.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { SuccessfulPurchaseComponent } from './public-pages/successful-purchase/successful-purchase.component';
 import { TicketsComponent } from './admin-module/tickets/tickets.component';
 import { TicketSelectionComponent } from './public-pages/ticket-selection/ticket-selection.component';
 import { ZoneComponent } from './admin-module/zone/zone.component';
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'ticketSuccess', component: SuccessfulPurchaseComponent, canActivate: [AuthGuard]},
   { path: 'ticketSelection/:idEvent/:idPresentation', component: TicketSelectionComponent },
   { path: 'tickets', component: TicketsComponent, canActivate: [AuthGuard] },
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },

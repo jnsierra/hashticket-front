@@ -14,9 +14,10 @@ import { MoreInfoComponent } from './more-info/more-info.component';
 import { PrincipalPageComponent } from './principal-page/principal-page.component';
 import { TicketSelectionComponent } from './ticket-selection/ticket-selection.component';
 import { ConfirmTicketComponent } from './confirm-ticket/confirm-ticket.component';
+import { SuccessfulPurchaseComponent } from './successful-purchase/successful-purchase.component';
 
 @NgModule({
-  declarations: [PrincipalPageComponent, CardEventComponent, MoreInfoComponent, TicketSelectionComponent, ConfirmTicketComponent],
+  declarations: [PrincipalPageComponent, CardEventComponent, MoreInfoComponent, TicketSelectionComponent, ConfirmTicketComponent, SuccessfulPurchaseComponent],
   imports: [
     CommonModule,
     HttpClientModule,
