@@ -1,9 +1,11 @@
 <mat-drawer-container class="example-container" hasBackdrop="true">
   <mat-drawer #drawer mode="side"><br>
     <a routerLink="" class="px-4">Eventos</a><br><br>
-    <a routerLink="/signin" *ngIf="!isAutenticated()" class="px-4">Iniciar sesión</a><br>
-    <a (click)="logout()" *ngIf="isAutenticated()" class="px-4">Cerrar</a><br><br />
-    <a routerLink="/homeAdmin" *ngIf="isAutenticated()" class="px-4">Home</a>
+    <a routerLink="/signin" *ngIf="!isAutenticated()" class="px-4">Ingresar</a><br><br>
+    <a routerLink="/signup" *ngIf="!isAutenticated()" class="px-4">Crear cuenta</a><br><br>
+    <a (click)="logout()" *ngIf="isAutenticated()" class="px-4">Salir</a><br><br>
+    <a routerLink="/homeAdmin" *ngIf="isAutenticated()" class="px-4">Home</a><br><br>
+    <a routerLink="/displayTickets" *ngIf="isAutenticated()" class="px-4">Mis tickets</a>
   </mat-drawer>
   <mat-drawer-content>
     <!-- Header -->
@@ -14,26 +16,36 @@
         </div>
         <span class="spacer"></span>
         <div class="hidden-mobile">
-          <a (click)="logout()" *ngIf="isAutenticated()">
-            <mat-icon>exit_to_app</mat-icon>&nbsp;
-            <span class="texto">Salir</span>
-          </a>&nbsp;&nbsp;
-          <a routerLink="/homeAdmin" *ngIf="isAutenticated()">
+          <a routerLink="/homeAdmin" *ngIf="isAutenticated()" class="px-4">
             <mat-icon>home</mat-icon>&nbsp;
             <span class="texto">Home</span>
+            &nbsp;&nbsp;
           </a>
           <a routerLink="/signin" *ngIf="!isAutenticated()" class="px-4">
             <mat-icon>account_circle</mat-icon>&nbsp;
             <span class="texto">Ingresar</span>
-          </a>&nbsp;&nbsp;
+            &nbsp;&nbsp;
+          </a>
           <a routerLink="/signup" *ngIf="!isAutenticated()" class="px-4">
             <mat-icon>account_circle</mat-icon>&nbsp;
             <span class="texto">Crear cuenta</span>
-          </a>&nbsp;&nbsp;
+            &nbsp;&nbsp;
+          </a>
           <a routerLink="" class="px-4">
             <mat-icon>event</mat-icon>&nbsp;
             <span class="texto">Eventos</span>
-          </a>&nbsp;&nbsp;
+            &nbsp;&nbsp;
+          </a>
+          <a routerLink="/displayTickets" *ngIf="isAutenticated()" class="px-4">
+            <mat-icon>business_center</mat-icon>&nbsp;
+            <span class="texto">Mis tickets</span>
+            &nbsp;&nbsp;
+          </a>
+          <a (click)="logout()" *ngIf="isAutenticated()" class="px-4">
+            <mat-icon>exit_to_app</mat-icon>&nbsp;
+            <span class="texto">Salir</span>
+            &nbsp;&nbsp;
+          </a>
         </div>&nbsp;&nbsp;
         <button mat-icon-button aria-label="Icono menu" (click)="drawer.toggle()" class="hidden-not-mobile">
           <mat-icon>menu</mat-icon>

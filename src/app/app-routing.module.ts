@@ -7,6 +7,7 @@ import { CategoryComponent } from './admin-module/category/category.component';
 import { CategoryEditComponent } from './admin-module/category-edit/category-edit.component';
 import { ConfigEventComponent } from './admin-module/config-event/config-event.component';
 import { ConfigEventEditComponent } from './admin-module/config-event-edit/config-event-edit.component';
+import { DisplayTicketsComponent } from './public-pages/display-tickets/display-tickets.component';
 import { EventComponent } from './admin-module/event/event.component';
 import { EventEditComponent } from './admin-module/event-edit/event-edit.component';
 import { EventCategoryComponent } from './admin-module/event-category/event-category.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'configEvent/:idEvent', component: ConfigEventComponent, canActivate: [AuthGuard] },
   { path: 'configEventInsert/:idEvent', component: ConfigEventEditComponent, canActivate: [AuthGuard] },
   { path: 'configEventUpdate/:idEvent/:id', component: ConfigEventEditComponent, canActivate: [AuthGuard] },
+  { path: 'displayTickets', component: DisplayTicketsComponent, canActivate: [AuthGuard] },
   { path: 'event', component: EventComponent, canActivate: [AuthGuard] },
   { path: 'eventCategory', component: EventCategoryComponent, canActivate: [AuthGuard] },
   { path: 'eventCategoryInsert', component: EventCategoryEditComponent, canActivate: [AuthGuard] },
@@ -60,7 +62,7 @@ const routes: Routes = [
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'ticketSuccess', component: SuccessfulPurchaseComponent, canActivate: [AuthGuard]},
+  { path: 'ticketSuccess', component: SuccessfulPurchaseComponent, canActivate: [AuthGuard] },
   { path: 'ticketSelection/:idEvent/:idPresentation', component: TicketSelectionComponent },
   { path: 'tickets', component: TicketsComponent, canActivate: [AuthGuard] },
   { path: 'zone', component: ZoneComponent, canActivate: [AuthGuard] },

@@ -16,9 +16,10 @@ import { TicketSelectionComponent } from './ticket-selection/ticket-selection.co
 import { ConfirmTicketComponent } from './confirm-ticket/confirm-ticket.component';
 import { SuccessfulPurchaseComponent } from './successful-purchase/successful-purchase.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { DisplayTicketsComponent } from './display-tickets/display-tickets.component';
 
 @NgModule({
-  declarations: [PrincipalPageComponent, CardEventComponent, MoreInfoComponent, TicketSelectionComponent, ConfirmTicketComponent, SuccessfulPurchaseComponent],
+  declarations: [PrincipalPageComponent, CardEventComponent, MoreInfoComponent, TicketSelectionComponent, ConfirmTicketComponent, SuccessfulPurchaseComponent, DisplayTicketsComponent],
   imports: [
     CommonModule,
     HttpClientModule,
