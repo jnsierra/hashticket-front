@@ -74,9 +74,6 @@ export class TicketSelectionComponent {
         this.ticket.slice(0,Number(numberOfTickets)).forEach(tik => {
           this.ticketsId.push(tik.numberTicket)
         });
-        // for (var i = 0; i < Number(numberOfTickets); i++) {
-        //   this.ticketsId.push(this.ticket[i].numberTicket)
-        // }
         this.openConfirmation(fullEvent, numberOfTickets, this.ticketsId);
       } else {
         this._snackBar.open(
