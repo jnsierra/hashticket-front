@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-successful-purchase',
@@ -7,13 +7,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./successful-purchase.component.scss']
 })
 export class SuccessfulPurchaseComponent {
-  public qrCode: string;
+  public ticket: any
 
-  constructor (private activatedRoute: ActivatedRoute,) {
-
-    this.activatedRoute.params.subscribe((params) => {
-      this.qrCode = params['data'] as string;
-    });
+  constructor (private location: Location) {
+    this.ticket = location.getState()
   }
 
 }

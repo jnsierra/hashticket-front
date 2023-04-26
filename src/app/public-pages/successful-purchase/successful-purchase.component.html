@@ -1,4 +1,10 @@
 <h1>Compra exitosa!</h1>
-<h2>Una copia de las mismas estara llegando próximamente a su correo electrónico</h2>
-  
-<qrcode [qrdata]="qrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+<h2>Guarde los siguientes códigos QR, una copia de los mismos estara llegando próximamente a su correo electrónico</h2>
+<div class="grid grid-cols-3 gap-1">
+    <div *ngFor="let qrCode of ticket.ticket">
+        <qrcode [qrdata]="qrCode.confirmNumberTicket" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <br>
+    </div>
+</div>
+
+

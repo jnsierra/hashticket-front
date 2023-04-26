@@ -38,7 +38,7 @@ export class ConfirmTicketComponent {
   buyTicket() {
     this._ticketService.buyTicket(this.ticket).subscribe((resp) => {
       if(resp.message=='Tickets Comprados'){
-        this.router.navigateByUrl(`/ticketSuccess/${resp.data}`);
+        this.router.navigate(['/ticketSuccess'], {state: {ticket: resp.data}})
       } else {
         alert("Error en la compra")
       }
