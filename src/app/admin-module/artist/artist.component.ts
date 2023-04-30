@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MusicBandService } from 'src/app/service/music-band.service';
 
 @Component({
   selector: 'app-artist',
@@ -13,12 +14,13 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent {
-  displayedColumns: string[] = ['select', 'id', 'name', 'description', 'musicBandId'];
+  displayedColumns: string[] = ['select', 'name', 'description', 'musicBandName'];
   dataSource = new MatTableDataSource<Artist>();
   selection = new SelectionModel<Artist>(true, []);
 
   constructor(
     private _artistService: ArtistService,
+    private _musicBandService: MusicBandService,
     public dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar
@@ -27,6 +29,11 @@ export class ArtistComponent {
   }
   getAllArtists() {
     this._artistService.getAll().subscribe((resp) => {
+      resp.forEach(element => {
+        this._musicBandService.getById(element.musicBandId.toString()).subscribe((response) => {
+          element.musicBandName = response.name
+        });
+      });
       this.dataSource.data = resp;
     });
   }
