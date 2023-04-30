@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { MusicBand } from 'src/app/entities/music-band';
 import { MusicBandService } from 'src/app/service/music-band.service';
+import { PresentationService } from 'src/app/service/presentation.service';
 import { Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 
@@ -13,12 +14,13 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./music-band.component.scss'],
 })
 export class MusicBandComponent {
-  displayedColumns: string[] = ['select', 'id', 'name', 'presentationId'];
+  displayedColumns: string[] = ['select', 'name', 'presentationName'];
   dataSource = new MatTableDataSource<MusicBand>();
   selection = new SelectionModel<MusicBand>(true, []);
 
   constructor(
     private _musicBandService: MusicBandService,
+    private _presentationService: PresentationService,
     public dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar
@@ -27,6 +29,11 @@ export class MusicBandComponent {
   }
   getAllMusicBands() {
     this._musicBandService.getAll().subscribe((resp) => {
+      resp.forEach(element => {
+        this._presentationService.getById(element.presentationId).subscribe((response) => {
+          element.presentationName = response.name
+        });
+      });
       this.dataSource.data = resp;
     });
   }

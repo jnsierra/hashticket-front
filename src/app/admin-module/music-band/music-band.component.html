@@ -21,17 +21,13 @@
   </ng-container>
 
   <!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>Id.</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-  </ng-container>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Nombre de la banda.</th>
+    <th mat-header-cell *matHeaderCellDef>Banda musical</th>
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
-  <ng-container matColumnDef="presentationId">
-    <th mat-header-cell *matHeaderCellDef>Id presentación.</th>
-    <td mat-cell *matCellDef="let element">{{ element.presentationId }}</td>
+  <ng-container matColumnDef="presentationName">
+    <th mat-header-cell *matHeaderCellDef>Presentación</th>
+    <td mat-cell *matCellDef="let element">{{ element.presentationName }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
