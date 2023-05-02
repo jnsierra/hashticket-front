@@ -30,6 +30,7 @@ import { ZoneComponent } from './admin-module/zone/zone.component';
 import { ZoneEditComponent } from './admin-module/zone-edit/zone-edit.component';
 import { ZoneConfigEventComponent } from './admin-module/zone-config-event/zone-config-event.component';
 import { ZoneConfigEventEditComponent } from './admin-module/zone-config-event-edit/zone-config-event-edit.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: PublicComponent },
@@ -62,6 +63,7 @@ const routes: Routes = [
   { path: 'presentationUpdate/:idEvent/:id', component: PresentationEditComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'changePassword', component: ChangePasswordComponent},
   { path: 'ticketSuccess', component: SuccessfulPurchaseComponent, canActivate: [AuthGuard] },
   { path: 'ticketSelection/:idEvent/:idPresentation', component: TicketSelectionComponent },
   { path: 'tickets', component: TicketsComponent, canActivate: [AuthGuard] },

@@ -8,29 +8,21 @@
           <mat-grid-tile>
             <mat-form-field appearance="fill">
               <mat-label>Nombre</mat-label>
-              <input matInput [(ngModel)]="loginEntity.name" placeholder="Escriba su nombre" name="name" />
+              <input matInput [(ngModel)]="loginEntity.name" placeholder="Escriba su nombre" name="name" required="true"/>
+              <mat-error *ngIf="f.submitted && f.controls['name'].invalid">
+                Nombre <strong>required</strong>
+              </mat-error> 
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field appearance="fill">
               <mat-label>Correo electrónico</mat-label>
-              <input matInput [(ngModel)]="loginEntity.email" placeholder="Digite su email" name="email" />
+              <input matInput [(ngModel)]="loginEntity.email" placeholder="Digite su email" name="email" required="true"/>
+              <mat-error *ngIf="f.submitted && f.controls['email'].invalid">
+                correo <strong>required</strong>
+              </mat-error>
             </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field appearance="fill">
-              <mat-label>Contraseña</mat-label>
-              <input matInput [(ngModel)]="loginEntity.password" placeholder="Escriba su contraseña" type="password"
-                name="password" />
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field appearance="fill">
-              <mat-label>Confirme la contraseña</mat-label>
-              <input matInput [(ngModel)]="password" placeholder="Escriba su contraseña" type="password"
-                name="confirmpassword" />
-            </mat-form-field>
-          </mat-grid-tile>
+          </mat-grid-tile>          
         </mat-grid-list>
       </mat-card-content>
       <mat-card-actions>

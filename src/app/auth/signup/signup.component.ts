@@ -36,31 +36,22 @@ export class SignupComponent {
     this.meta.updateTag({ name: 'description', content: "Página para creación de cuenta" })
   }
   sendForm(f: NgForm) {
-    if (this.loginEntity.name != '') {
-      if (this.emailRegexp.test(this.loginEntity.email)) {
-        if (this.passwordRegExp.test(this.loginEntity.password)) {
-          if (this.password == this.loginEntity.password) {
-            this.userValidation = true;
-            this.createUser();
-          } else {
-            this.msn = 'Contraseña no concuerda';
-          }
-        } else {
-          this.msn = 'Contraseña debe tener mínimo 8 carácteres, al menos una letra mayúscula, una minuscula, un número y un carácter especial';
-        }
-      } else {
-        this.msn = 'Correo no valido';
-      }
-    } else {
-      this.msn = 'Nombre no puede estar vacío';
+    if(f.invalid){
+      return ;
     }
-    this.openSnackbar();
+    this.createUser();
   }
   createUser() {
     this._authService.signUp(this.loginEntity).subscribe({
       next: (resp) => {
-        if (resp.status == 200 && resp.body?.state == 'ACTIVE') {
-          this.sendLogin();
+        if (resp.status == 200 && resp.body === true) {
+          this._snackBar.open('Se ha enviado un mail con tu contraseña temporal.', 'Cerrar', {
+            duration: 20000,
+            panelClass: ['green-snackbar'],
+            verticalPosition: 'top'
+          }).afterDismissed().subscribe(info => {
+            this.sendLogin();
+          });
         }
       },
       error: (e) => {
@@ -74,6 +65,8 @@ export class SignupComponent {
     this.router.navigateByUrl('/signin');
   }
   openSnackbar() {
+    console.log('Llego');
+    console.trace();
     if (this.userValidation == false) {
       this._snackBar.open(this.msn, 'Cerrar', {
         duration: 2000,
