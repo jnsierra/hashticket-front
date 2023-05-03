@@ -21,6 +21,7 @@ import { DatePipe } from '@angular/common';
 import { ResponseRequestInterceptorService } from './service/response-request-interceptor.service'
 import localEs from '@angular/common/locales/es-CO';
 import 'hammerjs';
+import { EventCardComponent } from './admin-module/event-card/event-card.component';
 
 registerLocaleData(localEs);
 

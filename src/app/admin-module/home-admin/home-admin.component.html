@@ -1,20 +1,19 @@
-<mat-drawer-container class="example-container" hasBackdrop="true">
+<mat-drawer-container class="example-container" hasBackdrop="true" *ngIf="isAutenticated() && getRoleUser(['ROLE_ADMIN','ROLE_MANAGER'])">
   <mat-drawer #drawer mode="side"
-    ><br>
-      <a routerLink="/event" routerLinkActive="active">Eventos</a><br><br>
-      <a routerLink="/eventCategory" routerLinkActive="active">Categorias evento</a><br><br>
-      <!-- Es la misma tabla zone config event-->
-      <a routerLink="/zoneConfig" routerLinkActive="active">Configuración de costo</a><br><br>
-      <a routerLink="/category" routerLinkActive="active">Categorias</a><br><br>
-      <a routerLink="/zone" routerLinkActive="active">Zonas</a><br><br>
-      <a routerLink="/artist" routerLinkActive="active">Artistas</a><br><br>
-      <a routerLink="/musicBand" routerLinkActive="active">Bandas musicales</a><br><br>
-      <a routerLink="/tickets" routerLinkActive="active">Tickets</a><br><br>
+    ><br>      
+      <div *ngFor="let item of getMenu(); index as i;"> 
+        &nbsp;&nbsp;<a routerLinkActive="active" [routerLink]="item.url">{{item.name}}</a>
+        &nbsp;&nbsp;
+        <br/>
+        <br/>
+      </div>
   </mat-drawer>
   <mat-drawer-content>
     <button mat-icon-button aria-label="Icono menu" (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <apx-chart [series]="series" [chart]="chart" [title]="title" [labels]="labels"></apx-chart>
+    <div style="width: 30%;margin: auto;">
+      <apx-chart [series]="series" [chart]="chart" [title]="title" [labels]="labels"></apx-chart>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

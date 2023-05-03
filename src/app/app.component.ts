@@ -17,8 +17,7 @@ export class AppComponent {
     this._authService.logout();
     this.router.navigateByUrl('/');
   }
-  isAutenticated() {
+  isAutenticated():boolean {
     return this._authService.isAuthenticated();
   }
-
 }

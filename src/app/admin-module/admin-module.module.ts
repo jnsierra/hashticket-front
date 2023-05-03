@@ -42,6 +42,7 @@ import { ZoneComponent } from './zone/zone.component';
 import { ZoneConfigEventComponent } from './zone-config-event/zone-config-event.component';
 import { ZoneConfigEventEditComponent } from './zone-config-event-edit/zone-config-event-edit.component';
 import { ZoneEditComponent } from './zone-edit/zone-edit.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ZoneEditComponent } from './zone-edit/zone-edit.component';
     ArtistEditComponent,
     ZoneConfigEventComponent,
     ZoneConfigEventEditComponent,
+    MenuComponent,
   ],
   imports: [
     CommonModule,
@@ -91,5 +93,8 @@ import { ZoneEditComponent } from './zone-edit/zone-edit.component';
     MatGridListModule,
     MatPaginatorModule
   ],
+  exports: [
+    EventCardComponent
+  ]
 })
 export class AdminModuleModule { }
