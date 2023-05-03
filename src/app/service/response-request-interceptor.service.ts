@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class ResponseRequestInterceptorService implements HttpInterceptor {
 
   constructor(
     private _authService: AuthService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -19,9 +21,20 @@ export class ResponseRequestInterceptorService implements HttpInterceptor {
       let errorMsg = '';
       if (error.status == 403) {
         this._authService.logout();
-        //Pendiente cambiar alert por modal
-        alert('Error de autenticación o vencimiento del token. Realice login de nuevo');
-        this.router.navigateByUrl("/signin");
+        this._snackBar.open('Error de autenticación o vencimiento del token. Realice login de nuevo o estas intentando acceder a un recurso no permitido', 'Cerrar', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 20000,
+          panelClass: ['red-snackbar'],
+        }).afterDismissed().subscribe(item => this.router.navigateByUrl("/signin"));
+        
+      }else if(error.status == 401){
+        this._snackBar.open('Error de autenticación, valida tu usuario o contraseña', 'Cerrar', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 20000,
+          panelClass: ['red-snackbar'],
+        }).afterDismissed().subscribe(item => this.router.navigateByUrl("/signin"));
       }
       return throwError(errorMsg);
     }));

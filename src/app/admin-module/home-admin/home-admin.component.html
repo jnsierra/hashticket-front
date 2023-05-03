@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" hasBackdrop="true" *ngIf="isAutenticated() && getRoleUser(['ROLE_ADMIN','ROLE_MANAGER'])">
+<mat-drawer-container class="example-container" hasBackdrop="true" *ngIf="validatePermissions()">
   <mat-drawer #drawer mode="side"
     ><br>      
       <div *ngFor="let item of getMenu(); index as i;"> 
@@ -16,4 +16,4 @@
       <apx-chart [series]="series" [chart]="chart" [title]="title" [labels]="labels"></apx-chart>
     </div>
   </mat-drawer-content>
-</mat-drawer-container>
+</mat-drawer-container> 

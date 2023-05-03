@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ViewLocationComponent } from '../view-location/view-location.component';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-event',
@@ -30,7 +31,8 @@ export class EventComponent {
     private _eventService: EventService,
     public dialog: MatDialog,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _menuService: MenuService
   ) {
     this.getAllEvents();
   }
@@ -160,5 +162,11 @@ export class EventComponent {
       duration: 2000,
       panelClass: ['red-snackbar'],
     });
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }

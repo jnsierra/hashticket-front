@@ -76,4 +76,7 @@ export class HomeAdminComponent {
   getMenu(){
     return this._menuService.itemsMenu;
   }
-}
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+  }
+} 

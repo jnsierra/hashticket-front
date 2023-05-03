@@ -1,12 +1,13 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Menu } from "../entities/menu";
+import { AuthService } from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
   })
 export class MenuService{
     itemsMenu:Menu[];
-    constructor(){
+    constructor(private _authService: AuthService){
         this.itemsMenu = [];
         this.generateMenu();
     }
@@ -26,4 +27,17 @@ export class MenuService{
         item.url = url;
         return item;
     }
+    seeMenu(roleMenu: string[]):boolean{
+        if (this._authService.isAuthenticated()) {
+            const ROLES: string[] = this._authService.getAuthoritiesUser()
+              .filter(role => this.checkRoleWithMenu(role, roleMenu));
+            return ROLES.length > 0 ? true : false;
+          }
+
+        return false;
+    }
+    checkRoleWithMenu(role: string, roleMenu: string[]) {
+        var roleFiltered: string[] = roleMenu.filter(item => role === item);
+        return (roleFiltered.length > 0) ? true : false;
+    } 
   }
