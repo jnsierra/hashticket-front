@@ -29,7 +29,7 @@ export class SigninComponent implements OnInit {
         this.sendHome();
       }else if(resp.body!.loginAction == 'SUCCESS_CHANGE_PASSWORD'){
         this.router.navigateByUrl('/changePassword');
-        localStorage.setItem('temporalToken', resp.body!.token);
+        localStorage.setItem('token', resp.body!.token);
       }
     });
   }
