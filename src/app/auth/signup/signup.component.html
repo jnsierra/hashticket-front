@@ -8,19 +8,17 @@
           <mat-grid-tile>
             <mat-form-field appearance="fill">
               <mat-label>Nombre</mat-label>
-              <input matInput [(ngModel)]="loginEntity.name" placeholder="Escriba su nombre" name="name" required="true"/>
+              <input matInput [(ngModel)]="loginEntity.name" placeholder="Escriba su nombre" name="name" required/>
               <mat-error *ngIf="f.submitted && f.controls['name'].invalid">
-                Nombre <strong>required</strong>
+                Nombre <strong>requerido</strong>
               </mat-error> 
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field appearance="fill">
               <mat-label>Correo electrónico</mat-label>
-              <input matInput [(ngModel)]="loginEntity.email" placeholder="Digite su email" name="email" required="true"/>
-              <mat-error *ngIf="f.submitted && f.controls['email'].invalid">
-                correo <strong>required</strong>
-              </mat-error>
+              <input matInput [(ngModel)]="loginEntity.email" placeholder="pat@example.com" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </mat-grid-tile>          
         </mat-grid-list>
