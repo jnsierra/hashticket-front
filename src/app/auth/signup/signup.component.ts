@@ -5,6 +5,7 @@ import { Login } from 'src/app/entities/login';
 import { Meta, Title } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -13,11 +14,8 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   loginEntity: Login;
-  password: string;
   msn: string;
-  userValidation: boolean;
-  emailRegexp: RegExp;
-  passwordRegExp: RegExp;
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(
     private _authService: AuthService,
@@ -27,19 +25,17 @@ export class SignupComponent {
     private _snackBar: MatSnackBar
   ) {
     this.loginEntity = new Login();
-    this.password = '';
     this.msn = '';
-    this.emailRegexp = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/
-    this.passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-    this.userValidation = false;
     this.title.setTitle('CompraBoletas - Crear cuenta');
     this.meta.updateTag({ name: 'description', content: "Página para creación de cuenta" })
   }
   sendForm(f: NgForm) {
-    if(f.invalid){
-      return ;
+    if (f.invalid) {
+      this.msn = 'Información invalida';
+      this.openErrorSnackbar();
+    } else {
+      this.createUser();
     }
-    this.createUser();
   }
   createUser() {
     this._authService.signUp(this.loginEntity).subscribe({
@@ -55,24 +51,26 @@ export class SignupComponent {
         }
       },
       error: (e) => {
-        this.userValidation = false;
         this.msn = 'Correo ya registrado';
-        this.openSnackbar();
+        this.openErrorSnackbar();
       }
     });
   }
   sendLogin() {
     this.router.navigateByUrl('/signin');
   }
-  openSnackbar() {
-    console.log('Llego');
+  openErrorSnackbar() {
     console.trace();
-    if (this.userValidation == false) {
-      this._snackBar.open(this.msn, 'Cerrar', {
-        duration: 2000,
-        panelClass: ['red-snackbar'],
-        verticalPosition: 'top'
-      });
+    this._snackBar.open(this.msn, 'Cerrar', {
+      duration: 2000,
+      panelClass: ['red-snackbar'],
+      verticalPosition: 'top'
+    });
+  }
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'Ingrese correo';
     }
+    return this.email.hasError('email') ? 'Correo no válido' : '';
   }
 }
