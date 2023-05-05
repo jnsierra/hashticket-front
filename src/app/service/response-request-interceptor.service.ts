@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -17,7 +17,8 @@ export class ResponseRequestInterceptorService implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError((error: HttpErrorResponse) => {
+    return next.handle(req)
+      .pipe(catchError((error: HttpErrorResponse) => {
       let errorMsg = '';
       if (error.status == 403) {
         this._authService.logout();
@@ -35,6 +36,13 @@ export class ResponseRequestInterceptorService implements HttpInterceptor {
           duration: 20000,
           panelClass: ['red-snackbar'],
         }).afterDismissed().subscribe(item => this.router.navigateByUrl("/signin"));
+      }else if(error.status == 500 ){
+        this._snackBar.open(`Error: ${error.error?.message}`, 'Cerrar', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 20000,
+          panelClass: ['red-snackbar'],
+        });
       }
       return throwError(errorMsg);
     }));
