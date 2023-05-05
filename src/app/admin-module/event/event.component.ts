@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ViewLocationComponent } from '../view-location/view-location.component';
 import { MenuService } from 'src/app/service/menu.service';
+import { AppConstants } from 'src/app/commons/app.constants';
 
 @Component({
   selector: 'app-event',
@@ -17,7 +18,6 @@ import { MenuService } from 'src/app/service/menu.service';
 export class EventComponent {
   displayedColumns: string[] = [
     'select',
-    'id',
     'place',
     'date',
     'minimumAge',
@@ -32,7 +32,8 @@ export class EventComponent {
     public dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private _menuService: MenuService
+    private _menuService: MenuService,
+    private constants: AppConstants
   ) {
     this.getAllEvents();
   }
@@ -81,8 +82,8 @@ export class EventComponent {
   insertar() {
     if (this.selection.selected.length > 0) {
       this._snackBar.open(
-        'Al insertar no debe estar seleccionado ningún item',
-        'Cerrar',
+        this.constants.NO_ITEM,
+        this.constants.CERRAR,
         {
           duration: 2000,
           panelClass: ['red-snackbar'],
@@ -97,12 +98,12 @@ export class EventComponent {
       const URL_SERVICE = `/eventEdit/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      this._snackBar.open('Debes seleccionar un item', 'Cerrar', {
+      this._snackBar.open(this.constants.SELECT_ITEM, this.constants.CERRAR, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
     } else if (this.selection.selected.length > 1) {
-      this._snackBar.open('Acción no permitida para mas de un item', 'Cerrar', {
+      this._snackBar.open(this.constants.ONLY_ONE_ITEM, this.constants.CERRAR, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
@@ -115,9 +116,9 @@ export class EventComponent {
       const URL_SERVICE = `/presentation/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      msn = 'Debes seleccionar un item';
+      msn = this.constants.SELECT_ITEM;
     } else if (this.selection.selected.length > 1) {
-      msn = 'Acción no permitida para mas de un item';
+      msn = this.constants.ONLY_ONE_ITEM;
     }
     this._snackBar.open(msn, 'Cerrar', {
       horizontalPosition: 'center',
@@ -136,7 +137,7 @@ export class EventComponent {
     } else if (this.selection.selected.length == 0) {
       msn = 'Debes seleccionar un item';
     } else if (this.selection.selected.length > 1) {
-      msn = 'Acción no permitida para mas de un item';
+      msn = this.constants.ONLY_ONE_ITEM;
     }
     this._snackBar.open(msn, 'Cerrar', {
       horizontalPosition: 'center',
@@ -154,7 +155,7 @@ export class EventComponent {
     } else if (this.selection.selected.length == 0) {
       msn = 'Debes seleccionar un item';
     } else if (this.selection.selected.length > 1) {
-      msn = 'Acción no permitida para mas de un item';
+      msn = this.constants.ONLY_ONE_ITEM;
     }
     this._snackBar.open(msn, 'cerrar', {
       horizontalPosition: 'center',
@@ -163,10 +164,10 @@ export class EventComponent {
       panelClass: ['red-snackbar'],
     });
   }
-  getMenu(){
+  getMenu() {
     return this._menuService.itemsMenu;
   }
-  validatePermissions():boolean{
-    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+  validatePermissions(): boolean {
+    return this._menuService.seeMenu(['ROLE_ADMIN', 'ROLE_MANAGER']);
   }
 }

@@ -20,7 +20,7 @@
             <mat-form-field class="full-width">
                 <mat-label>Descripción</mat-label>
                 <mat-error *ngIf="f.submitted && f.controls['description'].invalid ">
-                    Descripción es un campo obligatorio
+                    Se requiere este campo
                 </mat-error>
                 <input class="inputs-form" type="text" name="description" matInput required
                     placeholder="Descripción de la imagen:" [(ngModel)]="eventImages.description" />
