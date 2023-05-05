@@ -17,7 +17,7 @@
           <mat-grid-tile>
             <mat-form-field appearance="fill">
               <mat-label>Correo electrónico</mat-label>
-              <input matInput [(ngModel)]="loginEntity.email" placeholder="pat@example.com" [formControl]="email" required>
+              <input matInput placeholder="pat@example.com" [formControl]="email" [(ngModel)]="loginEntity.email" required>
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </mat-grid-tile>          
