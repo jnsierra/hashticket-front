@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigEvent } from 'src/app/entities/config-event';
 import { Presentation } from 'src/app/entities/presentation';
 import { ConfigEventService } from 'src/app/service/config-event.service';
+import { MenuService } from 'src/app/service/menu.service';
 import { PresentationService } from 'src/app/service/presentation.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class ConfigEventEditComponent implements OnInit {
     , private _snackBar: MatSnackBar
     , private datepipe: DatePipe
     , private _presentationService: PresentationService
-    , private _configEventService: ConfigEventService) {
+    , private _configEventService: ConfigEventService
+    , private _menuService: MenuService) {
     this.configEvent = new ConfigEvent();
     this.createAction = true;
     this.butonDisabled = false;
@@ -60,5 +62,11 @@ export class ConfigEventEditComponent implements OnInit {
       });
       this.router.navigateByUrl(`configEvent/${this.configEvent.eventId}`);
     });
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }
