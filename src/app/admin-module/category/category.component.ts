@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Category } from 'src/app/entities/category';
 import { CategoryService } from 'src/app/service/category.service';
 import { Component } from '@angular/core';
@@ -13,12 +14,17 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  displayedColumns: string[] = ['select', 'id', 'name', 'description'];
+  displayedColumns: string[] = [
+    this.constants.COLUMN_SELECT,
+    this.constants.COLUMN_NAME,
+    this.constants.COLUMN_DESCRIPTION
+  ];
   dataSource = new MatTableDataSource<Category>();
   selection = new SelectionModel<Category>(true, []);
 
   constructor(
     private _categoryService: CategoryService,
+    public constants: AppConstants,
     public dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar
@@ -59,8 +65,8 @@ export class CategoryComponent {
   insert() {
     if (this.selection.selected.length > 0) {
       this._snackBar.open(
-        'Al insertar no debe estar seleccionado ningún item',
-        'Cerrar',
+        this.constants.ALERT_ONLY_ONE_ITEM,
+        this.constants.CLOSE,
         {
           duration: 2000,
           panelClass: ['red-snackbar'],
@@ -76,12 +82,12 @@ export class CategoryComponent {
       const URL_SERVICE = `/categoryEdit/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      this._snackBar.open('Debes seleccionar un item', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_SELECT_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
     } else if (this.selection.selected.length > 1) {
-      this._snackBar.open('Acción no permitida para mas de un item', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_ONLY_ONE_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });

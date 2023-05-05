@@ -17,12 +17,12 @@ import { AppConstants } from 'src/app/commons/app.constants';
 })
 export class EventComponent {
   displayedColumns: string[] = [
-    'select',
-    'place',
-    'date',
-    'minimumAge',
-    'responsible',
-    'cityCode',
+    this.constants.COLUMN_SELECT,
+    this.constants.COLUMN_PLACE,
+    this.constants.COLUMN_DATE,
+    this.constants.COLUMN_MINIMUM_AGE,
+    this.constants.COLUMN_RESPONSIBLE,
+    this.constants.COLUMN_CITY_CODE,
   ];
   dataSource = new MatTableDataSource<Event>();
   selection = new SelectionModel<Event>(true, []);
@@ -82,8 +82,8 @@ export class EventComponent {
   insertar() {
     if (this.selection.selected.length > 0) {
       this._snackBar.open(
-        this.constants.NO_ITEM,
-        this.constants.CERRAR,
+        this.constants.ALERT_NO_ITEM,
+        this.constants.CLOSE,
         {
           duration: 2000,
           panelClass: ['red-snackbar'],
@@ -98,12 +98,12 @@ export class EventComponent {
       const URL_SERVICE = `/eventEdit/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      this._snackBar.open(this.constants.SELECT_ITEM, this.constants.CERRAR, {
+      this._snackBar.open(this.constants.ALERT_SELECT_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
     } else if (this.selection.selected.length > 1) {
-      this._snackBar.open(this.constants.ONLY_ONE_ITEM, this.constants.CERRAR, {
+      this._snackBar.open(this.constants.ALERT_ONLY_ONE_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
@@ -117,11 +117,11 @@ export class EventComponent {
       this.router.navigateByUrl(URL_SERVICE);
       return ;
     } else if (this.selection.selected.length == 0) {
-      msn = this.constants.SELECT_ITEM;
+      msn = this.constants.ALERT_SELECT_ITEM;
     } else if (this.selection.selected.length > 1) {
-      msn = this.constants.ONLY_ONE_ITEM;
+      msn = this.constants.ALERT_ONLY_ONE_ITEM;
     }
-    this._snackBar.open(msn, 'Cerrar', {
+    this._snackBar.open(msn, this.constants.CLOSE, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
       duration: 2000,
@@ -136,11 +136,11 @@ export class EventComponent {
       this.router.navigateByUrl(URL_SERVICE);
       return;
     } else if (this.selection.selected.length == 0) {
-      msn = 'Debes seleccionar un item';
+      msn = this.constants.ALERT_SELECT_ITEM;
     } else if (this.selection.selected.length > 1) {
-      msn = this.constants.ONLY_ONE_ITEM;
+      msn = this.constants.ALERT_ONLY_ONE_ITEM;
     }
-    this._snackBar.open(msn, 'Cerrar', {
+    this._snackBar.open(msn, this.constants.CLOSE, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
       duration: 2000,
@@ -154,11 +154,11 @@ export class EventComponent {
       this.router.navigateByUrl(URL_SERVICE);
       return;
     } else if (this.selection.selected.length == 0) {
-      msn = 'Debes seleccionar un item';
+      msn = this.constants.ALERT_SELECT_ITEM;
     } else if (this.selection.selected.length > 1) {
-      msn = this.constants.ONLY_ONE_ITEM;
+      msn = this.constants.ALERT_ONLY_ONE_ITEM;
     }
-    this._snackBar.open(msn, 'cerrar', {
+    this._snackBar.open(msn, this.constants.CLOSE, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
       duration: 2000,

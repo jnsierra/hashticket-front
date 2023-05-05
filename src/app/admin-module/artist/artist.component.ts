@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Artist } from 'src/app/entities/artist';
 import { ArtistService } from 'src/app/service/artist.service';
 import { Component } from '@angular/core';
@@ -14,13 +15,19 @@ import { MusicBandService } from 'src/app/service/music-band.service';
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent {
-  displayedColumns: string[] = ['select', 'name', 'description', 'musicBandName'];
+  displayedColumns: string[] = [
+    this.constants.COLUMN_SELECT,
+    this.constants.COLUMN_NAME, 
+    this.constants.COLUMN_DESCRIPTION,
+    this.constants.COLUMN_MUSIC_BAND_NAME
+  ];
   dataSource = new MatTableDataSource<Artist>();
   selection = new SelectionModel<Artist>(true, []);
 
   constructor(
     private _artistService: ArtistService,
     private _musicBandService: MusicBandService,
+    public constants: AppConstants,
     public dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar
@@ -66,7 +73,7 @@ export class ArtistComponent {
   insert() {
     if (this.selection.selected.length > 0) {
       this._snackBar.open(
-        'Al insertar no debe estar seleccionado ningún item',
+        this.constants.ALERT_NO_ITEM,
         'Cerrar',
         {
           duration: 2000,
@@ -83,12 +90,12 @@ export class ArtistComponent {
       const URL_SERVICE = `/artistEdit/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      this._snackBar.open('Debes seleccionar un item', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_SELECT_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
     } else if (this.selection.selected.length > 1) {
-      this._snackBar.open('Acción no permitida para mas de un item', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_ONLY_ONE_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
