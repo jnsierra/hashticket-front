@@ -23,6 +23,15 @@
                     <br />
                     <mat-card-content>
                         <mat-form-field class="full-width">
+                            <mat-label>Nombre del evento</mat-label>
+                            <mat-error *ngIf="f.submitted && f.controls['name'].invalid ">
+                                Nombre obligatorio
+                            </mat-error>
+                            <input class="inputs-form" type="text" name="name" matInput
+                                placeholder="Nombre del evento" [(ngModel)]="event.name" required
+                                size="100">
+                        </mat-form-field><br />
+                        <mat-form-field class="full-width">
                             <mat-label>Lugar</mat-label>
                             <mat-error *ngIf="f.submitted && f.controls['place'].invalid ">
                                 Lugar obligatorio
