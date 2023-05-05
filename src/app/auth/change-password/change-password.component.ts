@@ -30,9 +30,7 @@ export class ChangePasswordComponent {
     }else{
       this.passwordsDoesntMatch = false;
     }
-    console.log("Validado");
     this._authService.changePassword(this.loginEntity.password).subscribe(data => {
-      console.log(data);
       if(data){
         this._snackBar.open('Cambio de contraseña realizada con exito. Ingresa con tu nueva contraseña', 'Cerrar', {
           duration: 20000,

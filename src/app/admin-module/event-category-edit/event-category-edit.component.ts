@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,6 +17,7 @@ export class EventCategoryEditComponent implements OnInit {
   botonInactive: boolean;
   constructor(private _categoryEventService: CategoryEventService
     , private activatedRoute: ActivatedRoute
+    , public constants: AppConstants
     , private router: Router
     , private _snackBar: MatSnackBar) {
     this.eventCategory = new EventCategory();
@@ -40,7 +42,7 @@ export class EventCategoryEditComponent implements OnInit {
       return;
     }
     this._categoryEventService.save(this.eventCategory).subscribe(res => {
-      this._snackBar.open('Operacion exitosa', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_SUCCESS, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['green-snackbar'],
       });

@@ -55,7 +55,6 @@ export class HomeAdminComponent {
   getEvents(){
     this._eventService.getActiveEvents().subscribe((resp) => {
       this.eventos = resp;
-      //this.getImages();
     });
   }
   isAutenticated():boolean {

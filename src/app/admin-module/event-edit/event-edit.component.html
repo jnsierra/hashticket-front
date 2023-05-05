@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" hasBackdrop="true" *ngIf="validatePermissions()">
+<mat-drawer-container hasBackdrop="true" *ngIf="validatePermissions()">
     <mat-drawer #drawer mode="side"><br>
         <div *ngFor="let item of getMenu(); index as i;">
             &nbsp;&nbsp;<a routerLinkActive="active" [routerLink]="item.url">{{item.name}}</a>
@@ -123,7 +123,7 @@
                             'INSERTAR' :
                             'ACTUALIZAR'}}</button> &nbsp;
                         <button mat-raised-button color="primary" routerLink="/event" color="warn"
-                            [disabled]="butonEnabled">CANCELAR</button>
+                            [disabled]="butonEnabled">{{constants.BUTTON_CANCEL}}</button>
                     </mat-card-actions>
                 </mat-card>
             </form>

@@ -56,7 +56,7 @@ export class EventCategoryComponent {
   }
   insertar() {
     if (this.selection.selected.length > 0) {
-      alert('Al insertar no debe estar seleccionado ningún item');
+      alert(this.constants.ALERT_NO_ITEM);
       return;
     }
     this.router.navigateByUrl('/eventCategoryInsert');
@@ -66,9 +66,9 @@ export class EventCategoryComponent {
       const URL_SERVICE = `/eventCategoryUpdate/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      alert('Debes seleccionar un item');
+      alert(this.constants.ALERT_SELECT_ITEM);
     } else if (this.selection.selected.length > 1) {
-      alert('Acción no permitida para mas de un item');
+      alert(this.constants.ALERT_ONLY_ONE_ITEM);
     }
     return;
   }

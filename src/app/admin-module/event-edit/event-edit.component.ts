@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
@@ -41,6 +42,7 @@ export class EventEditComponent implements OnInit {
     private datepipe: DatePipe,
     private _categoryEventService: CategoryEventService,
     private activatedRoute: ActivatedRoute,
+    public constants: AppConstants,
     private router: Router,
     private _snackBar: MatSnackBar,
     private _menuService: MenuService
@@ -108,7 +110,7 @@ export class EventEditComponent implements OnInit {
   }
   ejecutarAccion(f: NgForm) {
     if (f.invalid) {
-      this._snackBar.open('Formulario Invalido', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_INVALID_FORM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
@@ -118,14 +120,14 @@ export class EventEditComponent implements OnInit {
     this.event.date = fecha as string;
     this._eventService.insert(this.event).subscribe((resp) => {
       if (resp.id === undefined || resp.id === null) {
-        this._snackBar.open('Error al crear evento', 'Cerrar', {
+        this._snackBar.open('Error al crear evento', this.constants.CLOSE, {
           duration: 2000,
           panelClass: ['red-snackbar'],
         });
       } else {
         this.butonEnabled = true;
         this._snackBar
-          .open('Operación exitosa', 'Cerrar', {
+          .open(this.constants.ALERT_SUCCESS, this.constants.CLOSE, {
             duration: 2000,
             panelClass: ['green-snackbar'],
           })

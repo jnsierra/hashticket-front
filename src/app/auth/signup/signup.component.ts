@@ -60,7 +60,6 @@ export class SignupComponent {
     this.router.navigateByUrl('/signin');
   }
   openErrorSnackbar() {
-    console.trace();
     this._snackBar.open(this.msn, 'Cerrar', {
       duration: 2000,
       panelClass: ['red-snackbar'],
