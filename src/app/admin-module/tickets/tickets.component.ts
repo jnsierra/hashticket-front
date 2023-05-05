@@ -9,6 +9,7 @@ import { TicketsService } from 'src/app/service/tickets.service';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort, SortDirection} from '@angular/material/sort';
 import { TicketView } from 'src/app/entities/ticket-view';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-tickets',
@@ -32,7 +33,8 @@ export class TicketsComponent {
   constructor(private _eventService: EventService
     , private _presentationService: PresentationService
     , private _snackBar: MatSnackBar
-    , private _ticketService: TicketsService){
+    , private _ticketService: TicketsService
+    , private _menuService: MenuService){
     this.events = [];
     this.presentations = [];
     this.tickets=[];
@@ -75,5 +77,11 @@ export class TicketsComponent {
   handlePageEvent(e: PageEvent) {
     this.records = e.pageSize;
     this.buscarTickets(e.pageIndex);
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }

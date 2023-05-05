@@ -20,7 +20,7 @@ export class TicketsService {
   }
 
   getByEventAndPresentation(eventId: number, presentationId: number, records: number, page: number) {
-    let params = new HttpParams().set("record", records).set("page", page);
+    let params = new HttpParams().set("myRecord", records).set("page", page);
     const URL_SERVICE = `${this._urlService.getEndPointTickets()}event/${eventId}/presentation/${presentationId}`;
     return this.http.get<GenericQuery<TicketView>>(URL_SERVICE, { params: params })
       .pipe(
