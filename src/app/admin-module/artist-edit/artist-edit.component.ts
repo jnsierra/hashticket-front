@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Artist } from 'src/app/entities/artist';
 import { ArtistService } from 'src/app/service/artist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -24,6 +25,7 @@ export class ArtistEditComponent implements OnInit {
     private _artistService: ArtistService,
     private _musicBandService: MusicBandService,
     private _snackBar: MatSnackBar,
+    public constants: AppConstants,
     private router: Router,
     private activatedRoute: ActivatedRoute,
   ) {
@@ -59,7 +61,7 @@ export class ArtistEditComponent implements OnInit {
   }
   executeAction(f: NgForm) {
     if (f.invalid) {
-      this._snackBar.open('Formulario Invalido', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_INVALID_FORM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
@@ -67,7 +69,7 @@ export class ArtistEditComponent implements OnInit {
     }
     this._artistService.insert(this.artist).subscribe((resp) => {
       if (resp.id === undefined || resp.id === null) {
-        this._snackBar.open('Error al crear artista', 'Cerrar', {
+        this._snackBar.open('Error al crear artista', this.constants.CLOSE, {
           duration: 2000,
           panelClass: ['red-snackbar'],
         });
