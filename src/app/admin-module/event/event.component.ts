@@ -115,6 +115,7 @@ export class EventComponent {
     if (this.selection.selected.length == 1) {
       const URL_SERVICE = `/presentation/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
+      return ;
     } else if (this.selection.selected.length == 0) {
       msn = this.constants.ALERT_SELECT_ITEM;
     } else if (this.selection.selected.length > 1) {
