@@ -51,4 +51,5 @@ export class PresentationService {
     const URL_SERVICE = `${this._urlService.getEndPointPubPresentation()}${eventId}`;
     return this.http.get<Presentation[]>(URL_SERVICE);
   }
+  
 }

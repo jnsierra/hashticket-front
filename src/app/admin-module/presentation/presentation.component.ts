@@ -26,13 +26,18 @@ export class PresentationComponent {
     , private _menuService: MenuService
   ) {
     this.idEvent = 0;
-    this.getAllPresentations();
     this.activatedRoute.params.subscribe(params => {
       this.idEvent = params['id'] as number;
+      this.getPresentationByEventId(this.idEvent);
     });
   }
   getAllPresentations() {
     this._presentationService.getAll().subscribe((resp) => {
+      this.dataSource.data = resp;
+    });
+  }
+  getPresentationByEventId(idEvent:number){
+    this._presentationService.getByIdEvent(idEvent).subscribe(resp =>{
       this.dataSource.data = resp;
     });
   }
