@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component } from '@angular/core';
 import { Category } from 'src/app/entities/category';
 import { CategoryService } from 'src/app/service/category.service';
@@ -22,6 +23,7 @@ export class CategoryEditComponent {
     private _snackBar: MatSnackBar,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    public constants: AppConstants,
   ) {
     this.category = new Category();
     this.id = '';
@@ -45,7 +47,7 @@ export class CategoryEditComponent {
 
   executeAction(f: NgForm) {
     if (f.invalid) {
-      this._snackBar.open('Formulario Invalido', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_INVALID_FORM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
@@ -53,7 +55,7 @@ export class CategoryEditComponent {
     }
     this._categoryService.insert(this.category).subscribe((resp) => {
       if (resp.id === undefined || resp.id === null) {
-        this._snackBar.open('Error al crear categor\u00eda', 'Cerrar', {
+        this._snackBar.open('Error al crear categor\u00eda', this.constants.CLOSE, {
           duration: 2000,
           panelClass: ['red-snackbar'],
         });

@@ -1,12 +1,16 @@
-import { SelectionModel } from '@angular/cdk/collections';
+
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Event } from '../../entities/event';
 import { ConfigEventTable } from 'src/app/entities/config-event-table';
 import { ConfigEventService } from 'src/app/service/config-event.service';
-import { PresentationService } from 'src/app/service/presentation.service';
-import { Event } from '../../entities/event';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PresentationService } from 'src/app/service/presentation.service';
+import { SelectionModel } from '@angular/cdk/collections';
+
+
 
 @Component({
   selector: 'app-config-event',
@@ -14,7 +18,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./config-event.component.scss']
 })
 export class ConfigEventComponent {
-  displayedColumns: string[] = ['select', 'id', 'presentation', 'apertura_puertas', 'fecha_evento', 'numero_tickets', 'tickets_vendidos'];
+  displayedColumns: string[] = [
+    this.constants.COLUMN_SELECT,
+    this.constants.COLUMN_PRESENTATION, 
+    this.constants.COLUMN_OPENING_DOORS, 
+    this.constants.COLUMN_EVENT_DATE, 
+    this.constants.COLUMN_TICKET_NUMBER, 
+    'tickets_vendidos'
+  ];
   dataSource = new MatTableDataSource<ConfigEventTable>();
   selection = new SelectionModel<ConfigEventTable>(true, []);
   event: Event;
@@ -23,7 +34,8 @@ export class ConfigEventComponent {
     , private router: Router
     , private _snackBar: MatSnackBar
     , private _configEventService: ConfigEventService
-    , private _presentationService: PresentationService) {
+    , private _presentationService: PresentationService
+    , public constants: AppConstants) {
     this.event = new Event();
     this.activatedRoute.params.subscribe(params => {
       this.event.id = params['idEvent'] as number;

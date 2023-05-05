@@ -17,11 +17,14 @@ export class AppConstants {
     public COLUMN_CITY_CODE = "cityCode";
     public COLUMN_DATE = "date";
     public COLUMN_DESCRIPTION = "description";
+    public COLUMN_EVENT_DATE = "fecha_evento";
     public COLUMN_MINIMUM_AGE = "minimumAge";
     public COLUMN_MUSIC_BAND_NAME = "musicBandName";
     public COLUMN_NAME = "name";
+    public COLUMN_OPENING_DOORS = "apertura_puertas";
     public COLUMN_PLACE = "place";
+    public COLUMN_PRESENTATION = "presentation";
     public COLUMN_RESPONSIBLE = "responsible";
     public COLUMN_SELECT = "select";
-    
+    public COLUMN_TICKET_NUMBER = "numero_tickets";
 }
