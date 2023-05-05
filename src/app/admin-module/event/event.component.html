@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" hasBackdrop="true" *ngIf="validatePermissions()">
+<mat-drawer-container hasBackdrop="true" *ngIf="validatePermissions()">
   <mat-drawer #drawer mode="side"><br>
     <div *ngFor="let item of getMenu(); index as i;">
       &nbsp;&nbsp;<a routerLinkActive="active" [routerLink]="item.url">{{item.name}}</a>
@@ -17,10 +17,10 @@
       <br />
       &nbsp;
       <button mat-raised-button color="warn" (click)="insertar()">
-        Crear
+        {{constants.BUTTON_CREATE}}
       </button>&nbsp;
       <button mat-raised-button color="warn" (click)="update()">
-        Actualizar
+        {{constants.BUTTON_UPDATE}}
       </button><br/><br/>
       &nbsp;&nbsp;<button mat-raised-button color="primary" (click)="sendPresentation()">
         Presentación
@@ -35,7 +35,7 @@
       <br />
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Checkbox Column -->
-        <ng-container matColumnDef="select">
+        <ng-container matColumnDef={{constants.COLUMN_SELECT}}>
           <th mat-header-cell *matHeaderCellDef>
             <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
               [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
@@ -49,26 +49,26 @@
         </ng-container>
 
         <!-- Position Column -->
-        <ng-container matColumnDef="place">
-          <th mat-header-cell *matHeaderCellDef>Lugar del evento.</th>
+        <ng-container matColumnDef={{constants.COLUMN_PLACE}}>
+          <th mat-header-cell *matHeaderCellDef>Lugar del evento</th>
           <td mat-cell *matCellDef="let element">{{ element.place }}</td>
         </ng-container>
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Fecha del evento.</th>
+        <ng-container matColumnDef={{constants.COLUMN_DATE}}>
+          <th mat-header-cell *matHeaderCellDef>Fecha del evento</th>
           <td mat-cell *matCellDef="let element">
             {{ element.date | date : "d/MM/yyy" }}
           </td>
         </ng-container>
-        <ng-container matColumnDef="minimumAge">
+        <ng-container matColumnDef={{constants.COLUMN_MINIMUM_AGE}}>
           <th mat-header-cell *matHeaderCellDef>Edad Minima de Ingreso.</th>
           <td mat-cell *matCellDef="let element">{{ element.minimumAge }}</td>
         </ng-container>
-        <ng-container matColumnDef="responsible">
-          <th mat-header-cell *matHeaderCellDef>Responsable.</th>
+        <ng-container matColumnDef={{constants.COLUMN_RESPONSIBLE}}>
+          <th mat-header-cell *matHeaderCellDef>Responsable</th>
           <td mat-cell *matCellDef="let element">{{ element.responsible }}</td>
         </ng-container>
-        <ng-container matColumnDef="cityCode">
-          <th mat-header-cell *matHeaderCellDef>Ubicación.</th>
+        <ng-container matColumnDef={{constants.COLUMN_CITY_CODE}}>
+          <th mat-header-cell *matHeaderCellDef>Ubicación</th>
           <td mat-cell *matCellDef="let element">
             <mat-icon aria-hidden="false" aria-label="Ubicacion" fontIcon="location_on"
               (click)="openLocation(element)"></mat-icon>

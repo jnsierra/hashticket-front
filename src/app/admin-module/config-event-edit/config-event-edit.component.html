@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" hasBackdrop="true" *ngIf="validatePermissions()">
+<mat-drawer-container hasBackdrop="true" *ngIf="validatePermissions()">
     <mat-drawer #drawer mode="side"><br>
         <div *ngFor="let item of getMenu(); index as i;">
             &nbsp;&nbsp;<a routerLinkActive="active" [routerLink]="item.url">{{item.name}}</a>
@@ -65,13 +65,6 @@
                                         [(ngModel)]="configEvent.numberOfTickets" required>
                                 </mat-form-field>
                             </mat-grid-tile>
-                            <mat-grid-tile>
-                                <mat-form-field class="full-width">
-                                    <mat-label>Número de tickets vendidos</mat-label>
-                                    <input class="inputs-form" type="number" name="numberTicketsSold" matInput
-                                        [(ngModel)]="configEvent.numberOfTicketsSold" required>
-                                </mat-form-field>
-                            </mat-grid-tile>
                         </mat-grid-list>
                     </mat-card-content>
                     <mat-card-actions>
@@ -79,7 +72,7 @@
                             [disabled]="butonDisabled">{{createAction ?
                             'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
                         <button mat-raised-button color="primary" routerLink="/configEvent/{{configEvent.id}}"
-                            color="warn" [disabled]="butonDisabled">CANCELAR</button>
+                            color="warn" [disabled]="butonDisabled">{{constants.BUTTON_CANCEL}}</button>
                     </mat-card-actions>
                 </mat-card>
             </form>

@@ -24,7 +24,7 @@ export class ConfigEventComponent {
     this.constants.COLUMN_OPENING_DOORS, 
     this.constants.COLUMN_EVENT_DATE, 
     this.constants.COLUMN_TICKET_NUMBER, 
-    'tickets_vendidos'
+    this.constants.COLUMN_SOLD_TICKETS
   ];
   dataSource = new MatTableDataSource<ConfigEventTable>();
   selection = new SelectionModel<ConfigEventTable>(true, []);
@@ -102,12 +102,12 @@ export class ConfigEventComponent {
       const URL_SERVICE = `/configEventUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      this._snackBar.open('Debes seleccionar un item', 'cerrar', {
+      this._snackBar.open(this.constants.ALERT_SELECT_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
     } else if (this.selection.selected.length > 1) {
-      this._snackBar.open('Acción no permitida para más de un item', 'cerrar', {
+      this._snackBar.open(this.constants.ALERT_ONLY_ONE_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });

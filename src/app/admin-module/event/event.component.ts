@@ -33,7 +33,7 @@ export class EventComponent {
     private router: Router,
     private _snackBar: MatSnackBar,
     private _menuService: MenuService,
-    private constants: AppConstants
+    public constants: AppConstants
   ) {
     this.getAllEvents();
   }

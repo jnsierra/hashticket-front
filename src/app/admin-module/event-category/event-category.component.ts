@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,14 +13,14 @@ import { CategoryEventService } from 'src/app/service/category-event.service';
 })
 export class EventCategoryComponent {
   displayedColumns: string[] = [
-    'select',
-    'id',
-    'name',
-    'description',
+    this.constants.COLUMN_SELECT,
+    this.constants.COLUMN_NAME,
+    this.constants.COLUMN_DESCRIPTION
   ];
   dataSource = new MatTableDataSource<EventCategory>();
   selection = new SelectionModel<EventCategory>(true, []);
   constructor(
+    public constants: AppConstants,
     private router: Router,
     private _categoryEventService: CategoryEventService) {
     this.getEventCategories()

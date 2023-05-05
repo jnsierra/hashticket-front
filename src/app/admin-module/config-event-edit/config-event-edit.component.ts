@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -22,6 +23,7 @@ export class ConfigEventEditComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute
     , private router: Router
     , private _snackBar: MatSnackBar
+    , public constants: AppConstants
     , private datepipe: DatePipe
     , private _presentationService: PresentationService
     , private _configEventService: ConfigEventService
@@ -56,7 +58,7 @@ export class ConfigEventEditComponent implements OnInit {
     let fecha = this.datepipe.transform(this.configEvent.eventDate, 'yyyy-MM-dd');
     this.configEvent.eventDate = fecha as string;
     this._configEventService.save(this.configEvent).subscribe(resp => {
-      this._snackBar.open('Operacion exitosa', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_SUCCESS, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['green-snackbar'],
       });
