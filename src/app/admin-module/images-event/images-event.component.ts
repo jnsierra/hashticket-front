@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventImageService } from 'src/app/service/event-image.service';
 import { EventImages } from '../../entities/event-images'
 import { ViewImageComponent } from '../view-image/view-image.component';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-images-event',
@@ -23,6 +24,7 @@ export class ImagesEventComponent {
     , private router: Router
     , public dialog: MatDialog
     , private _eventImageService: EventImageService
+    , private _menuService: MenuService
   ) {
     this.idEvent = 0;
     this.activatedRoute.params.subscribe(params => {
@@ -91,5 +93,11 @@ export class ImagesEventComponent {
         idEventImage: id
       },
     });
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }

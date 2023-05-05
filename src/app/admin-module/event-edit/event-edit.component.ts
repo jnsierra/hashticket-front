@@ -14,6 +14,7 @@ import { CategoryEvent } from 'src/app/entities/category-event';
 import { CategoryEventService } from 'src/app/service/category-event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-event-edit',
@@ -41,7 +42,8 @@ export class EventEditComponent implements OnInit {
     private _categoryEventService: CategoryEventService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _menuService: MenuService
   ) {
     this.event = new Event();
     this.countries = [];
@@ -133,5 +135,11 @@ export class EventEditComponent implements OnInit {
           });
       }
     });
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }

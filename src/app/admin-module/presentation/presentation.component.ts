@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Presentation } from 'src/app/entities/presentation';
 import { PresentationService } from 'src/app/service/presentation.service';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-presentation',
@@ -22,6 +23,7 @@ export class PresentationComponent {
     , public dialog: MatDialog
     , private router: Router
     , private activatedRoute: ActivatedRoute
+    , private _menuService: MenuService
   ) {
     this.idEvent = 0;
     this.getAllPresentations();
@@ -76,5 +78,11 @@ export class PresentationComponent {
     } else if (this.selection.selected.length > 1) {
       alert('Acción no permitida para mas de un item');
     }
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }
