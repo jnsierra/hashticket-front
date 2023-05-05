@@ -11,11 +11,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     var token: string = '';
-    if(req.url === '/api-business/v.1/user/changePassword'){
-      token = localStorage.getItem('temporalToken') as string;
-    }else{
-      token = localStorage.getItem('token') as string;
-    }
+    token = localStorage.getItem('token') as string;
     let request = req;
     if (token) {
       request = req.clone({
