@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,12 +14,17 @@ import { ZoneService } from 'src/app/service/zone.service';
   styleUrls: ['./zone.component.scss']
 })
 export class ZoneComponent {
-  displayedColumns: string[] = ['select', 'id', 'name', 'categoryId'];
+  displayedColumns: string[] = [
+    this.constants.COLUMN_SELECT,
+    this.constants.COLUMN_NAME,
+    'categoryId'
+  ];
   dataSource = new MatTableDataSource<Zone>();
   selection = new SelectionModel<Zone>(true, []);
 
   constructor(
     private _zoneService: ZoneService,
+    public constants: AppConstants,
     public dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar

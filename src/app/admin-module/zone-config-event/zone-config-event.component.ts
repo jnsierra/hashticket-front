@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +22,13 @@ export class ZoneConfigEventComponent implements OnInit {
   presentationId:number;
   presentations:Presentation[];
 
-  displayedColumns: string[] = ['select', 'id', 'zone', 'configEvent', 'cost', 'numberOfTickets'];
+  displayedColumns: string[] = [
+    this.constants.COLUMN_SELECT, 
+    'zone', 
+    'configEvent', 
+    'cost', 
+    'numberOfTickets'
+  ];
   dataSource = new MatTableDataSource<ZoneConfigEvent>();
   selection = new SelectionModel<ZoneConfigEvent>(true, []);
 
@@ -29,7 +36,8 @@ export class ZoneConfigEventComponent implements OnInit {
     , private _snackBar: MatSnackBar
     , private _zoneConfigEventService: ZoneConfigEventService
     , private _eventService: EventService
-    , private _presentationService: PresentationService){
+    , private _presentationService: PresentationService
+    , public constants: AppConstants){
     this.events = [];
     this.eventId = 0;
     this.presentationId = 0; 

@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/service/auth.service';
@@ -19,6 +20,7 @@ export class SignupComponent {
 
   constructor(
     private _authService: AuthService,
+    public constants: AppConstants,
     private router: Router,
     private title: Title,
     private meta: Meta,
@@ -41,7 +43,7 @@ export class SignupComponent {
     this._authService.signUp(this.loginEntity).subscribe({
       next: (resp) => {
         if (resp.status == 200 && resp.body === true) {
-          this._snackBar.open('Se ha enviado un mail con tu contraseña temporal.', 'Cerrar', {
+          this._snackBar.open('Se ha enviado un mail con tu contraseña temporal.', this.constants.CLOSE, {
             duration: 20000,
             panelClass: ['green-snackbar'],
             verticalPosition: 'top'
