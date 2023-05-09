@@ -4,6 +4,7 @@ import { PresentationService } from 'src/app/service/presentation.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-presentation-edit',
@@ -17,7 +18,8 @@ export class PresentationEditComponent implements OnInit {
   constructor(private _presentationService: PresentationService
     , private activatedRoute: ActivatedRoute
     , private router: Router
-    , private _snackBar: MatSnackBar) {
+    , private _snackBar: MatSnackBar
+    , private _menuService: MenuService) {
     this.presentation = new Presentation();
     this.botonInactive = false;
     this.activatedRoute.params.subscribe(params => {
@@ -48,5 +50,11 @@ export class PresentationEditComponent implements OnInit {
   }
   sendListPresentation() {
     this.router.navigateByUrl(`presentation/${this.presentation.eventId}`);
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }

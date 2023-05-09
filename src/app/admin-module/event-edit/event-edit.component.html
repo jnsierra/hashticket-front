@@ -45,7 +45,7 @@
                             <mat-error *ngIf="f.submitted && f.controls['dateEvent'].invalid ">
                                 Fecha de apertura obligatoria
                             </mat-error>
-                            <input matInput [matDatepicker]="picker" [(ngModel)]="event.date" name="dateEvent" required>
+                            <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myFilterDate" [(ngModel)]="event.date" name="dateEvent" required>
                             <mat-hint>MM/DD/YYYY</mat-hint>
                             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
