@@ -33,6 +33,11 @@ export class EventEditComponent implements OnInit {
   id: string;
   insert: boolean;
   butonEnabled: boolean;
+  today:Date = new Date();
+  myFilterDate = (d: Date | null): boolean => {
+    // prevent days in the past from being selected.
+    return d !== null && d > this.today;
+  };
 
   constructor(
     private _countryService: CountryService,

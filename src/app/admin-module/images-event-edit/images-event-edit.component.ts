@@ -9,6 +9,7 @@ import { EventImages } from 'src/app/entities/event-images';
 import { UtilesBase64Service } from 'src/app/service/utiles-base64.service';
 import { EventImageService } from '../../service/event-image.service';
 import { ViewImageComponent } from '../view-image/view-image.component';
+import { MenuService } from 'src/app/service/menu.service';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class ImagesEventEditComponent implements OnInit {
     , public constants: AppConstants
     , private router: Router
     , public dialog: MatDialog
+    , private _menuService: MenuService
   ) {
     this.eventImages = new EventImages();
     this.createAccion = true;
@@ -103,5 +105,11 @@ export class ImagesEventEditComponent implements OnInit {
         idEventImage: id
       },
     });
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }
