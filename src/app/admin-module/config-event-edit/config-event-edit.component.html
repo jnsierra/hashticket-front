@@ -18,7 +18,7 @@
             <br />
             <br />
             <form #f="ngForm" (ngSubmit)="executeAction(f)">
-                <mat-card width="100%" style="margin-left: 20%; margin-right: 20%">
+                <mat-card width="100%" >
                     <mat-card-header>
                         <mat-card-title>Configuraciones del evento</mat-card-title>
                         <mat-card-subtitle>
@@ -51,7 +51,7 @@
                                     <mat-error *ngIf="f.submitted && f.controls['eventDate'].invalid ">
                                         Fecha de evento obligatorio
                                     </mat-error>
-                                    <input matInput [matDatepicker]="picker" [(ngModel)]="configEvent.eventDate"
+                                    <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myFilterDate" [(ngModel)]="configEvent.eventDate"
                                         name="eventDate" required>
                                     <mat-hint>MM/DD/YYYY</mat-hint>
                                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>

@@ -9,6 +9,7 @@ import { ConfigEventService } from 'src/app/service/config-event.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PresentationService } from 'src/app/service/presentation.service';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MenuService } from 'src/app/service/menu.service';
 
 
 
@@ -35,7 +36,8 @@ export class ConfigEventComponent {
     , private _snackBar: MatSnackBar
     , private _configEventService: ConfigEventService
     , private _presentationService: PresentationService
-    , public constants: AppConstants) {
+    , public constants: AppConstants
+    , private _menuService: MenuService) {
     this.event = new Event();
     this.activatedRoute.params.subscribe(params => {
       this.event.id = params['idEvent'] as number;
@@ -112,5 +114,11 @@ export class ConfigEventComponent {
         panelClass: ['red-snackbar'],
       });
     }
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }

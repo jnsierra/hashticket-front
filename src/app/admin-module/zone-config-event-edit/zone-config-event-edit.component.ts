@@ -9,6 +9,7 @@ import { Zone } from 'src/app/entities/zone';
 import { ZoneConfigEvent } from 'src/app/entities/zone-config-event';
 import { ConfigEventService } from 'src/app/service/config-event.service';
 import { EventService } from 'src/app/service/event.service';
+import { MenuService } from 'src/app/service/menu.service';
 import { PresentationService } from 'src/app/service/presentation.service';
 import { ZoneConfigEventService } from 'src/app/service/zone-config-event.service';
 import { ZoneService } from 'src/app/service/zone.service';
@@ -37,6 +38,7 @@ export class ZoneConfigEventEditComponent implements OnInit{
     , private _presentationService: PresentationService
     , private _zoneConfigEventService: ZoneConfigEventService
     , private _snackBar: MatSnackBar
+    , private _menuService: MenuService
     ){
     this.zoneConfigEvent = new ZoneConfigEvent();
     this.insertAccion = true;
@@ -105,5 +107,11 @@ export class ZoneConfigEventEditComponent implements OnInit{
         this.router.navigateByUrl(URL_SERVICE);
       } 
     });
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }

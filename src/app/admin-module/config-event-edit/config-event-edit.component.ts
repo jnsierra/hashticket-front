@@ -20,6 +20,11 @@ export class ConfigEventEditComponent implements OnInit {
   createAction: boolean;
   presentations: Presentation[];
   butonDisabled: boolean;
+  today:Date = new Date();
+  myFilterDate = (d: Date | null): boolean => {
+    // prevent days in the past from being selected.
+    return d !== null && d > this.today;
+  };
   constructor(private activatedRoute: ActivatedRoute
     , private router: Router
     , private _snackBar: MatSnackBar

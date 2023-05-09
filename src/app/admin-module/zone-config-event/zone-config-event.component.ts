@@ -10,6 +10,7 @@ import { ZoneConfigEvent } from 'src/app/entities/zone-config-event';
 import { EventService } from 'src/app/service/event.service';
 import { PresentationService } from 'src/app/service/presentation.service';
 import { ZoneConfigEventService } from 'src/app/service/zone-config-event.service';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-zone-config-event',
@@ -37,7 +38,8 @@ export class ZoneConfigEventComponent implements OnInit {
     , private _zoneConfigEventService: ZoneConfigEventService
     , private _eventService: EventService
     , private _presentationService: PresentationService
-    , public constants: AppConstants){
+    , public constants: AppConstants
+    , private _menuService: MenuService){
     this.events = [];
     this.eventId = 0;
     this.presentationId = 0; 
@@ -107,5 +109,11 @@ export class ZoneConfigEventComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1
       }`;
   }
-
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+  }
+  
 }

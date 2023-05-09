@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { EventCategory } from 'src/app/entities/event-category';
 import { CategoryEventService } from 'src/app/service/category-event.service';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-event-category',
@@ -21,6 +22,7 @@ export class EventCategoryComponent {
   selection = new SelectionModel<EventCategory>(true, []);
   constructor(
     public constants: AppConstants,
+    private _menuService: MenuService,
     private router: Router,
     private _categoryEventService: CategoryEventService) {
     this.getEventCategories()
@@ -71,5 +73,11 @@ export class EventCategoryComponent {
       alert(this.constants.ALERT_ONLY_ONE_ITEM);
     }
     return;
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }
