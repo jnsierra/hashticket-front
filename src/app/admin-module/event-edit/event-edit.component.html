@@ -27,9 +27,8 @@
                             <mat-error *ngIf="f.submitted && f.controls['name'].invalid ">
                                 Nombre obligatorio
                             </mat-error>
-                            <input class="inputs-form" type="text" name="name" matInput
-                                placeholder="Nombre del evento" [(ngModel)]="event.name" required
-                                size="100">
+                            <input class="inputs-form" type="text" name="name" matInput placeholder="Nombre del evento"
+                                [(ngModel)]="event.name" required size="100">
                         </mat-form-field><br />
                         <mat-form-field class="full-width">
                             <mat-label>Lugar</mat-label>
@@ -120,8 +119,8 @@
                     <br />
                     <mat-card-actions>
                         <button mat-raised-button color="primary" type="submit" [disabled]="butonEnabled">{{insert ?
-                            'INSERTAR' :
-                            'ACTUALIZAR'}}</button> &nbsp;
+                            constants.BUTTON_CREATE :
+                            constants.BUTTON_UPDATE}}</button> &nbsp;
                         <button mat-raised-button color="primary" routerLink="/event" color="warn"
                             [disabled]="butonEnabled">{{constants.BUTTON_CANCEL}}</button>
                     </mat-card-actions>

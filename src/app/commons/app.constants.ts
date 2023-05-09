@@ -4,17 +4,18 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class AppConstants {
-    public ALERT_INVALID_FORM = "Formulario Invalido";
-    public ALERT_NO_ITEM = "Al insertar no debe estar seleccionado ningún item";
-    public ALERT_ONLY_ONE_ITEM = "Acción no permitida para mas de un item";
+    public ALERT_INVALID_FORM = "Formulario invalido";
+    public ALERT_NO_ITEM = "Al insertar no debe estar seleccionado ning\u00fan item";
+    public ALERT_ONLY_ONE_ITEM = "Acci\u00f3n no permitida para mas de un item";
     public ALERT_SELECT_ITEM = "Debes seleccionar un item";
-    public ALERT_SUCCESS = "Operación exitosa";
+    public ALERT_SUCCESS = "Operaci\u00f3n exitosa";
     public CLOSE = "Cerrar";
 
+    public BUTTON_CANCEL = "Cancelar";
     public BUTTON_CREATE = "Crear";
     public BUTTON_UPDATE = "Actualizar";
-    public BUTTON_CANCEL = "Cancelar";
-
+    public BUTTON_UPLOAD = "Cargar";
+    
     public COLUMN_CITY_CODE = "cityCode";
     public COLUMN_DATE = "date";
     public COLUMN_DESCRIPTION = "description";
@@ -29,4 +30,7 @@ export class AppConstants {
     public COLUMN_SELECT = "select";
     public COLUMN_SOLD_TICKETS = "tickets_vendidos";
     public COLUMN_TICKET_NUMBER = "numero_tickets";
+
+    public ROLE_ADMIN = "ROLE_ADMIN";
+    public ROLE_MANAGER = "ROLE_MANAGER";
 }

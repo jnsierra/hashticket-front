@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,11 +17,17 @@ import { MenuService } from 'src/app/service/menu.service';
 })
 export class ImagesEventComponent {
   idEvent: number;
-  displayedColumns: string[] = ['select', 'id', 'description', 'typeImg', 'img'];
+  displayedColumns: string[] = [
+    this.constants.COLUMN_MUSIC_BAND_NAME, 
+    this.constants.COLUMN_DESCRIPTION, 
+    'typeImg', 
+    'img'
+  ];
   dataSource = new MatTableDataSource<EventImages>();
   selection = new SelectionModel<EventImages>(true, []);
   constructor(private activatedRoute: ActivatedRoute
     , private _snackBar: MatSnackBar
+    , public constants: AppConstants
     , private router: Router
     , public dialog: MatDialog
     , private _eventImageService: EventImageService
@@ -39,7 +46,7 @@ export class ImagesEventComponent {
   }
   insert() {
     if (this.selection.selected.length > 0) {
-      this._snackBar.open('Al insertar no debe estar seleccionado ningún item', 'cerrar');
+      this._snackBar.open(this.constants.ALERT_NO_ITEM, this.constants.CLOSE);
       return;
     }
     this.router.navigateByUrl(`/imageEventInsert/${this.idEvent}`);
@@ -49,12 +56,12 @@ export class ImagesEventComponent {
       const URL_SERVICE = `/eventImagesUpdate/${this.selection.selected[0].eventId}/${this.selection.selected[0].id}`;
       this.router.navigateByUrl(URL_SERVICE);
     } else if (this.selection.selected.length == 0) {
-      this._snackBar.open('Debes seleccionar un item', 'cerrar', {
+      this._snackBar.open(this.constants.ALERT_SELECT_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
     } else if (this.selection.selected.length > 1) {
-      this._snackBar.open('Acción no permitida para más de un item', 'cerrar', {
+      this._snackBar.open(this.constants.ALERT_ONLY_ONE_ITEM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
@@ -98,6 +105,6 @@ export class ImagesEventComponent {
     return this._menuService.itemsMenu;
   }
   validatePermissions():boolean{
-    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 }

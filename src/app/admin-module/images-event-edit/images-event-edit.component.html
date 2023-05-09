@@ -28,8 +28,8 @@
             <mat-form-field class="full-width">
                 <mat-select name="typeImage" [(ngModel)]="eventImages.typeImages">
                     <mat-option value="-1">Seleccione una opcion</mat-option>
-                    <mat-option value="PRINCIPAL">PRINCIPAL</mat-option>
-                    <mat-option value="MINIATURE">MINIATURE</mat-option>
+                    <mat-option value="PRINCIPAL">Principal</mat-option>
+                    <mat-option value="MINIATURE">Miniatura</mat-option>
                 </mat-select>
             </mat-form-field><br />
             <div>
@@ -54,9 +54,9 @@
         </mat-card-content>
         <mat-card-actions>
             <button mat-raised-button color="primary" type="submit" [disabled]="!enableButton">{{createAccion ?
-                'INSERTAR' : 'ACTUALIZAR'}}</button> &nbsp;
+                constants.BUTTON_UPLOAD : constants.BUTTON_UPDATE}}</button> &nbsp;
             <button mat-raised-button color="primary" routerLink="/homeAdmin" color="warn"
-                [disabled]="!enableButton">CANCELAR</button>
+                [disabled]="!enableButton">{{constants.BUTTON_CANCEL}}</button>
         </mat-card-actions>
     </mat-card>
 </form>

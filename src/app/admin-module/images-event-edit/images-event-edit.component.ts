@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm, Validators, } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -27,6 +28,7 @@ export class ImagesEventEditComponent implements OnInit {
     , private _snackBar: MatSnackBar
     , private _utilesBase64Service: UtilesBase64Service
     , private _eventImageService: EventImageService
+    , public constants: AppConstants
     , private router: Router
     , public dialog: MatDialog
   ) {
@@ -55,14 +57,14 @@ export class ImagesEventEditComponent implements OnInit {
       return;
     }
     if (this.eventImages.typeImages === '-1') {
-      this._snackBar.open('Seleccione un tipo de imagen', 'Cerrar', {
+      this._snackBar.open('Seleccione un tipo de imagen', this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
       return;
     }
     if (this.fileName === '') {
-      this._snackBar.open('La imagen es obligatoria', 'Cerrar', {
+      this._snackBar.open('La imagen es obligatoria', this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
@@ -71,7 +73,7 @@ export class ImagesEventEditComponent implements OnInit {
     this._eventImageService.insertByEvent(this.eventImages).subscribe(resp => {
       if (!(resp.id === undefined) && !(resp.id === null) && !(resp.id === 0)) {
         this.enableButton = false;
-        this._snackBar.open('Operacion exitosa', 'Cerrar', {
+        this._snackBar.open(this.constants.ALERT_SUCCESS, this.constants.CLOSE, {
           duration: 2000,
           panelClass: ['green-snackbar'],
         });
