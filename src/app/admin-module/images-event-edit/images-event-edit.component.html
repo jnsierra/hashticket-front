@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" hasBackdrop="true" *ngIf="validatePermissions()">
+<mat-drawer-container hasBackdrop="true" *ngIf="validatePermissions()">
     <mat-drawer #drawer mode="side"><br>
         <div *ngFor="let item of getMenu(); index as i;">
             &nbsp;&nbsp;<a routerLinkActive="active" [routerLink]="item.url">{{item.name}}</a>

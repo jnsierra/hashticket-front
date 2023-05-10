@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" hasBackdrop="true" *ngIf="validatePermissions()">
+<mat-drawer-container hasBackdrop="true" *ngIf="validatePermissions()">
   <mat-drawer #drawer mode="side"><br>
     <div *ngFor="let item of getMenu(); index as i;">
       &nbsp;&nbsp;<a routerLinkActive="active" [routerLink]="item.url">{{item.name}}</a>
@@ -32,7 +32,7 @@
                     Nombre obligatorio
                   </mat-error>
                   <input class="inputs-form" type="text" name="name" matInput placeholder="Nombre de la presentación"
-                    [(ngModel)]="presentation.name" requi  red />
+                    [(ngModel)]="presentation.name" required />
                 </mat-form-field>
               </mat-grid-tile>
             </mat-grid-list>

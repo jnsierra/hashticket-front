@@ -169,6 +169,6 @@ export class EventComponent {
     return this._menuService.itemsMenu;
   }
   validatePermissions(): boolean {
-    return this._menuService.seeMenu(['ROLE_ADMIN', 'ROLE_MANAGER']);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 }

@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -39,6 +40,7 @@ export class ZoneConfigEventEditComponent implements OnInit{
     , private _zoneConfigEventService: ZoneConfigEventService
     , private _snackBar: MatSnackBar
     , private _menuService: MenuService
+    , public constants: AppConstants
     ){
     this.zoneConfigEvent = new ZoneConfigEvent();
     this.insertAccion = true;
@@ -99,7 +101,7 @@ export class ZoneConfigEventEditComponent implements OnInit{
     }
     this._zoneConfigEventService.save(this.zoneConfigEvent).subscribe(data => {
       if(data.id !== undefined){
-        this._snackBar.open('Acción realizada exitosamente', 'cerrar', {
+        this._snackBar.open('Acción realizada exitosamente', this.constants.CLOSE, {
           duration: 2000,
           panelClass: ['green-snackbar'],
         });
@@ -112,6 +114,6 @@ export class ZoneConfigEventEditComponent implements OnInit{
     return this._menuService.itemsMenu;
   }
   validatePermissions():boolean{
-    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 }

@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +14,10 @@ import { MenuService } from 'src/app/service/menu.service';
   styleUrls: ['./presentation.component.scss'],
 })
 export class PresentationComponent {
-  displayedColumns: string[] = ['select', 'id', 'name'];
+  displayedColumns: string[] = [
+    this.constants.COLUMN_SELECT, 
+    this.constants.COLUMN_NAME
+  ];
   dataSource = new MatTableDataSource<Presentation>();
   selection = new SelectionModel<Presentation>(true, []);
   idEvent: number;
@@ -21,6 +25,7 @@ export class PresentationComponent {
   constructor(
     private _presentationService: PresentationService
     , public dialog: MatDialog
+    , public constants: AppConstants
     , private router: Router
     , private activatedRoute: ActivatedRoute
     , private _menuService: MenuService
@@ -88,6 +93,6 @@ export class PresentationComponent {
     return this._menuService.itemsMenu;
   }
   validatePermissions():boolean{
-    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 }

@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/entities/category';
 import { CategoryService } from 'src/app/service/category.service';
@@ -27,6 +28,7 @@ export class ZoneEditComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private router: Router,
     private activatedRoute: ActivatedRoute, 
+    public constants: AppConstants,
     private _menuService: MenuService
   ) {
     this.zone = new Zone();
@@ -61,7 +63,7 @@ export class ZoneEditComponent implements OnInit {
   }
   executeAction(f: NgForm) {
     if (f.invalid) {
-      this._snackBar.open('Formulario Invalido', 'Cerrar', {
+      this._snackBar.open(this.constants.ALERT_INVALID_FORM, this.constants.CLOSE, {
         duration: 2000,
         panelClass: ['red-snackbar'],
       });
@@ -69,7 +71,7 @@ export class ZoneEditComponent implements OnInit {
     }
     this._zoneService.insert(this.zone).subscribe((resp) => {
       if (resp.id === undefined || resp.id === null) {
-        this._snackBar.open('Error al crear la zona', 'Cerrar', {
+        this._snackBar.open('Error al crear la zona', this.constants.CLOSE, {
           duration: 2000,
           panelClass: ['red-snackbar'],
         });
@@ -91,6 +93,6 @@ export class ZoneEditComponent implements OnInit {
     return this._menuService.itemsMenu;
   }
   validatePermissions():boolean{
-    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 }

@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component, OnInit } from '@angular/core';
 import { Presentation } from 'src/app/entities/presentation';
 import { PresentationService } from 'src/app/service/presentation.service';
@@ -17,6 +18,7 @@ export class PresentationEditComponent implements OnInit {
 
   constructor(private _presentationService: PresentationService
     , private activatedRoute: ActivatedRoute
+    , public constants: AppConstants
     , private router: Router
     , private _snackBar: MatSnackBar
     , private _menuService: MenuService) {
@@ -40,7 +42,7 @@ export class PresentationEditComponent implements OnInit {
     }
     this._presentationService.insert(this.presentation).subscribe(resp => {
       this.botonInactive = true;
-      this._snackBar.open('Operación exitosa', 'cerrar').onAction().subscribe(resp => {
+      this._snackBar.open('Operación exitosa', this.constants.CLOSE).onAction().subscribe(resp => {
         this.sendListPresentation();
       });
     });
@@ -55,6 +57,6 @@ export class PresentationEditComponent implements OnInit {
     return this._menuService.itemsMenu;
   }
   validatePermissions():boolean{
-    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 }

@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component } from '@angular/core';
 import {
   ApexNonAxisChartSeries,
@@ -24,7 +25,8 @@ export class HomeAdminComponent {
 
   constructor(private _authService: AuthService
     , private _eventService: EventService
-    , private _menuService: MenuService) {
+    , private _menuService: MenuService
+    , public constants: AppConstants) {
     this.eventos = [];
     this.series = [44, 55, 13, 43, 22];
     this.chart = {
@@ -76,6 +78,6 @@ export class HomeAdminComponent {
     return this._menuService.itemsMenu;
   }
   validatePermissions():boolean{
-    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 } 

@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,7 +35,8 @@ export class TicketsComponent {
     , private _presentationService: PresentationService
     , private _snackBar: MatSnackBar
     , private _ticketService: TicketsService
-    , private _menuService: MenuService){
+    , private _menuService: MenuService
+    , public constants: AppConstants){
     this.events = [];
     this.presentations = [];
     this.tickets=[];
@@ -61,7 +63,7 @@ export class TicketsComponent {
   generarTickets(){
     this._ticketService.generateTickets(this.eventId, this.presentationId).subscribe(res => {
       if(res.code === 1){
-        this._snackBar.open(res.message, 'Cerrar', {
+        this._snackBar.open(res.message, this.constants.CLOSE, {
           duration: 2000,
           panelClass: ['green-snackbar'],
         });
@@ -82,6 +84,6 @@ export class TicketsComponent {
     return this._menuService.itemsMenu;
   }
   validatePermissions():boolean{
-    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 }
