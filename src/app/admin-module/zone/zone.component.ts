@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Zone } from 'src/app/entities/zone';
 import { ZoneService } from 'src/app/service/zone.service';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-zone',
@@ -27,7 +28,8 @@ export class ZoneComponent {
     public constants: AppConstants,
     public dialog: MatDialog,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _menuService: MenuService
   ) {
     this.getAllZones();
   }
@@ -90,5 +92,11 @@ export class ZoneComponent {
         panelClass: ['red-snackbar'],
       });
     }
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }

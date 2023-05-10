@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Zone } from 'src/app/entities/zone';
 import { ZoneService } from 'src/app/service/zone.service';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-zone-edit',
@@ -25,7 +26,8 @@ export class ZoneEditComponent implements OnInit {
     private _categoryService: CategoryService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute, 
+    private _menuService: MenuService
   ) {
     this.zone = new Zone();
     this.category = [];
@@ -84,5 +86,11 @@ export class ZoneEditComponent implements OnInit {
           });
       }
     });
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu(['ROLE_ADMIN','ROLE_MANAGER']);
   }
 }
