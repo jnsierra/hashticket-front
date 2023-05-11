@@ -65,7 +65,7 @@ export class TicketsComponent {
     this._ticketService.generateTickets(this.eventId, this.presentationId).subscribe(res => {
       if(res.code === 1){
         this._snackBar.open(res.message, this.constants.CLOSE, {
-          duration: 2000,
+          duration: 20000,
           panelClass: ['green-snackbar'],
         });
       }else if(res.code === 2 ){
