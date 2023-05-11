@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-category',
@@ -27,7 +28,8 @@ export class CategoryComponent {
     public constants: AppConstants,
     public dialog: MatDialog,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _menuService: MenuService
   ) {
     this.getAllCategories();
   }
@@ -93,5 +95,11 @@ export class CategoryComponent {
       });
     }
     return;
+  }
+  getMenu(){
+    return this._menuService.itemsMenu;
+  }
+  validatePermissions():boolean{
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
   }
 }
