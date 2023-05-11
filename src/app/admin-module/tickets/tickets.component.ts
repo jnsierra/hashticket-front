@@ -11,6 +11,7 @@ import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort, SortDirection} from '@angular/material/sort';
 import { TicketView } from 'src/app/entities/ticket-view';
 import { MenuService } from 'src/app/service/menu.service';
+import { GenericQuery } from 'src/app/entities/generic-query';
 
 @Component({
   selector: 'app-tickets',
@@ -64,16 +65,23 @@ export class TicketsComponent {
     this._ticketService.generateTickets(this.eventId, this.presentationId).subscribe(res => {
       if(res.code === 1){
         this._snackBar.open(res.message, this.constants.CLOSE, {
-          duration: 2000,
+          duration: 20000,
           panelClass: ['green-snackbar'],
+        });
+      }else if(res.code === 2 ){
+        this._snackBar.open(res.message, this.constants.CLOSE, {
+          duration: 20000,
+          panelClass: ['red-snackbar'],
         });
       }
     });
   }
   buscarTickets(page:number){
     this._ticketService.getByEventAndPresentation(this.eventId, this.presentationId, this.records, page).subscribe(data => {
-      this.tickets =  data.results;
-      this.resultsLength =  data.totalRecords;
+      var result: GenericQuery<TicketView> = new GenericQuery();
+      Object.assign(result, data );
+      this.tickets =  result.results;
+      this.resultsLength =  result.totalRecords;
     });
   }
   handlePageEvent(e: PageEvent) {
