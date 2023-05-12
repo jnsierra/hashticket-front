@@ -32,8 +32,7 @@ export class MenuService{
             const ROLES: string[] = this._authService.getAuthoritiesUser()
               .filter(role => this.checkRoleWithMenu(role, roleMenu));
             return ROLES.length > 0 ? true : false;
-          }
-
+        }
         return false;
     }
     checkRoleWithMenu(role: string, roleMenu: string[]) {
