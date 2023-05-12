@@ -69,6 +69,7 @@ export class TicketSelectionComponent {
   getTickets(fullEvent: ZoneConfigEvent, numberOfTickets: string) {
     this._ticketService.getTicketsByEventPresentationZoneAndCategory(this.event.id, this.presentation.id, fullEvent.zone.id, fullEvent.zone.categoryId).subscribe((resp) => {
       this.ticket = resp;
+      this.ticketsId = [];
       /**Validate if there are enough tickets to sell */
       if (this.ticket.length >= Number(numberOfTickets)) {
         this.ticket.slice(0,Number(numberOfTickets)).forEach(tik => {
