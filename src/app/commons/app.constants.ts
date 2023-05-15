@@ -15,6 +15,7 @@ export class AppConstants {
     public BUTTON_CREATE = "Crear";
     public BUTTON_UPDATE = "Actualizar";
     public BUTTON_UPLOAD = "Cargar";
+    public BUTTON_BUY = "Comprar";
     
     public COLUMN_CITY_CODE = "cityCode";
     public COLUMN_DATE = "date";

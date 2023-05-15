@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/commons/app.constants';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/entities/category';
@@ -35,6 +36,7 @@ export class TicketSelectionComponent {
     private _categoryService: CategoryService,
     private _ticketService: TicketsService,
     private _zoneConfigEventService: ZoneConfigEventService,
+    public constants: AppConstants,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) {
@@ -69,6 +71,7 @@ export class TicketSelectionComponent {
   getTickets(fullEvent: ZoneConfigEvent, numberOfTickets: string) {
     this._ticketService.getTicketsByEventPresentationZoneAndCategory(this.event.id, this.presentation.id, fullEvent.zone.id, fullEvent.zone.categoryId).subscribe((resp) => {
       this.ticket = resp;
+      this.ticketsId = [];
       /**Validate if there are enough tickets to sell */
       if (this.ticket.length >= Number(numberOfTickets)) {
         this.ticket.slice(0,Number(numberOfTickets)).forEach(tik => {
@@ -78,7 +81,7 @@ export class TicketSelectionComponent {
       } else {
         this._snackBar.open(
           'No hay suficientes entradas disponibles, por favor seleccione una cantidad inferior',
-          'Cerrar',
+          this.constants.CLOSE,
           {
             duration: 2500,
             panelClass: ['red-snackbar'],
