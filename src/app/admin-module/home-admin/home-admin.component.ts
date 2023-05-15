@@ -1,5 +1,5 @@
 import { AppConstants } from 'src/app/commons/app.constants';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   ApexNonAxisChartSeries,
   ApexChart,
@@ -9,13 +9,14 @@ import { Event } from 'src/app/entities/event';
 import { AuthService } from 'src/app/service/auth.service';
 import { EventService } from 'src/app/service/event.service';
 import { MenuService } from 'src/app/service/menu.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-admin',
   templateUrl: './home-admin.component.html',
   styleUrls: ['./home-admin.component.scss'],
 })
-export class HomeAdminComponent {
+export class HomeAdminComponent implements OnInit {
   eventos: Event[];
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
@@ -26,7 +27,8 @@ export class HomeAdminComponent {
   constructor(private _authService: AuthService
     , private _eventService: EventService
     , private _menuService: MenuService
-    , public constants: AppConstants) {
+    , public constants: AppConstants
+    , private router: Router) {
     this.eventos = [];
     this.series = [44, 55, 13, 43, 22];
     this.chart = {
@@ -53,6 +55,13 @@ export class HomeAdminComponent {
         color: '#263238',
       },
     };
+  }
+  ngOnInit(): void {
+    console.log('Este es el que requiere redireccion');
+    console.log();
+    if(!this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER])){
+      this.router.navigateByUrl('/');
+    }
   }
   getEvents(){
     this._eventService.getActiveEvents().subscribe((resp) => {

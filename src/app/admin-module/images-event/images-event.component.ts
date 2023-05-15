@@ -18,7 +18,7 @@ import { MenuService } from 'src/app/service/menu.service';
 export class ImagesEventComponent {
   idEvent: number;
   displayedColumns: string[] = [
-    this.constants.COLUMN_MUSIC_BAND_NAME, 
+    "select", 
     this.constants.COLUMN_DESCRIPTION, 
     'typeImg', 
     'img'
