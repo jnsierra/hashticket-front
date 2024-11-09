@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login } from '../entities/login';
 import { LoginResponse } from '../entities/login-response';
@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { User } from '../entities/user';
+import { KeycloakTokenResponse } from '../entities/keycloak-token-response';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +24,18 @@ export class AuthService {
 
   login(loginEntity: Login) {
     const URL_SERVICE = `${this._urlService.getEndPointPubLogin()}`;
-    return this.http.post<LoginResponse>(URL_SERVICE, loginEntity, { observe: 'response' }).pipe(
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded');
+    const body = new HttpParams()
+      .set('client_id', 'springboot-openid-client-app')
+      .set('client_secret', 'OxVBIwfyfx6NMS2GjGyqjJlMig6hfx9m')
+      .set('grant_type', 'password')
+      .set('username', loginEntity.email)
+      .set('password', loginEntity.password)
+      .set('scope', 'openid');
+    return this.http.post<KeycloakTokenResponse>(URL_SERVICE, body.toString(),{headers, observe: 'response' },).pipe(
       map(resp => {
-        if(resp.body!.loginAction == 'SUCCESS'){
-          this.saveToken(resp.body!.token);
-        }        
+        this.saveToken(resp.body?.access_token!);
         return resp;
       })
     );
@@ -72,7 +80,8 @@ export class AuthService {
       var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
           return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
       }).join(''));
-      return JSON.parse(jsonPayload).authorities;
+      var authorities = JSON.parse(jsonPayload);
+      return authorities.realm_access.roles;
     }
     return [];
   }

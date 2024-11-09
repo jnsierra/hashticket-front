@@ -32,6 +32,7 @@ export class AppConstants {
     public COLUMN_SOLD_TICKETS = "tickets_vendidos";
     public COLUMN_TICKET_NUMBER = "numero_tickets";
 
-    public ROLE_ADMIN = "ROLE_ADMIN";
+    public ROLE_ADMIN = "ADMIN";
     public ROLE_MANAGER = "ROLE_MANAGER";
+    public ROLE_USER = "USER";
 }

@@ -25,12 +25,7 @@ export class SigninComponent implements OnInit {
   }
   sendLogin() {
     this._authService.login(this.loginEntity).subscribe(resp => {
-      if (resp.body!.loginAction == 'SUCCESS') {
-        this.sendHome();
-      }else if(resp.body!.loginAction == 'SUCCESS_CHANGE_PASSWORD'){
-        this.router.navigateByUrl('/changePassword');
-        localStorage.setItem('token', resp.body!.token);
-      }
+      this.sendHome();
     });
   }
   generarLogin(f: NgForm) {

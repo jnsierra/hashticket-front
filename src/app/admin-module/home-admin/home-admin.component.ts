@@ -57,9 +57,7 @@ export class HomeAdminComponent implements OnInit {
     };
   }
   ngOnInit(): void {
-    console.log('Este es el que requiere redireccion');
-    console.log();
-    if(!this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER])){
+    if(!this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER, this.constants.ROLE_USER])){
       this.router.navigateByUrl('/');
     }
   }
@@ -87,6 +85,6 @@ export class HomeAdminComponent implements OnInit {
     return this._menuService.itemsMenu;
   }
   validatePermissions():boolean{
-    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER]);
+    return this._menuService.seeMenu([this.constants.ROLE_ADMIN, this.constants.ROLE_MANAGER, this.constants.ROLE_USER]);
   }
 } 

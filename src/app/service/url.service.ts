@@ -8,11 +8,14 @@ export class UrlService {
   urlBaseBusiness: string;
   urlBaseDatos: string;
   urlBasePublic: string;
+  urlBaseLogin: string;
 
   constructor() {
     this.urlBaseBusiness = environment.urlBaseBussines;
     this.urlBaseDatos = environment.urlBaseDatos;
     this.urlBasePublic = environment.urlBasePublic;
+    this.urlBaseLogin = environment.urlBaseAuth;
+    console.log('Url Login '+ this.urlBaseLogin);
   }
 
   getEndPointArtist() {
@@ -67,7 +70,7 @@ export class UrlService {
     return `${this.urlBasePublic}v.1/event_images/event/`;
   }
   getEndPointPubLogin() {
-    return `${this.urlBasePublic}login/`;
+    return `${this.urlBaseLogin}`;
   }
   getEndPointPubPresentation() {
     return `${this.urlBasePublic}v.1/presentation/event/`;

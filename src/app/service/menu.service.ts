@@ -36,6 +36,8 @@ export class MenuService{
         return false;
     }
     checkRoleWithMenu(role: string, roleMenu: string[]) {
+        role = role.toLowerCase();
+        roleMenu = roleMenu.map(item => item.toLowerCase());
         var roleFiltered: string[] = roleMenu.filter(item => role === item);
         return (roleFiltered.length > 0) ? true : false;
     } 
